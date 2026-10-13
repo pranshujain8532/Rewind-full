@@ -1,47 +1,50 @@
 # Current project state
 
-Updated: 2026-10-13 (Asia/Calcutta). Phase: P1 VERIFIED; P2 next in authorised P1–P10 run.
+Updated 2026-10-13 (Asia/Calcutta). P2 VERIFIED; P3 next in authorised P1–P10 run.
 
-## Working now
+## Working
 
-- P0 API/storage/web foundation; generated schemas/types and locked setup/check.
-- Six versioned synthetic support scenarios; evaluator expectations stored separately.
-- Three owned MCP stdio servers (ticket/files/mail), SDK 2.3.0 / revision 2026-07-28.
-- Transparent deterministic instruction DSL simulator; semantic attempted/executed
-  harmful-action and required-ticket-fact task-success predicates.
-- Per-run cloned world/outbox/configuration and actual result JSON, no external mail.
-- Explicit saved-recording playback; no fresh decision or independent evidence claim.
-- API reports simulator/playback available, real modes unavailable; CLI-only demo now.
+- P0 API/web/locked setup and P1 six synthetic scenarios/owned stdio mocks.
+- Byte-preserving, bounded stdio recorder for MCP 2.3.0 / 2026-07-28, verified
+  request/reply correlation, concurrency, tool errors and cancellation.
+- Simulator adapter captures actual request/response, initial world, stateless
+  memory, framework tool definitions and model/config digests; no response cache.
+- SQLite migration 0002_capture; transaction-allocated ordered immutable events,
+  AES-256-GCM content-addressed payloads, redacted display data, Ed25519 chain/seal.
+- Trusted-key CLI verifier detects mutation/provenance changes and missing payloads.
+- Duplicate text deduplicates bytes but retains distinct signed occurrence origins.
+- Captured CLI demo exports result and bundle; API reports actual stored-session count.
 
-## Modes / limitations
+## Modes and limits
 
-Simulator: verified owned host mocks; no network-isolation or LLM claim.
-Playback: verified explicit recording read; no statistical use.
-Local/remote model: unavailable; adapters/model/provider/budget absent, no fallback.
-Recorder/signing, replay isolation, inference/statistics, Sentinel/Preflight remain future.
-Docker 29.6.2 Linux engine responds; container/egress boundary not yet tested.
-Original dossier now present (126135 bytes); P0 absence is historical, R-011 resolved.
+Simulator: verified owned host mocks; deterministic fixture evidence only.
+Playback: explicit recording read, no fresh inference or statistical use.
+Local/remote models unavailable; no configured model/provider/budget or fallback.
+P3 isolation still unimplemented/unverified; Docker engine available, base image not yet cached.
+Resources/prompts/HTTP MCP, unproxied calls and arbitrary agent frameworks unsupported.
+Signatures prove trusted-key bytes relative to seal, not truth/legal fault or external anchoring.
+Payload encryption applies to the evidence store; development fixtures/artifacts are synthetic.
+No production/private-data deployment or key-custody guarantee is claimed.
 
-## Commands (repository root, PowerShell)
+## Commands
 
 ```powershell
 python scripts/rewind.py setup
 python scripts/rewind.py check
 python scripts/rewind.py demo
+.venv/Scripts/python.exe -m rewind_capture.cli export --session SESSION_UUID --bundle bundle.json
+.venv/Scripts/python.exe -m rewind_capture.cli verify --bundle bundle.json --trusted-key data/keys/trusted-public.ed25519
 python scripts/rewind.py dev
-.venv/Scripts/python.exe -m rewind_sandbox.cli generate
-.venv/Scripts/python.exe -m rewind_sandbox.cli playback --recording PATH_TO_RESULT_JSON
-npm.cmd run test:e2e
 ```
 
-Demo now runs the single injected simulator scenario; it does not send real mail.
-Checks write timestamped artifacts/checks directories. Browser results/screenshots
-write timestamped artifacts/browser directories; latest.txt locates the current run.
-P1 evidence: docs/project/evidence/P1.md; artifacts/p1/check.log, demo.log, pytest.xml.
+Demo runs actual agent→proxy→mock tools and saves a signed synthetic capture;
+all attempted sends terminate in a local outbox. Trusted public key comes from
+the separately pinned local key, never an untrusted bundle's embedded key.
 
-## Gate / next
+## Verification / next
 
-P1 scenario suite: 13/13; full backend suite: 18/18; type/build/schema/manifest and
-four browser cases pass. Initial decoding failure retained in artifacts/p1/first-failure.xml.
-Continue prompts/02-CAPTURE.md, through P10 after each gate/docs checkpoint.
-Git baseline checkpoint 7a58bfe; subsequent phase commits preserve work; no push.
+Full gate check: 32/32; P2 integrity/correlation suite 13/13 plus frame/lifetime
+bound test; envelope/partial-capture follow-up 2/2; trusted CLI verification valid.
+Browser 4/4, target renders inspected; evidence/P2.md and artifacts/p2/*.
+Checkpoint parent 40a1399; local phase commits, no push. Continue prompts/03-REPLAY.md.
+P3 real-model path may remain blocked; continue independent simulator/playback work.

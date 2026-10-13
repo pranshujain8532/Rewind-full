@@ -18,7 +18,12 @@ from rewind_sandbox.schemas import Action, InputOccurrence, RunResult, World
 
 
 async def run_world(
-    world: World, directory: Path, mode: RunMode = RunMode.SIMULATED, trust_external: bool = True
+    world: World,
+    directory: Path,
+    mode: RunMode = RunMode.SIMULATED,
+    trust_external: bool = True,
+    capture_store=None,
+    adapter_capture: bool = True,
 ) -> RunResult:
     model = model_for(mode, trust_external)
     world = world.model_copy(deep=True)
@@ -31,16 +36,53 @@ async def run_world(
     trace = []
     attempts: list[Action] = []
     dispatches: list[Action] = []
+    configuration_digest = digest(
+        {
+            "simulator": "instruction-dsl-v1",
+            "trust_external": trust_external,
+            "predicate": PREDICATE_VERSION,
+            "protocol": MCP_PROTOCOL_REVISION,
+        }
+    )
+    if capture_store:
+        capture_store.create_session(
+            run_id,
+            {
+                "schema_version": "1.0",
+                "mode": mode,
+                "world_digest": digest(world),
+                "config_digest": configuration_digest,
+                "model": "instruction-dsl-v1",
+                "task_ref": world.subject.ticket["id"],
+                "capture_scope": "owned stdio tools",
+                "agent_binding": "owned-demo-agent",
+                "owner_ref": "local-user",
+                "external_identity_verified": False,
+            },
+        )
+        capture_store.append(run_id, "initial_world", world.model_dump(mode="json"))
     async with AsyncExitStack() as stack:
         clients = {}
         schemas = {}
         for kind in ("ticket", "files", "mail"):
             parameters = StdioServerParameters(
                 command=sys.executable,
-                args=["-m", "rewind_sandbox.server", kind],
+                args=[
+                    "-m",
+                    "rewind_capture.proxy" if capture_store else "rewind_sandbox.server",
+                    kind,
+                ],
                 env={
                     "REWIND_WORLD_FILE": str(world_path.resolve()),
                     "REWIND_OUTBOX_FILE": str(outbox_path.resolve()),
+                    **(
+                        {
+                            "REWIND_CAPTURE_DIR": str(capture_store.directory),
+                            "REWIND_SESSION_ID": run_id,
+                        }
+                        if capture_store
+                        else {}
+                    ),
                 },
             )
             client = await stack.enter_async_context(
@@ -53,6 +95,8 @@ async def run_world(
             )
             clients[kind] = client
             schemas[kind] = (await client.list_tools()).model_dump(mode="json")
+            if capture_store:
+                capture_store.append(run_id, "tool_schema", schemas[kind], kind)
 
         async def call(action: Action):
             client = clients[action.tool.split(".")[0]]
@@ -86,14 +130,22 @@ async def run_world(
             },
             deep=True,
         )
+        if capture_store and adapter_capture:
+            capture_store.capture_input(run_id, request, schemas)
         decision = model.decide(request)
+        if capture_store and adapter_capture:
+            capture_store.append(run_id, "model_response", decision.model_dump(mode="json"))
         for action in decision.actions:
             attempts.append(action)
+            if capture_store:
+                capture_store.append(run_id, "tool_requested", action.model_dump(mode="json"))
             await call(
                 Action(tool="files.read", arguments={"file_id": action.arguments["attachment"]})
             )
             await call(action)
             dispatches.append(action)
+            if capture_store:
+                capture_store.append(run_id, "tool_dispatched", action.model_dump(mode="json"))
     outbox = (
         [json.loads(line) for line in outbox_path.read_text(encoding="utf-8").splitlines()]
         if outbox_path.exists()
@@ -129,4 +181,24 @@ async def run_world(
         ],
     )
     (working / "result.json").write_bytes(canonical(result) + b"\n")
+    if capture_store:
+        capture_store.append(run_id, "outcome", result.model_dump(mode="json"))
+        capture_store.seal(
+            run_id,
+            {
+                "model_adapter": adapter_capture,
+                "completed": True,
+                "tools": ["ticket", "files", "mail"],
+                "state": "full_initial_world",
+                "memory": "stateless_simulator",
+                "protocol": MCP_PROTOCOL_REVISION,
+                "unsupported": [
+                    "resources",
+                    "prompts",
+                    "HTTP MCP",
+                    "unproxied calls",
+                    "real models",
+                ],
+            },
+        )
     return result

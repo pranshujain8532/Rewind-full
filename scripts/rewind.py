@@ -170,7 +170,8 @@ def main() -> None:
         elif args.command == "versions":
             run(PYTHON, "scripts/write_versions.py")
         elif args.command == "demo":
-            run(PYTHON, "-m", "rewind_sandbox.cli", "run", "--scenario", "single")
+            migrate()
+            run(PYTHON, "-m", "rewind_sandbox.cli", "run", "--capture", "--scenario", "single")
 
 
 if __name__ == "__main__":

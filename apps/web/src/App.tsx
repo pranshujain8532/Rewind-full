@@ -60,9 +60,9 @@ function SystemView({ data }: { data: System }) {
       <div>
         <section className="panel evidence-panel" aria-labelledby="evidence-title">
           <div className="section-top"><p className="eyebrow">EVIDENCE WORKSPACE</p><span className="badge">Empty</span></div>
-          <div className="empty-glyph" aria-hidden="true">↶</div><h2 id="evidence-title">Your first run starts here.</h2>
-          <p>No recorded sessions are stored in this workspace.<br />Run the CLI demo to exercise the owned synthetic scenario.</p>
-          <div className="empty-action"><button disabled>Run demo scenario</button><span>CLI: python scripts/rewind.py demo · Interactive recording in P2</span></div>
+          <div className="empty-glyph" aria-hidden="true">↶</div><h2 id="evidence-title">{health.stored_session_count > 0 ? 'Recorded sessions are ready.' : 'Your first run starts here.'}</h2>
+          <p>{health.stored_session_count} recorded sessions stored in this workspace.<br />The recorder is available through the CLI; the interactive explorer follows in P6.</p>
+          <div className="empty-action"><button disabled>Run demo scenario</button><span>CLI: python scripts/rewind.py demo · Synthetic local sinks only</span></div>
         </section>
         <section className="feature-section" aria-labelledby="features-title"><div className="section-title"><h2 id="features-title">One evidence layer, four perspectives</h2><span>Planned capabilities</span></div><div className="feature-grid">{capabilities.features.filter(feature => feature.id !== 'recorder').map(feature => <article className="panel feature-card" key={feature.id}><div><h3>{feature.label}</h3><span className="tiny-label">{feature.maturity}</span></div><p>{feature.description}</p><p className="feature-reason">{feature.reason}</p></article>)}</div></section>
       </div>

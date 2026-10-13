@@ -1,98 +1,108 @@
 # Handoff
 
 Read AGENTS, STATE, TASKS, relevant DECISIONS and the current prompt.
-Checkpoint parent: `7a58bfe57f55f4d2e0b9d36e953bf3bc93f6a64f`. Latest continuation: P1 VERIFIED.
+Checkpoint parent: `40a13992483e53d5426d2017e7e9a2461d5dabcb`. Latest continuation: P2 VERIFIED.
 
 # Current project state
 
-Updated: 2026-10-13 (Asia/Calcutta). Phase: P1 VERIFIED; P2 next in authorised P1–P10 run.
+Updated 2026-10-13 (Asia/Calcutta). P2 VERIFIED; P3 next in authorised P1–P10 run.
 
-## Working now
+## Working
 
-- P0 API/storage/web foundation; generated schemas/types and locked setup/check.
-- Six versioned synthetic support scenarios; evaluator expectations stored separately.
-- Three owned MCP stdio servers (ticket/files/mail), SDK 2.3.0 / revision 2026-07-28.
-- Transparent deterministic instruction DSL simulator; semantic attempted/executed
-  harmful-action and required-ticket-fact task-success predicates.
-- Per-run cloned world/outbox/configuration and actual result JSON, no external mail.
-- Explicit saved-recording playback; no fresh decision or independent evidence claim.
-- API reports simulator/playback available, real modes unavailable; CLI-only demo now.
+- P0 API/web/locked setup and P1 six synthetic scenarios/owned stdio mocks.
+- Byte-preserving, bounded stdio recorder for MCP 2.3.0 / 2026-07-28, verified
+  request/reply correlation, concurrency, tool errors and cancellation.
+- Simulator adapter captures actual request/response, initial world, stateless
+  memory, framework tool definitions and model/config digests; no response cache.
+- SQLite migration 0002_capture; transaction-allocated ordered immutable events,
+  AES-256-GCM content-addressed payloads, redacted display data, Ed25519 chain/seal.
+- Trusted-key CLI verifier detects mutation/provenance changes and missing payloads.
+- Duplicate text deduplicates bytes but retains distinct signed occurrence origins.
+- Captured CLI demo exports result and bundle; API reports actual stored-session count.
 
-## Modes / limitations
+## Modes and limits
 
-Simulator: verified owned host mocks; no network-isolation or LLM claim.
-Playback: verified explicit recording read; no statistical use.
-Local/remote model: unavailable; adapters/model/provider/budget absent, no fallback.
-Recorder/signing, replay isolation, inference/statistics, Sentinel/Preflight remain future.
-Docker 29.6.2 Linux engine responds; container/egress boundary not yet tested.
-Original dossier now present (126135 bytes); P0 absence is historical, R-011 resolved.
+Simulator: verified owned host mocks; deterministic fixture evidence only.
+Playback: explicit recording read, no fresh inference or statistical use.
+Local/remote models unavailable; no configured model/provider/budget or fallback.
+P3 isolation still unimplemented/unverified; Docker engine available, base image not yet cached.
+Resources/prompts/HTTP MCP, unproxied calls and arbitrary agent frameworks unsupported.
+Signatures prove trusted-key bytes relative to seal, not truth/legal fault or external anchoring.
+Payload encryption applies to the evidence store; development fixtures/artifacts are synthetic.
+No production/private-data deployment or key-custody guarantee is claimed.
 
-## Commands (repository root, PowerShell)
+## Commands
 
 ```powershell
 python scripts/rewind.py setup
 python scripts/rewind.py check
 python scripts/rewind.py demo
+.venv/Scripts/python.exe -m rewind_capture.cli export --session SESSION_UUID --bundle bundle.json
+.venv/Scripts/python.exe -m rewind_capture.cli verify --bundle bundle.json --trusted-key data/keys/trusted-public.ed25519
 python scripts/rewind.py dev
-.venv/Scripts/python.exe -m rewind_sandbox.cli generate
-.venv/Scripts/python.exe -m rewind_sandbox.cli playback --recording PATH_TO_RESULT_JSON
-npm.cmd run test:e2e
 ```
 
-Demo now runs the single injected simulator scenario; it does not send real mail.
-Checks write timestamped artifacts/checks directories. Browser results/screenshots
-write timestamped artifacts/browser directories; latest.txt locates the current run.
-P1 evidence: docs/project/evidence/P1.md; artifacts/p1/check.log, demo.log, pytest.xml.
+Demo runs actual agent→proxy→mock tools and saves a signed synthetic capture;
+all attempted sends terminate in a local outbox. Trusted public key comes from
+the separately pinned local key, never an untrusted bundle's embedded key.
 
-## Gate / next
+## Verification / next
 
-P1 scenario suite: 13/13; full backend suite: 18/18; type/build/schema/manifest and
-four browser cases pass. Initial decoding failure retained in artifacts/p1/first-failure.xml.
-Continue prompts/02-CAPTURE.md, through P10 after each gate/docs checkpoint.
-Git baseline checkpoint 7a58bfe; subsequent phase commits preserve work; no push.
+Full gate check: 32/32; P2 integrity/correlation suite 13/13 plus frame/lifetime
+bound test; envelope/partial-capture follow-up 2/2; trusted CLI verification valid.
+Browser 4/4, target renders inspected; evidence/P2.md and artifacts/p2/*.
+Checkpoint parent 40a1399; local phase commits, no push. Continue prompts/03-REPLAY.md.
+P3 real-model path may remain blocked; continue independent simulator/playback work.
 
 
-Goal: P1 owned synthetic incident. User authorised continuous P1–P10 implementation.
+Goal: P2 recorder/integrity gate; continuous P1–P10 authorised.
 
-Implemented: typed World/SubjectInput/Action/RunResult, reproducible fixtures and
-separate evaluator metadata, three owned stdio tools, explicit model interface,
-transparent simulator, saved-recording playback and semantic outcomes. Package
-rewind_sandbox joins the single Python distribution. API/empty web shell accurately
-expose available CLI modes and unavailable real models. No external tool dispatch.
+Changes: rewind_capture package and migration 0002_capture; three transparent
+bounded stdio relays, adapter hooks, encrypted content, immutable events allocated
+under BEGIN IMMEDIATE, signed linked hash chain and seal, separately bound
+occurrence provenance, independent trusted-key verification and CLI export.
+Session metadata binds world/model/configuration and configured local agent role;
+external source identity remains unverified. Actual capture is synthetic only.
 
-Commands: local locked uv sync; fixture generate; pytest tests/test_sandbox.py
-13/13; root check 18/18 plus lint/format/schema/manifest/types/build; root demo
-single scenario succeeds; browser 4/4. See artifacts/p1/check.log, demo.log,
-pytest.xml and timestamped artifacts/browser/latest.txt. Screenshots at 1440×900,
-1280×720 and 390×844 are inspected. No new dependency versions required.
+Commands/outcomes: locked uv sync/migrate, captured redundant and single CLI runs,
+P2 suite 13/13, full root check 32/32 including oversized-frame/lifetime shutdown,
+envelope follow-up 2/2, root captured demo; trusted-key CLI returns valid=true,
+capture_complete=true and no missing payloads. Browser 4/4; screenshots inspected
+at 1440×900, 1280×720, 390×844. Build/types/schema/manifest checks pass.
+Artifacts: artifacts/p2/check.log, pytest.xml, envelope-check.xml, demo.log,
+bundle.json and timestamped browser output 2026-10-13T07-24-16-568Z.
 
-Failure: first stdio scenario suite 7 failed/6 passed because plain dict MCP
-responses had no structured_content. Added bounded single-JSON-text decoding.
-First failure XML retained; corrected suite passes. Minor formatting issues fixed.
+Tamper tests cover edits/insertion/deletion/reordering, altered content, forged
+occurrence origin, metadata/seal changes and wrong keys. Missing payloads leave
+signed-header integrity valid but replay capture insufficient. Tool-only capture
+cannot pass the adapter readiness gate. Concurrent writes have unique contiguous
+sequences; database triggers and sealed-session checks prevent accidental edits.
 
-Evidence handling correction: the inherited browser config reused P0 output paths.
-Its first P1 run overwrote P0 overview PNGs and playwright.json; those files now
-represent P1, not the original P0 revision. The original P0 manifest retains its
-old hashes and historical gate record, but affected raw artifacts do not match it.
-Future browser runs use distinct timestamped directories; no replacement artifact
-is claimed to be an original P0 screenshot. Existing failed mobile trace copies
-and P0 API evidence were retained.
+Limits: local trust anchor, no external checkpoint/key-custody assurance. Synthetic
+development world/result artifacts are plaintext; persisted evidence payloads are
+AEAD-encrypted with separate display redaction. Retention/tombstone service absent.
+Only owned stdio tool calls and stateless simulator supported; resources/prompts,
+HTTP MCP/unproxied calls/real models unsupported. No replay/network isolation yet.
+Explicit cryptography 50.0.2 pin matches already locked installed version; no GPU.
 
-Dossier now exists and was included unchanged in the baseline checkpoint; prior
-absence corrected in current summaries. No user changes reset/discarded. No paid
-service, public deployment or outbound message. Real-model/isolation gates unrun.
+Canonical contract: UTF-8 JSON, sorted keys, compact separators, ensure_ascii=False,
+allow_nan=False; Python owns canonical signing/verification. Domain-separated
+SHA-256 event hashes include previous hash and session/sequence identity. Ed25519
+signs event hashes and the seal separately. AES-GCM uses random 96-bit nonce and
+payload digest as associated data. Seal binds count/head/metadata/coverage/occurrences.
+Official primitive docs: https://cryptography.io/en/latest/hazmat/primitives/asymmetric/ed25519/
+and https://cryptography.io/en/latest/hazmat/primitives/aead/; installed APIs tested.
 
-Interview explanation: “Our subject is a transparent instruction-following
-simulator. It reads a ticket through real MCP stdio, then interprets supplied
-directives and may attempt a synthetic attachment send. Code checks recipient
-permission and attachment classification independently of scenario labels. Every
-send reaches only a local outbox. Scenario expectations live in evaluator files
-that the agent never reads. Playback reads a result without deciding again.
-Real models have an explicit capability error, never a hidden simulator fallback.
-These checks validate the fixture mechanism, not LLM causation or replay isolation.”
+Interview explanation: “The proxy records bytes at the tool boundary; the adapter
+records the exact input given to our supported subject. Content hashes identify
+bytes, while occurrence IDs keep origins separate even when two comments match.
+A transaction assigns event order. Payloads are encrypted; events form a signed
+linked chain and a signed seal commits to its length and head. An independent
+verifier needs a separately trusted key. Tampering fails relative to that seal,
+but a signature does not establish truth or legal blame. Tool-only capture and
+missing payloads remain visibly insufficient for replay.”
+Questions: Why isn't a bundled public key a trust anchor? Why do identical bytes
+need different occurrence IDs? No comprehension answers recorded.
 
-Questions: Why must evaluator labels stay out of SubjectInput? Why are attempted
-harm and executed mock dispatch separate outcomes? Answers not yet recorded.
-
-Next: P2 stdio recorder/model adapter, encrypted content, signed ordered chain,
-seal/verification, partial-capture disclosure and tamper/correlation tests.
+Next: P3 isolated fresh simulator decisions, interventions, strict matching,
+unsupported branches, negative egress/secret/traversal probes and real-model limits.

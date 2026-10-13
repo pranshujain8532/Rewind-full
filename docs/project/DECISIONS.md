@@ -166,6 +166,24 @@ fixtures/scenarios/evaluation, API capabilities, CLI, generated boundary and tes
 
 ## ADR template
 
+## ADR-012 — Canonical signed capture and bounded transparent stdio relay
+
+Date 2026-10-13; status ACCEPTED after P2 gate.
+Question: how to capture complete supported evidence without inventing context or
+mixing protocol lifecycles? Context: owned SDK v2 stdio and stateless simulator.
+Options: semantic-only reconstructed logs; transparent wire capture plus adapter;
+custom protocol implementation. Chosen: byte relay delegating SDK lifecycle,
+transaction-sequenced events, encrypted blobs, separate occurrence identities,
+Ed25519 chain/seal and independently trusted verifier. Why: test the actual boundary
+and detect tampering while exposing partial capture. Trade-offs: synthetic-only
+development artifacts, local keys/no external anchor, no resources/prompts/HTTP
+or arbitrary frameworks. Limits: frame 262144 bytes, payload 512000 bytes, 512
+events, 4MB capture budget, relay lifetime <=60 seconds and bounded shutdown.
+Evidence: P2 32/32 full checks, corruption/trust/correlation/cancellation/bounds tests,
+actual captured demo and CLI verification; docs/project/evidence/P2.md.
+Revisit: private deployments, retention, new adapters/transports and key custody.
+Affected: rewind_capture, runner hooks, 0002 migration, health/capabilities/types.
+
 ~~~text
 ADR-NNN — title
 Date:

@@ -7,7 +7,7 @@ from pydantic import BaseModel, ConfigDict
 
 SCHEMA_VERSION = "1.0"
 MCP_PROTOCOL_REVISION = "2026-07-28"
-CURRENT_PHASE = "P1"
+CURRENT_PHASE = "P2"
 
 
 class RunMode(StrEnum):
@@ -84,3 +84,4 @@ class HealthResponse(Contract):
     phase: str = CURRENT_PHASE
     database: DatabaseReadiness
     available_modes: list[RunMode]
+    stored_session_count: int = 0

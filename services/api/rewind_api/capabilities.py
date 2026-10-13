@@ -79,10 +79,15 @@ def capabilities() -> CapabilitiesResponse:
                 id=id_,
                 label=label,
                 description=description,
-                available=False,
-                maturity=FeatureMaturity.PLANNED,
+                available=id_ == "recorder",
+                maturity=FeatureMaturity.VERIFIED if id_ == "recorder" else FeatureMaturity.PLANNED,
                 evidence_status=EvidenceStatus.UNAVAILABLE,
-                reason=f"Requires {dependency}; not implemented yet.",
+                reason=(
+                    "Signed, encrypted owned-stdio capture with explicit simulator adapter; "
+                    "other integrations unsupported."
+                    if id_ == "recorder"
+                    else f"Requires {dependency}; not implemented yet."
+                ),
             )
             for id_, label, description, dependency in features
         ],

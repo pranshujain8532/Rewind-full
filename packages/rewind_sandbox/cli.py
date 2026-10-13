@@ -15,6 +15,8 @@ def main() -> None:
     )
     parser.add_argument("command", choices=["generate", "run", "playback"])
     parser.add_argument("--recording", type=Path)
+    parser.add_argument("--capture", action="store_true")
+    parser.add_argument("--data", type=Path, default=Path("data"))
     parser.add_argument("--scenario", choices=NAMES, default="single")
     parser.add_argument("--mode", choices=list(RunMode), default=RunMode.SIMULATED)
     parser.add_argument("--fixtures", type=Path, default=Path("fixtures"))
@@ -36,10 +38,21 @@ def main() -> None:
     else:
 
         async def execute():
+            from rewind_capture.store import CaptureStore
+
             result = await run_world(
-                load_world(args.fixtures, args.scenario), args.output, RunMode(args.mode)
+                load_world(args.fixtures, args.scenario),
+                args.output,
+                RunMode(args.mode),
+                capture_store=CaptureStore(args.data) if args.capture else None,
             )
             print(result.model_dump_json(indent=2))
+            if args.capture:
+                bundle_path = args.output / result.run_id / "bundle.json"
+                bundle_path.write_text(
+                    json.dumps(CaptureStore(args.data).export(result.run_id), indent=2),
+                    encoding="utf-8",
+                )
 
         anyio.run(execute)
 

@@ -71,7 +71,7 @@ export interface components {
             modes: components["schemas"]["ModeCapability"][];
             /**
              * Phase
-             * @default P1
+             * @default P2
              */
             phase: string;
             /**
@@ -145,7 +145,7 @@ export interface components {
             database: components["schemas"]["DatabaseReadiness"];
             /**
              * Phase
-             * @default P1
+             * @default P2
              */
             phase: string;
             /** Ready */
@@ -167,6 +167,11 @@ export interface components {
              * @enum {string}
              */
             status: "ok" | "not_ready";
+            /**
+             * Stored Session Count
+             * @default 0
+             */
+            stored_session_count: number;
             /** Version */
             version: string;
         };

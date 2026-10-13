@@ -36,6 +36,7 @@ def manifest() -> dict:
                 "pytest",
                 "httpx",
                 "ruff",
+                "cryptography",
             ]
         },
         "web_dependencies": {

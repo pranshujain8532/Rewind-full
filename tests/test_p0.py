@@ -37,7 +37,7 @@ def test_http_contract_and_empty_capabilities(migrated_directory, monkeypatch):
         assert response.status_code == 200
         health = HealthResponse.model_validate(response.json())
         assert health.ready
-        assert health.database.migration_revision == "0001_p0"
+        assert health.database.migration_revision == "0002_capture"
         assert health.database.journal_mode == "wal"
         assert set(health.available_modes) == {RunMode.SIMULATED, RunMode.PLAYBACK}
         matrix = CapabilitiesResponse.model_validate(client.get("/api/capabilities").json())
@@ -48,7 +48,8 @@ def test_http_contract_and_empty_capabilities(migrated_directory, monkeypatch):
             for mode in matrix.modes
             if mode.mode in {RunMode.LOCAL_MODEL, RunMode.REMOTE_MODEL}
         )
-        assert all(not feature.available for feature in matrix.features)
+        assert all(not feature.available for feature in matrix.features if feature.id != "recorder")
+        assert next(feature for feature in matrix.features if feature.id == "recorder").available
         assert matrix.mcp_protocol_revision == MCP_PROTOCOL_REVISION
         assert matrix.replay_isolation == "unavailable"
         assert client.get("/openapi.json").status_code == 200

@@ -14,7 +14,8 @@
     "mcp": "2.3.0",
     "pytest": "9.1.1",
     "httpx": "0.28.1",
-    "ruff": "0.17.0"
+    "ruff": "0.17.0",
+    "cryptography": "50.0.2"
   },
   "web_dependencies": {
     "node_modules/@playwright/test": "1.64.0",

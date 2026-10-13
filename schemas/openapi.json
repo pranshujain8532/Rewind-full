@@ -27,7 +27,7 @@
             "type": "array"
           },
           "phase": {
-            "default": "P1",
+            "default": "P2",
             "title": "Phase",
             "type": "string"
           },
@@ -194,7 +194,7 @@
             "$ref": "#/components/schemas/DatabaseReadiness"
           },
           "phase": {
-            "default": "P1",
+            "default": "P2",
             "title": "Phase",
             "type": "string"
           },
@@ -221,6 +221,11 @@
             ],
             "title": "Status",
             "type": "string"
+          },
+          "stored_session_count": {
+            "default": 0,
+            "title": "Stored Session Count",
+            "type": "integer"
           },
           "version": {
             "title": "Version",

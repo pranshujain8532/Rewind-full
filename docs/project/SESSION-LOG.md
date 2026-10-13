@@ -204,3 +204,60 @@ harm and executed mock dispatch separate outcomes? Answers not yet recorded.
 Next: P2 stdio recorder/model adapter, encrypted content, signed ordered chain,
 seal/verification, partial-capture disclosure and tamper/correlation tests.
 
+
+## P2 — 2026-10-13T07:28:15.764586+00:00 — VERIFIED
+
+Starting revision: `40a13992483e53d5426d2017e7e9a2461d5dabcb`.
+
+Goal: P2 recorder/integrity gate; continuous P1–P10 authorised.
+
+Changes: rewind_capture package and migration 0002_capture; three transparent
+bounded stdio relays, adapter hooks, encrypted content, immutable events allocated
+under BEGIN IMMEDIATE, signed linked hash chain and seal, separately bound
+occurrence provenance, independent trusted-key verification and CLI export.
+Session metadata binds world/model/configuration and configured local agent role;
+external source identity remains unverified. Actual capture is synthetic only.
+
+Commands/outcomes: locked uv sync/migrate, captured redundant and single CLI runs,
+P2 suite 13/13, full root check 32/32 including oversized-frame/lifetime shutdown,
+envelope follow-up 2/2, root captured demo; trusted-key CLI returns valid=true,
+capture_complete=true and no missing payloads. Browser 4/4; screenshots inspected
+at 1440×900, 1280×720, 390×844. Build/types/schema/manifest checks pass.
+Artifacts: artifacts/p2/check.log, pytest.xml, envelope-check.xml, demo.log,
+bundle.json and timestamped browser output 2026-10-13T07-24-16-568Z.
+
+Tamper tests cover edits/insertion/deletion/reordering, altered content, forged
+occurrence origin, metadata/seal changes and wrong keys. Missing payloads leave
+signed-header integrity valid but replay capture insufficient. Tool-only capture
+cannot pass the adapter readiness gate. Concurrent writes have unique contiguous
+sequences; database triggers and sealed-session checks prevent accidental edits.
+
+Limits: local trust anchor, no external checkpoint/key-custody assurance. Synthetic
+development world/result artifacts are plaintext; persisted evidence payloads are
+AEAD-encrypted with separate display redaction. Retention/tombstone service absent.
+Only owned stdio tool calls and stateless simulator supported; resources/prompts,
+HTTP MCP/unproxied calls/real models unsupported. No replay/network isolation yet.
+Explicit cryptography 50.0.2 pin matches already locked installed version; no GPU.
+
+Canonical contract: UTF-8 JSON, sorted keys, compact separators, ensure_ascii=False,
+allow_nan=False; Python owns canonical signing/verification. Domain-separated
+SHA-256 event hashes include previous hash and session/sequence identity. Ed25519
+signs event hashes and the seal separately. AES-GCM uses random 96-bit nonce and
+payload digest as associated data. Seal binds count/head/metadata/coverage/occurrences.
+Official primitive docs: https://cryptography.io/en/latest/hazmat/primitives/asymmetric/ed25519/
+and https://cryptography.io/en/latest/hazmat/primitives/aead/; installed APIs tested.
+
+Interview explanation: “The proxy records bytes at the tool boundary; the adapter
+records the exact input given to our supported subject. Content hashes identify
+bytes, while occurrence IDs keep origins separate even when two comments match.
+A transaction assigns event order. Payloads are encrypted; events form a signed
+linked chain and a signed seal commits to its length and head. An independent
+verifier needs a separately trusted key. Tampering fails relative to that seal,
+but a signature does not establish truth or legal blame. Tool-only capture and
+missing payloads remain visibly insufficient for replay.”
+Questions: Why isn't a bundled public key a trust anchor? Why do identical bytes
+need different occurrence IDs? No comprehension answers recorded.
+
+Next: P3 isolated fresh simulator decisions, interventions, strict matching,
+unsupported branches, negative egress/secret/traversal probes and real-model limits.
+

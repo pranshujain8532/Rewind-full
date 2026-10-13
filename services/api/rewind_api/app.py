@@ -28,6 +28,7 @@ def create_app(directory: Path | None = None) -> FastAPI:
         "/api/health", response_model=HealthResponse, responses={503: {"model": HealthResponse}}
     )
     def health(response: Response) -> HealthResponse:
+        stored_sessions = 0
         try:
             with app.state.engine.connect() as connection:
                 journal_mode = connection.scalar(text("PRAGMA journal_mode"))
@@ -54,6 +55,8 @@ def create_app(directory: Path | None = None) -> FastAPI:
                     and schema_version == "1.0"
                     and journal_mode == "wal"
                 )
+                if ready:
+                    stored_sessions = connection.scalar(text("SELECT count(*) FROM sessions"))
                 database = DatabaseReadiness(
                     ready=ready,
                     reason="ready" if ready else "migration_required",
@@ -75,6 +78,7 @@ def create_app(directory: Path | None = None) -> FastAPI:
             version=version("rewind"),
             database=database,
             available_modes=[mode.mode for mode in capabilities().modes if mode.available],
+            stored_session_count=stored_sessions,
         )
 
     @app.get("/api/capabilities", response_model=CapabilitiesResponse)

@@ -15,7 +15,13 @@ def create_server(kind: str, world: World, outbox: Path) -> MCPServer:
     if kind == "ticket":
 
         @server.tool(name="ticket.read")
-        def read_ticket(ticket_id: str) -> dict:
+        async def read_ticket(ticket_id: str, delay_ms: int = 0) -> dict:
+            if not 0 <= delay_ms <= 1000:
+                raise ValueError("Mock delay outside bounds")
+            if delay_ms:
+                import anyio
+
+                await anyio.sleep(delay_ms / 1000)
             if ticket_id != world.subject.ticket["id"]:
                 raise ValueError("Unknown synthetic ticket")
             return {
