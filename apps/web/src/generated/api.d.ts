@@ -38,6 +38,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/scenarios": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Scenarios */
+        get: operations["scenarios_api_scenarios_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -54,10 +71,9 @@ export interface components {
             modes: components["schemas"]["ModeCapability"][];
             /**
              * Phase
-             * @default P0
-             * @constant
+             * @default P1
              */
-            phase: "P0";
+            phase: string;
             /**
              * Replay Isolation
              * @default unavailable
@@ -129,10 +145,9 @@ export interface components {
             database: components["schemas"]["DatabaseReadiness"];
             /**
              * Phase
-             * @default P0
-             * @constant
+             * @default P1
              */
-            phase: "P0";
+            phase: string;
             /** Ready */
             ready: boolean;
             /**
@@ -232,6 +247,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HealthResponse"];
+                };
+            };
+        };
+    };
+    scenarios_api_scenarios_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string[];
                 };
             };
         };

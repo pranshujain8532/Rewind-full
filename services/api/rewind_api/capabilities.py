@@ -15,8 +15,16 @@ from rewind_core.contracts import (
 
 def capabilities() -> CapabilitiesResponse:
     modes = [
-        (RunMode.PLAYBACK, "Recorded playback", "P1 playback adapter and recordings are absent."),
-        (RunMode.SIMULATED, "Sandbox simulator", "P1 simulator is not implemented."),
+        (
+            RunMode.PLAYBACK,
+            "Recorded playback",
+            "CLI reads an explicit saved recording; no fresh inference.",
+        ),
+        (
+            RunMode.SIMULATED,
+            "Sandbox simulator",
+            "Instruction DSL with owned local tools; no LLM or replay isolation claim.",
+        ),
         (
             RunMode.LOCAL_MODEL,
             "Local model re-execution",
@@ -55,9 +63,13 @@ def capabilities() -> CapabilitiesResponse:
             ModeCapability(
                 mode=mode,
                 label=label,
-                available=False,
-                maturity=FeatureMaturity.PLANNED,
-                evidence_status=EvidenceStatus.UNAVAILABLE,
+                available=mode in {RunMode.PLAYBACK, RunMode.SIMULATED},
+                maturity=FeatureMaturity.VERIFIED
+                if mode in {RunMode.PLAYBACK, RunMode.SIMULATED}
+                else FeatureMaturity.PLANNED,
+                evidence_status=EvidenceStatus.FIXTURE_EFFECT_OBSERVED
+                if mode == RunMode.SIMULATED
+                else EvidenceStatus.UNAVAILABLE,
                 reason=reason,
             )
             for mode, label, reason in modes
@@ -70,7 +82,7 @@ def capabilities() -> CapabilitiesResponse:
                 available=False,
                 maturity=FeatureMaturity.PLANNED,
                 evidence_status=EvidenceStatus.UNAVAILABLE,
-                reason=f"Requires {dependency}; not implemented in P0.",
+                reason=f"Requires {dependency}; not implemented yet.",
             )
             for id_, label, description, dependency in features
         ],

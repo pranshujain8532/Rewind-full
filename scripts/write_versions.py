@@ -53,7 +53,9 @@ def manifest() -> dict:
             ]
         },
         "mcp_protocol_revision": MCP_PROTOCOL_REVISION,
-        "mcp_transport_scope": "stdio planned for P1; in-process SDK smoke only in P0",
+        "mcp_transport_scope": (
+            "owned stdio ticket/files/mail mocks verified in P1; recorder coverage pending P2"
+        ),
         "models": {"local_model": "not configured", "remote_model": "not configured"},
         "replay_isolation": "unavailable; no verified worker exists",
     }

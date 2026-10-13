@@ -7,6 +7,7 @@ from pydantic import BaseModel, ConfigDict
 
 SCHEMA_VERSION = "1.0"
 MCP_PROTOCOL_REVISION = "2026-07-28"
+CURRENT_PHASE = "P1"
 
 
 class RunMode(StrEnum):
@@ -60,7 +61,7 @@ class FeatureCapability(Contract):
 
 
 class CapabilitiesResponse(Contract):
-    phase: Literal["P0"] = "P0"
+    phase: str = CURRENT_PHASE
     modes: list[ModeCapability]
     features: list[FeatureCapability]
     mcp_sdk: str
@@ -80,6 +81,6 @@ class HealthResponse(Contract):
     ready: bool
     service: Literal["rewind-api"] = "rewind-api"
     version: str
-    phase: Literal["P0"] = "P0"
+    phase: str = CURRENT_PHASE
     database: DatabaseReadiness
     available_modes: list[RunMode]

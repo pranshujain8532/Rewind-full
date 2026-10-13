@@ -27,8 +27,7 @@
             "type": "array"
           },
           "phase": {
-            "const": "P0",
-            "default": "P0",
+            "default": "P1",
             "title": "Phase",
             "type": "string"
           },
@@ -195,8 +194,7 @@
             "$ref": "#/components/schemas/DatabaseReadiness"
           },
           "phase": {
-            "const": "P0",
-            "default": "P0",
+            "default": "P1",
             "title": "Phase",
             "type": "string"
           },
@@ -343,6 +341,28 @@
           }
         },
         "summary": "Health"
+      }
+    },
+    "/api/scenarios": {
+      "get": {
+        "operationId": "scenarios_api_scenarios_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Response Scenarios Api Scenarios Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Scenarios"
       }
     }
   }

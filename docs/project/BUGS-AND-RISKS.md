@@ -44,7 +44,7 @@ Do not close a risk just because a mitigation was written in a document. Link im
 |---|---|---|---|---|
 | BUG-001 | Medium | Phone Refresh button lost accessible name when text hidden | VERIFIED FIXED | Explicit aria-label; first browser run 3/4, final 4/4; preserved mobile-refresh-failure.zip |
 | BUG-002 | Low | Setup rejected uv 0.13.0 build suffix | VERIFIED FIXED | Parse version token; complete setup rerun succeeds |
-| R-011 | Low | Claimed original dossier retention cannot be verified; supplied reference directory empty | OPEN | Get-ChildItem returned no files; corrected implementation contracts sufficient for P0; recover source separately if needed |
+| R-011 | Low | Original dossier was absent during P0 | RESOLVED | Present on P1 resume, 126135 bytes; preserved in baseline 7a58bfe; corrected contracts still authoritative |
 | ENV-001 | Medium | Docker daemon unavailable during P0 | RESOLVED FOR DAEMON AVAILABILITY | SESSION-002: client/server 29.6.2 responds; no REWIND container/isolation test run; P3 boundary remains required |
 | ENV-002 | Low | Git metadata owned by sandbox account; host git status rejects ownership | ACCEPTED LIMITATION | Read-only status works with command-scoped safe.directory for this exact repository; no global setting changed |
 

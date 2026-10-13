@@ -56,3 +56,9 @@ Runtime dependency trees are locked. npm lifecycle scripts were disabled during
 install/ci; native Vite build still passed. No dependency source was vendored or
 its licence notices removed. Future copied components need the full register above.
 
+P1: no copied UI added. Original shell adapted to live simulator/playback capability
+states and dynamic backend phase; three target viewport renders inspected. New
+browser evidence goes to timestamped artifacts/browser directories. The first P1
+run reused inherited P0 paths; overwritten P0 files must not be treated as original
+P0 revision artifacts (see evidence/P1.md). Future runs preserve separate output.
+

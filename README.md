@@ -47,10 +47,12 @@ smoke tests, frontend type check/build and dependency-manifest checks. Browser
 tests start their own servers, so stop development servers first. Chromium
 is downloaded under `.tools/playwright`; later browser runs can be offline.
 
-The P0 `demo` starts a temporary loopback API, checks real HTTP responses and
-exits. It does **not** run an agent or return synthetic findings. Browser tests
+The current `demo` runs the single-injection deterministic simulator through three
+owned stdio MCP tools. Its attempted send reaches only a local synthetic outbox;
+this is not an LLM experiment or isolated replay. Browser tests
 use a separate database under `artifacts/p0/browser-data`. Evidence is written
-under `artifacts/p0`; see [the evidence index](docs/project/evidence/P0.md).
+in timestamped `artifacts/browser` directories (latest.txt identifies the run).
+See [P1 evidence](docs/project/evidence/P1.md) and the historical P0 index.
 
 After changing a backend contract:
 

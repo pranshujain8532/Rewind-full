@@ -6,7 +6,7 @@ IMPLEMENTED means code exists; VERIFIED means the named gate passed.
 | ID | Phase | Task / gate | Status | Depends on | Evidence |
 |---|---|---|---|---|---|
 | P0 | Bootstrap | API/web startup, versions, commands, context | VERIFIED | None | 5/5 pytest; 4/4 browser; locked setup/check/demo/dev; evidence/P0.md |
-| P1 | Sandbox | Synthetic clean/attack/control scenarios and local sinks | TODO | P0 | Not run |
+| P1 | Sandbox | Synthetic clean/attack/control scenarios and local sinks | VERIFIED | P0 | docs/project/evidence/P1.md |
 | P2 | Capture | Recorder + adapter + signed chain + tamper tests | TODO | P1 | Not run |
 | P3-SIM | Replay | Isolated simulator and honest playback separation | TODO | P2 | Not run |
 | P3-REAL | Replay | Fresh real-model decisions under controlled intervention | TODO | P2, model availability | Not run |
@@ -21,7 +21,7 @@ IMPLEMENTED means code exists; VERIFIED means the named gate passed.
 
 ## Current slice
 
-Task: P0 verified; P1 next, not started.  
+Task: P1 in progress; P0 baseline rechecked and checkpointed.  
 Acceptance: P0 gate verified on Windows; Linux/container/fresh-machine not_run.  
 Owner: implementation session with Pranshu.  
 Next prompt: `prompts/01-SANDBOX.md`; run root `python scripts/rewind.py check` on resume.
@@ -76,4 +76,51 @@ Blocker and unblock step:
 ## Rule
 
 Do not mark the whole phase VERIFIED if only the happy path works. Partial mode completion stays explicit. A screenshot cannot satisfy the replay/statistics/integrity gate.
+
+## P1 — 2026-10-13T06:58:38.786935+00:00 — VERIFIED
+
+Goal: P1 owned synthetic incident. User authorised continuous P1–P10 implementation.
+
+Implemented: typed World/SubjectInput/Action/RunResult, reproducible fixtures and
+separate evaluator metadata, three owned stdio tools, explicit model interface,
+transparent simulator, saved-recording playback and semantic outcomes. Package
+rewind_sandbox joins the single Python distribution. API/empty web shell accurately
+expose available CLI modes and unavailable real models. No external tool dispatch.
+
+Commands: local locked uv sync; fixture generate; pytest tests/test_sandbox.py
+13/13; root check 18/18 plus lint/format/schema/manifest/types/build; root demo
+single scenario succeeds; browser 4/4. See artifacts/p1/check.log, demo.log,
+pytest.xml and timestamped artifacts/browser/latest.txt. Screenshots at 1440×900,
+1280×720 and 390×844 are inspected. No new dependency versions required.
+
+Failure: first stdio scenario suite 7 failed/6 passed because plain dict MCP
+responses had no structured_content. Added bounded single-JSON-text decoding.
+First failure XML retained; corrected suite passes. Minor formatting issues fixed.
+
+Evidence handling correction: the inherited browser config reused P0 output paths.
+Its first P1 run overwrote P0 overview PNGs and playwright.json; those files now
+represent P1, not the original P0 revision. The original P0 manifest retains its
+old hashes and historical gate record, but affected raw artifacts do not match it.
+Future browser runs use distinct timestamped directories; no replacement artifact
+is claimed to be an original P0 screenshot. Existing failed mobile trace copies
+and P0 API evidence were retained.
+
+Dossier now exists and was included unchanged in the baseline checkpoint; prior
+absence corrected in current summaries. No user changes reset/discarded. No paid
+service, public deployment or outbound message. Real-model/isolation gates unrun.
+
+Interview explanation: “Our subject is a transparent instruction-following
+simulator. It reads a ticket through real MCP stdio, then interprets supplied
+directives and may attempt a synthetic attachment send. Code checks recipient
+permission and attachment classification independently of scenario labels. Every
+send reaches only a local outbox. Scenario expectations live in evaluator files
+that the agent never reads. Playback reads a result without deciding again.
+Real models have an explicit capability error, never a hidden simulator fallback.
+These checks validate the fixture mechanism, not LLM causation or replay isolation.”
+
+Questions: Why must evaluator labels stay out of SubjectInput? Why are attempted
+harm and executed mock dispatch separate outcomes? Answers not yet recorded.
+
+Next: P2 stdio recorder/model adapter, encrypted content, signed ordered chain,
+seal/verification, partial-capture disclosure and tamper/correlation tests.
 

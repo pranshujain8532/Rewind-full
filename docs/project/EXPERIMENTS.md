@@ -52,6 +52,13 @@ Follow-up:
 
 ## Reporting rules
 
+P1 (2026-10-13): EXP-001 implemented and verified as deterministic fixture-mechanism
+checks, 13/13 sandbox tests. Single/pair/redundant inputs yield the declared
+synthetic attempts while required ticket facts remain correct. Artifact references:
+docs/project/evidence/P1.md and artifacts/p1/pytest.xml/demo.log. No independent
+sample counts, LLM conclusions or confidence intervals are claimed. EXP-002–007
+remain planned for subsequent gates.
+
 - Keep failed runs and condition-dependent failures visible.
 - Preserve raw outcomes; never overwrite them to improve a summary.
 - Simulator evidence does not become real-model evidence.

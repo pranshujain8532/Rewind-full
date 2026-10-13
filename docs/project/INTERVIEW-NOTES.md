@@ -94,3 +94,11 @@ Comprehension questions (unanswered):
 1. Why can health return ready while local_model and simulated remain unavailable?
 2. Why must changing contracts.py regenerate API types and run a drift check?
 
+P1 implemented/verified: the subject receives only typed task/ticket/input/permission
+fields; fixture expectations remain separate. Real stdio tools return a ticket and
+synthetic attachment, and a send records only a local outbox entry. A harmful
+attempt uses recipient permission plus attachment classification, independently
+of scenario IDs. Full narrative and two unanswered questions: evidence/P1.md.
+Actual debugging story: untyped MCP dict output arrived as JSON text rather than
+structured_content; decode both supported result forms and reject ambiguous output.
+

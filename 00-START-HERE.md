@@ -6,9 +6,10 @@ Prepared for Pranshu Jain · 9 October 2026
 
 Workspace update, 2026-10-13: P0 API/storage/web is now implemented and verified;
 see [STATE](docs/project/STATE.md) and [P0 evidence](docs/project/evidence/P0.md).
-Agent/product mechanisms are still unavailable. The supplied `docs/reference/`
-directory is empty in this workspace; the dossier retention described below
-cannot be verified (R-011). Corrected contracts remain the build authority.
+P1 now verifies the owned synthetic simulator/tools and saved-recording playback.
+The original dossier is now present, preserved in baseline checkpoint 7a58bfe;
+its earlier absence was recorded in P0 history (R-011 resolved). Corrected
+contracts remain the build authority; real models/replay isolation remain unavailable.
 
 Your goal is a project that you can demonstrate, explain, and defend. A strong presentation depends on a small number of difficult features working together, with evidence for every result. The full product vision stays intact; implementation follows gates.
 

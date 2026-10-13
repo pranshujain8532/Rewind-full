@@ -34,14 +34,14 @@ export function App() {
         <div className="sidebar-footer"><span className="local-dot" aria-hidden="true" /><span>Local development<br /><small>Pranshu Jain · REWIND</small></span></div>
       </aside>
       <div className="workspace">
-        <header className="topbar"><span>Workspace <span className="slash">/</span> <strong>System overview</strong></span><span className="badge">P0 · Foundation</span></header>
+        <header className="topbar"><span>Workspace <span className="slash">/</span> <strong>System overview</strong></span><span className="badge">{state.kind === 'loaded' ? state.data.capabilities.phase : 'Checking'} · Foundation</span></header>
         <main id="main">
           <div className="page-heading"><div><p className="eyebrow">KNOW WHAT YOU CAN TRUST</p><h1>System overview</h1><p className="intro">One recorder. Four ways to understand and govern agent behaviour.</p></div><button aria-label="Refresh status" onClick={() => void refresh()} disabled={state.kind === 'loading'}>↻ <span>Refresh status</span></button></div>
-          <div aria-live="polite" aria-atomic="true" className="status-announcement">{state.kind === 'loading' ? 'Checking backend readiness…' : state.kind === 'error' ? 'Backend unavailable' : state.data.health.ready ? 'API ready. Agent run modes are unavailable.' : 'API requires attention.'}</div>
+          <div aria-live="polite" aria-atomic="true" className="status-announcement">{state.kind === 'loading' ? 'Checking backend readiness…' : state.kind === 'error' ? 'Backend unavailable' : state.data.health.ready ? `API ready. Available modes: ${state.data.health.available_modes.join(', ')}.` : 'API requires attention.'}</div>
           {state.kind === 'loading' && <section className="panel loading-panel"><span className="pulse-dot" aria-hidden="true" /><p>Reading system capabilities…</p></section>}
           {state.kind === 'error' && <section className="panel error-panel" role="alert"><h2>Backend unavailable</h2><p>{state.message}</p><p className="muted">Start the local API, then refresh to read its current capabilities.</p><code>python scripts/rewind.py dev</code></section>}
           {state.kind === 'loaded' && <SystemView data={state.data} />}
-          <footer className="main-footer"><span>Evidence before conclusions.</span><span>Local, single-user development · No model calls in P0</span></footer>
+          <footer className="main-footer"><span>Evidence before conclusions.</span><span>Local, single-user development · No real-model calls</span></footer>
         </main>
       </div>
     </div>
@@ -53,7 +53,7 @@ function SystemView({ data }: { data: System }) {
   const recorder = capabilities.features.find(feature => feature.id === 'recorder');
   return <>
     <section className="readiness panel" aria-labelledby="readiness-title">
-      <div><span className={`signal ${health.ready ? 'ready' : 'attention'}`} aria-hidden="true" /><div><h2 id="readiness-title">{health.ready ? 'Foundation is online' : 'Foundation needs attention'}</h2><p>{health.ready ? 'API and migrated storage are ready. Agent execution is not yet implemented.' : `Storage readiness: ${health.database.reason}. Run the migration command.`}</p></div></div>
+      <div><span className={`signal ${health.ready ? 'ready' : 'attention'}`} aria-hidden="true" /><div><h2 id="readiness-title">{health.ready ? 'Foundation is online' : 'Foundation needs attention'}</h2><p>{health.ready ? 'API and storage are ready. CLI simulation uses owned mocks; real-model replay remains unavailable.' : `Storage readiness: ${health.database.reason}. Run the migration command.`}</p></div></div>
       <span className={`badge ${health.ready ? 'success' : 'caution'}`}>{health.ready ? 'API ready' : 'Not ready'}</span>
     </section>
     <div className="content-grid">
@@ -61,8 +61,8 @@ function SystemView({ data }: { data: System }) {
         <section className="panel evidence-panel" aria-labelledby="evidence-title">
           <div className="section-top"><p className="eyebrow">EVIDENCE WORKSPACE</p><span className="badge">Empty</span></div>
           <div className="empty-glyph" aria-hidden="true">↶</div><h2 id="evidence-title">Your first run starts here.</h2>
-          <p>No agent runs have been recorded.<br />The next phase adds a synthetic support scenario and local tool sinks.</p>
-          <div className="empty-action"><button disabled>Run demo scenario</button><span>Available after P1 · Sandbox</span></div>
+          <p>No recorded sessions are stored in this workspace.<br />Run the CLI demo to exercise the owned synthetic scenario.</p>
+          <div className="empty-action"><button disabled>Run demo scenario</button><span>CLI: python scripts/rewind.py demo · Interactive recording in P2</span></div>
         </section>
         <section className="feature-section" aria-labelledby="features-title"><div className="section-title"><h2 id="features-title">One evidence layer, four perspectives</h2><span>Planned capabilities</span></div><div className="feature-grid">{capabilities.features.filter(feature => feature.id !== 'recorder').map(feature => <article className="panel feature-card" key={feature.id}><div><h3>{feature.label}</h3><span className="tiny-label">{feature.maturity}</span></div><p>{feature.description}</p><p className="feature-reason">{feature.reason}</p></article>)}</div></section>
       </div>

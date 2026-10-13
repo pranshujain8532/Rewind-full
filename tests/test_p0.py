@@ -39,10 +39,15 @@ def test_http_contract_and_empty_capabilities(migrated_directory, monkeypatch):
         assert health.ready
         assert health.database.migration_revision == "0001_p0"
         assert health.database.journal_mode == "wal"
-        assert health.available_modes == []
+        assert set(health.available_modes) == {RunMode.SIMULATED, RunMode.PLAYBACK}
         matrix = CapabilitiesResponse.model_validate(client.get("/api/capabilities").json())
         assert {mode.mode for mode in matrix.modes} == set(RunMode)
-        assert all(not mode.available and mode.reason for mode in matrix.modes)
+        assert all(mode.reason for mode in matrix.modes)
+        assert all(
+            not mode.available
+            for mode in matrix.modes
+            if mode.mode in {RunMode.LOCAL_MODEL, RunMode.REMOTE_MODEL}
+        )
         assert all(not feature.available for feature in matrix.features)
         assert matrix.mcp_protocol_revision == MCP_PROTOCOL_REVISION
         assert matrix.replay_isolation == "unavailable"
@@ -54,7 +59,7 @@ def test_unmigrated_database_is_not_ready(tmp_path):
         response = client.get("/api/health")
         assert response.status_code == 503
         assert response.json()["database"]["reason"] == "migration_required"
-        assert response.json()["available_modes"] == []
+        assert set(response.json()["available_modes"]) == {"simulated", "playback"}
         assert client.get("/api/capabilities").status_code == 200
 
 

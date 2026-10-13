@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -122,7 +123,7 @@ def dev() -> None:
 
 def check() -> None:
     require_setup()
-    evidence = ROOT / "artifacts/p0"
+    evidence = ROOT / "artifacts/checks" / datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ")
     evidence.mkdir(parents=True, exist_ok=True)
     run(PYTHON, "-m", "ruff", "check", ".")
     run(PYTHON, "-m", "ruff", "format", "--check", ".")
@@ -169,8 +170,7 @@ def main() -> None:
         elif args.command == "versions":
             run(PYTHON, "scripts/write_versions.py")
         elif args.command == "demo":
-            migrate()
-            run(PYTHON, "scripts/smoke_demo.py")
+            run(PYTHON, "-m", "rewind_sandbox.cli", "run", "--scenario", "single")
 
 
 if __name__ == "__main__":

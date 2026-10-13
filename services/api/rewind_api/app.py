@@ -81,6 +81,12 @@ def create_app(directory: Path | None = None) -> FastAPI:
     def get_capabilities() -> CapabilitiesResponse:
         return capabilities()
 
+    @app.get("/api/scenarios", response_model=list[str])
+    def scenarios() -> list[str]:
+        from rewind_sandbox.fixtures import NAMES
+
+        return list(NAMES)
+
     return app
 
 

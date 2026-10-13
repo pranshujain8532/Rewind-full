@@ -148,6 +148,24 @@ Affected files: alembic.ini, migrations/, storage.py, app.py, scripts/rewind.py,
 
 ## New ADR template (retained)
 
+## ADR-011 — Transparent simulator and separate evaluator inputs
+
+Date: 2026-10-13. Status: ACCEPTED for P1.
+Question: how can the no-GPU core exercise attacks without claiming LLM evidence?
+Context: no configured subject model/provider. Options: fake model responses;
+explicit instruction DSL with owned MCP tools; wait for a real model.
+Chosen: deterministic DSL interpreting supplied SEND directives, three real stdio
+mock servers and separate evaluator expectations. Mode, environment, freshness,
+attempt/dispatch/task outcomes and configuration/world digests are retained.
+Why: exercises the supported decision/tool boundary honestly and reproducibly.
+Trade-offs: artificial rule semantics; no inference interval, LLM or isolation claim.
+Evidence: 13 scenario/interface tests, full check 18/18, CLI demo and browser 4/4;
+official transport docs https://py.sdk.modelcontextprotocol.io/client/transports/.
+Revisit: real subject availability and P3 isolation. Affected: rewind_sandbox,
+fixtures/scenarios/evaluation, API capabilities, CLI, generated boundary and tests.
+
+## ADR template
+
 ~~~text
 ADR-NNN — title
 Date:

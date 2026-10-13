@@ -1,76 +1,98 @@
-# Handoff — read with STATE.md
+# Handoff
 
-Last updated: 2026-10-13 (Asia/Calcutta)
+Read AGENTS, STATE, TASKS, relevant DECISIONS and the current prompt.
+Checkpoint parent: `7a58bfe57f55f4d2e0b9d36e953bf3bc93f6a64f`. Latest continuation: P1 VERIFIED.
 
-## Where we are
+# Current project state
 
-P0 is verified on the existing Windows laptop. One editable Python distribution
-contains shared contracts/storage and FastAPI; one npm workspace contains React/Vite.
-All four agent run modes and recorder/product capabilities are unavailable.
-No agent trials or experimental findings exist. HTTP health describes API/storage only.
+Updated: 2026-10-13 (Asia/Calcutta). Phase: P1 VERIFIED; P2 next in authorised P1–P10 run.
 
-## User constraints
+## Working now
 
-- Preserve REWIND's globally reviewed idea.
-- Make targeted present-day improvements without a major change.
-- Implement with GPT 6.1 Sol.
-- Build a beautiful live frontend, using permitted 21st.dev or similar components.
-- Maintain Markdown context alongside implementation.
-- Make the project understandable for future interviews.
-- Prefer a low-budget core that does not require a paid GPU.
+- P0 API/storage/web foundation; generated schemas/types and locked setup/check.
+- Six versioned synthetic support scenarios; evaluator expectations stored separately.
+- Three owned MCP stdio servers (ticket/files/mail), SDK 2.3.0 / revision 2026-07-28.
+- Transparent deterministic instruction DSL simulator; semantic attempted/executed
+  harmful-action and required-ticket-fact task-success predicates.
+- Per-run cloned world/outbox/configuration and actual result JSON, no external mail.
+- Explicit saved-recording playback; no fresh decision or independent evidence claim.
+- API reports simulator/playback available, real modes unavailable; CLI-only demo now.
 
-## Start here
+## Modes / limitations
 
-Read AGENTS.md, STATE.md, TASKS.md, relevant DECISIONS.md and the P1 prompt.
-Inspect status/files and run relevant P0 checks before modifying anything.
+Simulator: verified owned host mocks; no network-isolation or LLM claim.
+Playback: verified explicit recording read; no statistical use.
+Local/remote model: unavailable; adapters/model/provider/budget absent, no fallback.
+Recorder/signing, replay isolation, inference/statistics, Sentinel/Preflight remain future.
+Docker 29.6.2 Linux engine responds; container/egress boundary not yet tested.
+Original dossier now present (126135 bytes); P0 absence is historical, R-011 resolved.
 
-Next task: P1 owned synthetic sandbox (not started).  
-Exact prompt: `prompts/01-SANDBOX.md`.  
-Commands from root:
+## Commands (repository root, PowerShell)
 
 ```powershell
-git -c safe.directory='D:/projects/REWIND-Implementation-Kit - Cx/rewind-implementation-kit' status --short
 python scripts/rewind.py setup
 python scripts/rewind.py check
+python scripts/rewind.py demo
 python scripts/rewind.py dev
+.venv/Scripts/python.exe -m rewind_sandbox.cli generate
+.venv/Scripts/python.exe -m rewind_sandbox.cli playback --recording PATH_TO_RESULT_JSON
+npm.cmd run test:e2e
 ```
 
-Use `npm.cmd` when PowerShell blocks npm.ps1. API/web bind to loopback at 8000/5173.
-Stop dev servers before `npm.cmd run test:e2e`. Git was initialised under the agent
-sandbox account, so host Git needs command-scoped trust for this known directory.
-No global Git setting, ownership, commit, reset, clean or push was changed.
+Demo now runs the single injected simulator scenario; it does not send real mail.
+Checks write timestamped artifacts/checks directories. Browser results/screenshots
+write timestamped artifacts/browser directories; latest.txt locates the current run.
+P1 evidence: docs/project/evidence/P1.md; artifacts/p1/check.log, demo.log, pytest.xml.
 
-## Critical design boundaries
+## Gate / next
 
-- Recorder proxy alone is not full model-context capture.
-- Playback and simulation are labelled separately from fresh model trials.
-- Replay must not execute real external actions.
-- Statistics come from completed valid trials under a specified design.
-- Regression retains the original malicious input.
-- Signatures do not prove truth or legal blame.
-- Frontend counters reflect persisted backend progress.
+P1 scenario suite: 13/13; full backend suite: 18/18; type/build/schema/manifest and
+four browser cases pass. Initial decoding failure retained in artifacts/p1/first-failure.xml.
+Continue prompts/02-CAPTURE.md, through P10 after each gate/docs checkpoint.
+Git baseline checkpoint 7a58bfe; subsequent phase commits preserve work; no push.
 
-## What to fill after every coding session
 
-Current revision / dirty changes: initial Git repository with no HEAD; files untracked.
-Source SHA-256: `6c5a0e65706c72f7ee353f9ce615e8bf6b120f32c52fd8a8361427847616d9bc`.
-Last passed gate: P0, five backend/SDK and four browser checks plus build/schema/manifest.
-Last exact commands: above; also `python scripts/rewind.py demo` and browser install/tests.
-Available agent modes: none; never fall back automatically to simulation.
-Environment follow-up (SESSION-002): Docker client/server 29.6.2 responds,
-Linux/amd64 in desktop-linux context; two containers already running. WSL2
-Ubuntu/docker-desktop still list as stopped. Sanitised daemon evidence:
-`artifacts/environment/SESSION-002-docker.json`. No container was started or changed.
-Limits: REWIND Linux/container execution and replay isolation remain not_run;
-no worker/model/provider/budget configured. Daemon availability alone enables no mode.
-Unresolved IDs: R-001–010 (later mechanisms); R-011 (empty supplied reference directory).
-Resolved bugs: BUG-001 mobile Refresh accessible name; BUG-002 uv build-suffix parsing.
-Decisions: ADR-007 packaging/locks, ADR-008 pinned MCP, ADR-009 enum/schema boundary,
-ADR-010 explicit migrations; initial later-phase ADRs remain proposed as recorded.
-Next step: three owned mock MCP servers, six scenarios, model boundary, semantic
-outcomes and cloned world-state checks. Host-local mocks are not isolated replay.
-Evidence/screenshots: `docs/project/evidence/P0.md`, `artifacts/p0/` (including preserved
-mobile failure trace). No experimental result is claimed by these engineering checks.
+Goal: P1 owned synthetic incident. User authorised continuous P1–P10 implementation.
 
-Keep this sufficient for a new session to continue without retelling the project.
+Implemented: typed World/SubjectInput/Action/RunResult, reproducible fixtures and
+separate evaluator metadata, three owned stdio tools, explicit model interface,
+transparent simulator, saved-recording playback and semantic outcomes. Package
+rewind_sandbox joins the single Python distribution. API/empty web shell accurately
+expose available CLI modes and unavailable real models. No external tool dispatch.
 
+Commands: local locked uv sync; fixture generate; pytest tests/test_sandbox.py
+13/13; root check 18/18 plus lint/format/schema/manifest/types/build; root demo
+single scenario succeeds; browser 4/4. See artifacts/p1/check.log, demo.log,
+pytest.xml and timestamped artifacts/browser/latest.txt. Screenshots at 1440×900,
+1280×720 and 390×844 are inspected. No new dependency versions required.
+
+Failure: first stdio scenario suite 7 failed/6 passed because plain dict MCP
+responses had no structured_content. Added bounded single-JSON-text decoding.
+First failure XML retained; corrected suite passes. Minor formatting issues fixed.
+
+Evidence handling correction: the inherited browser config reused P0 output paths.
+Its first P1 run overwrote P0 overview PNGs and playwright.json; those files now
+represent P1, not the original P0 revision. The original P0 manifest retains its
+old hashes and historical gate record, but affected raw artifacts do not match it.
+Future browser runs use distinct timestamped directories; no replacement artifact
+is claimed to be an original P0 screenshot. Existing failed mobile trace copies
+and P0 API evidence were retained.
+
+Dossier now exists and was included unchanged in the baseline checkpoint; prior
+absence corrected in current summaries. No user changes reset/discarded. No paid
+service, public deployment or outbound message. Real-model/isolation gates unrun.
+
+Interview explanation: “Our subject is a transparent instruction-following
+simulator. It reads a ticket through real MCP stdio, then interprets supplied
+directives and may attempt a synthetic attachment send. Code checks recipient
+permission and attachment classification independently of scenario labels. Every
+send reaches only a local outbox. Scenario expectations live in evaluator files
+that the agent never reads. Playback reads a result without deciding again.
+Real models have an explicit capability error, never a hidden simulator fallback.
+These checks validate the fixture mechanism, not LLM causation or replay isolation.”
+
+Questions: Why must evaluator labels stay out of SubjectInput? Why are attempted
+harm and executed mock dispatch separate outcomes? Answers not yet recorded.
+
+Next: P2 stdio recorder/model adapter, encrypted content, signed ordered chain,
+seal/verification, partial-capture disclosure and tamper/correlation tests.
