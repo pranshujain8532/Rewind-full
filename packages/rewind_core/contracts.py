@@ -7,7 +7,7 @@ from pydantic import BaseModel, ConfigDict
 
 SCHEMA_VERSION = "1.0"
 MCP_PROTOCOL_REVISION = "2026-07-28"
-CURRENT_PHASE = "P2"
+CURRENT_PHASE = "P3"
 
 
 class RunMode(StrEnum):
@@ -66,7 +66,7 @@ class CapabilitiesResponse(Contract):
     features: list[FeatureCapability]
     mcp_sdk: str
     mcp_protocol_revision: str
-    replay_isolation: Literal["unavailable"] = "unavailable"
+    replay_isolation: Literal["unavailable", "verified_no_network"] = "unavailable"
 
 
 class DatabaseReadiness(Contract):

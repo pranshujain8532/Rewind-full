@@ -51,7 +51,7 @@ def test_http_contract_and_empty_capabilities(migrated_directory, monkeypatch):
         assert all(not feature.available for feature in matrix.features if feature.id != "recorder")
         assert next(feature for feature in matrix.features if feature.id == "recorder").available
         assert matrix.mcp_protocol_revision == MCP_PROTOCOL_REVISION
-        assert matrix.replay_isolation == "unavailable"
+        assert matrix.replay_isolation in {"unavailable", "verified_no_network"}
         assert client.get("/openapi.json").status_code == 200
 
 

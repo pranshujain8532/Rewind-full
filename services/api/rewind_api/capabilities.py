@@ -1,5 +1,6 @@
 """Explicit feature matrix; environment hints never enable unfinished code."""
 
+import json
 from importlib.metadata import version
 
 from rewind_core.contracts import (
@@ -14,6 +15,13 @@ from rewind_core.contracts import (
 
 
 def capabilities() -> CapabilitiesResponse:
+    from rewind_replay.container import MANIFEST
+
+    isolated = False
+    try:
+        isolated = json.loads(MANIFEST.read_bytes()).get("isolation_verified") is True
+    except (OSError, ValueError):
+        pass
     modes = [
         (
             RunMode.PLAYBACK,
@@ -23,7 +31,7 @@ def capabilities() -> CapabilitiesResponse:
         (
             RunMode.SIMULATED,
             "Sandbox simulator",
-            "Instruction DSL with owned local tools; no LLM or replay isolation claim.",
+            "Fresh instruction DSL in a verified no-network container when configured; no LLM.",
         ),
         (
             RunMode.LOCAL_MODEL,
@@ -93,4 +101,5 @@ def capabilities() -> CapabilitiesResponse:
         ],
         mcp_sdk=f"mcp {version('mcp')}",
         mcp_protocol_revision=MCP_PROTOCOL_REVISION,
+        replay_isolation="verified_no_network" if isolated else "unavailable",
     )

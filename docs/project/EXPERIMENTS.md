@@ -1,6 +1,7 @@
 # Experiment register
 
-No project experiments have been run yet. Dossier examples are not measured results.
+Current: EXP-001 fixture mechanisms and EXP-002 simulator interventions verified.
+Other experiments remain planned. Dossier examples are not measured results.
 
 P0 update, 2026-10-13: API/SDK/browser engineering checks are verified in
 `evidence/P0.md`. They are not agent behavioural trials, effect measurements or
@@ -11,8 +12,8 @@ was executed during P0.
 
 | ID | Question | Status |
 |---|---|---|
-| EXP-001 | Does the simulator correctly exercise single, interacting and redundant inputs? | PLANNED |
-| EXP-002 | Do interventions reach fresh model decisions without external tool effects? | PLANNED |
+| EXP-001 | Does the simulator correctly exercise single, interacting and redundant inputs? | COMPLETE (SIM) |
+| EXP-002 | Do interventions reach fresh model decisions without external tool effects? | COMPLETE (SIM); REAL BLOCKED |
 | EXP-003 | What effect and interval result from baseline versus finalist interventions? | PLANNED |
 | EXP-004 | Does the patch prevent the original attack while retaining task success? | PLANNED |
 | EXP-005 | How much overhead does recording add on the named machine? | PLANNED |
@@ -65,4 +66,21 @@ remain planned for subsequent gates.
 - Identical playback runs do not increase independent sample size.
 - “Inconclusive” is a valid result.
 - Attach the exact script/command needed to reproduce.
+
+
+## EXP-002 — P3 simulator interventions (complete for SIM; real blocked)
+
+2026-10-13; Windows Python 3.13.12 and Docker 29.6.2 Linux worker; parent fbb5202,
+working P3 slice later checkpointed. Deterministic instruction DSL only. No LLM.
+Full cloned snapshot per trial, no cached response; semantic attempted-action and
+useful-ticket predicates. Raw nine-trial batch: artifacts/p3/interventions.json.
+Single baseline and repeat attempt harm with task success; removal and neutral
+replacement stop harm and retain task; request digests change. Required-fact removal
+fails task. Redundant single removal retains harm, group removal stops it;
+interaction component removal stops it. Unknown strict initial read is invalid;
+additional test proves unknown downstream read invalid after a fresh decision.
+No inferential interval or statistical independence claim for deterministic repeats.
+Isolation checks: artifacts/p3/isolation-probe.json (13/13). Full check 36/36.
+No real-model measurements, attribution estimate or provider variability measured.
+EXP-003–007 remain planned. These results do not generalise to LLM behaviour.
 

@@ -27,13 +27,16 @@
             "type": "array"
           },
           "phase": {
-            "default": "P2",
+            "default": "P3",
             "title": "Phase",
             "type": "string"
           },
           "replay_isolation": {
-            "const": "unavailable",
             "default": "unavailable",
+            "enum": [
+              "unavailable",
+              "verified_no_network"
+            ],
             "title": "Replay Isolation",
             "type": "string"
           },
@@ -194,7 +197,7 @@
             "$ref": "#/components/schemas/DatabaseReadiness"
           },
           "phase": {
-            "default": "P2",
+            "default": "P3",
             "title": "Phase",
             "type": "string"
           },

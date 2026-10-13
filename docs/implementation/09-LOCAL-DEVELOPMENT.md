@@ -1,5 +1,28 @@
 # Local development and isolation boundaries
 
+## Current P3 update — 2026-10-13
+
+P0 sections below preserve historical verification boundaries. P1 owned tools,
+P2 signed capture and P3 isolated simulator are now verified. Playback and
+simulated modes are available; real-model modes unavailable. API is still read-only.
+Windows host plus Linux Docker worker tested; native Linux/WSL host not_run.
+
+```powershell
+.venv/Scripts/python.exe -m rewind_replay.cli setup
+.venv/Scripts/python.exe -m rewind_replay.cli probe
+.venv/Scripts/python.exe -m rewind_replay.cli run --bundle artifacts/p2/bundle.json --trusted-key data/keys/trusted-public.ed25519
+```
+
+Use the bundle's separately trusted key. Linux uses .venv/bin/python (host untested).
+Setup builds the pinned dependency image; execution requires successful probe and
+uses its exact local image ID. Rebuild/probe after worker edits. All 13 probes
+passed; no host bind mounts, external networking or actual email dispatch.
+Do not put keys in source or outputs. Real-model setup remains blocked and is
+documented in docs/project/evidence/P3-REAL.md.
+
+## Historical P0 guide
+
+
 P0 implements Windows API/web development. It does not implement replay,
 authentication, encrypted payloads, signed evidence or production security.
 

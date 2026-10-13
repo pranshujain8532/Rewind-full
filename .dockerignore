@@ -1,0 +1,15 @@
+**
+!pyproject.toml
+!uv.lock
+!containers/
+!containers/replay.Dockerfile
+!packages/
+!packages/**
+!services/
+!services/api/
+!services/api/rewind_api/
+!services/api/rewind_api/**
+!fixtures/
+!fixtures/scenarios/
+!fixtures/scenarios/**
+!fixtures/manifest.json

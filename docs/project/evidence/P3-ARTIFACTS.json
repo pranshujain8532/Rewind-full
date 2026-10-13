@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "phase": "P3-SIM",
+  "files": [
+    {
+      "path": "artifacts/p3/check.log",
+      "sha256": "e2e588c19f34c1c97581b9470e4f6df260bc394187b7d22c49ec15152e2d8125",
+      "bytes": 10196
+    },
+    {
+      "path": "artifacts/p3/check-repaired.log",
+      "sha256": "b9927205c6f3e2612384283b711d157ebd7c755eecf114c5b81adc9a2a6ea159",
+      "bytes": 5172
+    },
+    {
+      "path": "artifacts/p3/pytest.xml",
+      "sha256": "f8a15d74831bc42f44b755c6239a2273d4dfdff9b0329543a75df6d6496f9717",
+      "bytes": 708
+    },
+    {
+      "path": "artifacts/p3/proxy-followup.xml",
+      "sha256": "c8c13acdd110797985800e9b8eed8a95c59bf774fa8aae2b39aa4a9ec035a20a",
+      "bytes": 350
+    },
+    {
+      "path": "artifacts/p3/interventions.json",
+      "sha256": "dd21405e7d18096bb3d30a45cebfd6eb488e506c1fc86a17df5866a956b8a0ae",
+      "bytes": 17377
+    },
+    {
+      "path": "artifacts/p3/isolation-probe.json",
+      "sha256": "da3431fee9d469963b85c94ae56e31a478de98e5d0e19ec3e1286ac5cbbc8a7d",
+      "bytes": 453
+    }
+  ],
+  "runtime": {
+    "built_at": "2026-10-13T07:58:59.389159+00:00",
+    "image_id": "sha256:ed6ea9e717ce22018020b9cbef35393c017e17cbe180114c1baa86aaf1de4306",
+    "isolation_verified": true,
+    "probe": {
+      "checks": {
+        "cpu_limited": true,
+        "dns_blocked": true,
+        "dropped_capabilities": true,
+        "memory_limited": true,
+        "no_docker_socket": true,
+        "no_evaluator_fixture": true,
+        "no_host_credentials": true,
+        "no_host_secret": true,
+        "no_new_privileges": true,
+        "non_root": true,
+        "pids_limited": true,
+        "source_readonly": true,
+        "tcp_blocked": true
+      },
+      "passed": true,
+      "schema_version": "1.0"
+    },
+    "schema_version": "1.0"
+  }
+}

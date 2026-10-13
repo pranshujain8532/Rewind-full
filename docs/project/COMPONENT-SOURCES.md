@@ -62,3 +62,15 @@ browser evidence goes to timestamped artifacts/browser directories. The first P1
 run reused inherited P0 paths; overwritten P0 files must not be treated as original
 P0 revision artifacts (see evidence/P1.md). Future runs preserve separate output.
 
+
+## P2/P3 runtime additions — 2026-10-13
+
+No imported UI components. Capture/replay code is original repository code.
+Direct cryptography 50.0.2 pin is the already-locked primitive dependency;
+official docs: https://cryptography.io/en/latest/hazmat/primitives/asymmetric/ed25519/
+and https://cryptography.io/en/latest/hazmat/primitives/aead/.
+Container uses official python:3.13.12-slim and uv 0.13.0; resolved runtime image
+identity recorded in data/replay-runtime.json. Source/dependency versions in locks.
+Exact base digest observed in Docker build output; tag refresh requires deliberate
+rebuild/probe. No third-party application source was copied in these phases.
+

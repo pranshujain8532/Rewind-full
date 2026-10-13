@@ -99,6 +99,22 @@ async def run_world(
                 capture_store.append(run_id, "tool_schema", schemas[kind], kind)
 
         async def call(action: Action):
+            prior_outbox = (
+                [json.loads(line) for line in outbox_path.read_text(encoding="utf-8").splitlines()]
+                if outbox_path.exists()
+                else []
+            )
+            semantic_outbox = [
+                {
+                    "recipient": item["recipient"],
+                    "attachment": item["attachment"],
+                    "synthetic_rows": len(item["rows"]),
+                }
+                for item in prior_outbox
+            ]
+            state_digest = digest(
+                {"world": world.model_dump(mode="json"), "outbox": semantic_outbox}
+            )
             client = clients[action.tool.split(".")[0]]
             with anyio.fail_after(10):
                 response = await client.call_tool(action.tool, action.arguments)
@@ -109,6 +125,7 @@ async def run_world(
                     "schema_digest": digest(schemas[action.tool.split(".")[0]]),
                     "occurrence": len(trace),
                     "world_digest": digest(world),
+                    "environment_state_digest": state_digest,
                 }
             )
             if response.is_error:

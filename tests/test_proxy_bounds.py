@@ -33,10 +33,11 @@ def test_frame_and_lifetime_bounds(tmp_path, monkeypatch):
             env=env,
         )
         if session_id == "frame":
-            output, error = process.communicate(b"X" * 262145, timeout=6)
+            output, error = process.communicate(b"X" * 262145, timeout=15)
             assert not output and b"ValueError" in error
             assert b"XXXX" not in error
         else:
-            process.wait(timeout=6)
+            # Deadline includes Windows interpreter/import startup, before relay timer starts.
+            process.wait(timeout=15)
             process.stdin.close()
         assert process.poll() is not None

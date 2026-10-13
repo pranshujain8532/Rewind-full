@@ -1,108 +1,94 @@
 # Handoff
 
 Read AGENTS, STATE, TASKS, relevant DECISIONS and the current prompt.
-Checkpoint parent: `40a13992483e53d5426d2017e7e9a2461d5dabcb`. Latest continuation: P2 VERIFIED.
+Checkpoint parent: `fbb5202460660e9ab1c1cc953dc139815a9b026d`. Latest continuation: P3-SIM VERIFIED.
 
 # Current project state
 
-Updated 2026-10-13 (Asia/Calcutta). P2 VERIFIED; P3 next in authorised P1–P10 run.
+Updated 2026-10-13. P3-SIM verified; P3-REAL blocked; P4 next, P1-P10 authorised.
 
-## Working
+P0-P2 foundation, owned MCP scenarios, bounded recorder, encrypted ordered events,
+signed chain/seal, trusted CLI verification and actual session count work.
+P3 adds fresh isolated simulator trials and interventions, strict read resolution,
+independent private world state, actual request/response digests and timings.
+Linux container is non-root, no-network, read-only and resource-limited; 13 probes
+passed. Source setup/probe required after worker changes; image ID pinned locally.
 
-- P0 API/web/locked setup and P1 six synthetic scenarios/owned stdio mocks.
-- Byte-preserving, bounded stdio recorder for MCP 2.3.0 / 2026-07-28, verified
-  request/reply correlation, concurrency, tool errors and cancellation.
-- Simulator adapter captures actual request/response, initial world, stateless
-  memory, framework tool definitions and model/config digests; no response cache.
-- SQLite migration 0002_capture; transaction-allocated ordered immutable events,
-  AES-256-GCM content-addressed payloads, redacted display data, Ed25519 chain/seal.
-- Trusted-key CLI verifier detects mutation/provenance changes and missing payloads.
-- Duplicate text deduplicates bytes but retains distinct signed occurrence origins.
-- Captured CLI demo exports result and bundle; API reports actual stored-session count.
+Modes: simulated verified (deterministic DSL, no LLM); playback recording only;
+local/remote model unavailable. User has no local model; no provider or paid budget.
+Forensics statistics/jobs, Ledger records/regression, Sentinel/Preflight still planned.
+Resources/prompts/HTTP MCP and arbitrary frameworks unsupported. Local keys have
+no independent external anchor; signatures do not prove truth or legal blame.
 
-## Modes and limits
-
-Simulator: verified owned host mocks; deterministic fixture evidence only.
-Playback: explicit recording read, no fresh inference or statistical use.
-Local/remote models unavailable; no configured model/provider/budget or fallback.
-P3 isolation still unimplemented/unverified; Docker engine available, base image not yet cached.
-Resources/prompts/HTTP MCP, unproxied calls and arbitrary agent frameworks unsupported.
-Signatures prove trusted-key bytes relative to seal, not truth/legal fault or external anchoring.
-Payload encryption applies to the evidence store; development fixtures/artifacts are synthetic.
-No production/private-data deployment or key-custody guarantee is claimed.
-
-## Commands
-
-```powershell
+Commands (PowerShell):
+```
 python scripts/rewind.py setup
+.venv/Scripts/python.exe -m rewind_replay.cli setup
+.venv/Scripts/python.exe -m rewind_replay.cli probe
 python scripts/rewind.py check
 python scripts/rewind.py demo
-.venv/Scripts/python.exe -m rewind_capture.cli export --session SESSION_UUID --bundle bundle.json
-.venv/Scripts/python.exe -m rewind_capture.cli verify --bundle bundle.json --trusted-key data/keys/trusted-public.ed25519
 python scripts/rewind.py dev
 ```
-
-Demo runs actual agent→proxy→mock tools and saves a signed synthetic capture;
-all attempted sends terminate in a local outbox. Trusted public key comes from
-the separately pinned local key, never an untrusted bundle's embedded key.
-
-## Verification / next
-
-Full gate check: 32/32; P2 integrity/correlation suite 13/13 plus frame/lifetime
-bound test; envelope/partial-capture follow-up 2/2; trusted CLI verification valid.
-Browser 4/4, target renders inspected; evidence/P2.md and artifacts/p2/*.
-Checkpoint parent 40a1399; local phase commits, no push. Continue prompts/03-REPLAY.md.
-P3 real-model path may remain blocked; continue independent simulator/playback work.
+Linux uses .venv/bin/python; host app on native Linux/WSL not yet tested.
+Replay gate: tests/test_replay.py 4/4, artifacts/p3/pytest.xml and intervention/probe
+JSON. Full integration check logged artifacts/p3/check-repaired.log; first failure
+preserved in check.log. Windows host and
+Linux Docker worker tested; fresh machine and real inference not_run.
+Next exact prompt: prompts/04-INVESTIGATION.md.
+Session stopped at user's request after context compaction. P4-P10 still authorised,
+but not implemented. P4 dependency versions were researched, not added or locked.
 
 
-Goal: P2 recorder/integrity gate; continuous P1–P10 authorised.
+Goal: complete P3 simulator gate; real-model gate separately blocked.
 
-Changes: rewind_capture package and migration 0002_capture; three transparent
-bounded stdio relays, adapter hooks, encrypted content, immutable events allocated
-under BEGIN IMMEDIATE, signed linked hash chain and seal, separately bound
-occurrence provenance, independent trusted-key verification and CLI export.
-Session metadata binds world/model/configuration and configured local agent role;
-external source identity remains unverified. Actual capture is synthetic only.
+Implemented fresh full-snapshot trials, occurrence removals and length-matched
+neutral replacements, separate attempted/dispatch/task predicates, cloned private
+outboxes, strict recorded reads keyed by tool/schema/arguments/occurrence/state.
+An unknown initial or downstream read invalidates the trial without fallback.
+Actual transformed requests, fresh responses, digests, seeds and timings are saved.
+Playback remains a recording reader and cannot establish intervention effects.
 
-Commands/outcomes: locked uv sync/migrate, captured redundant and single CLI runs,
-P2 suite 13/13, full root check 32/32 including oversized-frame/lifetime shutdown,
-envelope follow-up 2/2, root captured demo; trusted-key CLI returns valid=true,
-capture_complete=true and no missing payloads. Browser 4/4; screenshots inspected
-at 1440×900, 1280×720, 390×844. Build/types/schema/manifest checks pass.
-Artifacts: artifacts/p2/check.log, pytest.xml, envelope-check.xml, demo.log,
-bundle.json and timestamped browser output 2026-10-13T07-24-16-568Z.
+Commands: .venv/Scripts/python.exe -m rewind_replay.cli setup; same module probe;
+pytest tests/test_replay.py --junitxml=artifacts/p3/pytest.xml (4/4 passed);
+python scripts/rewind.py check (see artifacts/p3/check-repaired.log).
+Final full check: 36/36 tests in 97.84 seconds, lint/format/schema checks,
+TypeScript/Vite build and dependency manifest passed. New browser screenshots
+were not run after the P3 metadata-only shell change; P2 renders remain the last
+inspected UI evidence. P6 still requires the full rendered evidence journey.
+Thirteen actual container probes passed: non-root, DNS/TCP blocked, no host mount,
+credentials, evaluator or Docker socket, read-only source, dropped capabilities,
+no-new-privileges and enforced CPU/memory/PID bounds. Host-secret result establishes
+absence of declared host mounts; it is not a general kernel security certification.
+Traversal and unknown tool/state/schema reads fail closed. Actual batch results:
+artifacts/p3/interventions.json; probe: artifacts/p3/isolation-probe.json.
+Image identity and build timestamp are pinned locally in data/replay-runtime.json.
+No source or secret host bind mounts; all sends terminate in private mock outboxes.
 
-Tamper tests cover edits/insertion/deletion/reordering, altered content, forged
-occurrence origin, metadata/seal changes and wrong keys. Missing payloads leave
-signed-header integrity valid but replay capture insufficient. Tool-only capture
-cannot pass the adapter readiness gate. Concurrent writes have unique contiguous
-sequences; database triggers and sealed-session checks prevent accidental edits.
+Failed experiment: initial image build used an incorrect root parent; corrected
+the path before a successful build. Strict downstream fallback was found in review
+and removed before gate completion. No external replay effects were performed.
+The first full check failed a proxy lifetime test: its six-second process deadline
+included Windows import startup as well as the one-second relay timer. Independent
+reproduction passed (artifacts/p3/proxy-followup.xml). The test deadline is now
+bounded at fifteen seconds including startup; production relay limits are unchanged.
+The failure log is preserved at artifacts/p3/check.log.
 
-Limits: local trust anchor, no external checkpoint/key-custody assurance. Synthetic
-development world/result artifacts are plaintext; persisted evidence payloads are
-AEAD-encrypted with separate display redaction. Retention/tombstone service absent.
-Only owned stdio tool calls and stateless simulator supported; resources/prompts,
-HTTP MCP/unproxied calls/real models unsupported. No replay/network isolation yet.
-Explicit cryptography 50.0.2 pin matches already locked installed version; no GPU.
+Real-model gate BLOCKED: user confirms no local model/runtime; no hosted provider
+or authorised budget. No real-model request/trial is claimed. To unblock, choose
+a licensed CPU-compatible local runtime/model and implement/test its fresh adapter
+inside isolation; alternatively implement the narrowly constrained inference IPC
+broker and explicitly authorised provider budget. No service has been purchased.
+Deterministic fixture repeats show identical outcomes, not provider determinism.
 
-Canonical contract: UTF-8 JSON, sorted keys, compact separators, ensure_ascii=False,
-allow_nan=False; Python owns canonical signing/verification. Domain-separated
-SHA-256 event hashes include previous hash and session/sequence identity. Ed25519
-signs event hashes and the seal separately. AES-GCM uses random 96-bit nonce and
-payload digest as associated data. Seal binds count/head/metadata/coverage/occurrences.
-Official primitive docs: https://cryptography.io/en/latest/hazmat/primitives/asymmetric/ed25519/
-and https://cryptography.io/en/latest/hazmat/primitives/aead/; installed APIs tested.
+Interview explanation: We start every trial from the captured world and change
+only specified input occurrences before a fresh simulator decision. The worker
+runs non-root with no network, no host secrets and explicit resource limits.
+Versioned mocks can answer owned-world reads; strict replay instead requires
+exact schema, arguments, occurrence and state matches. An unmatched branch stops
+the trial. Harm attempts and useful work are separate. These are simulator
+experiments; playback and signatures cannot turn them into real-model evidence.
+Questions: Why can an unknown read not count as harm absent? Why is a subprocess
+insufficient to prove replay isolation?
 
-Interview explanation: “The proxy records bytes at the tool boundary; the adapter
-records the exact input given to our supported subject. Content hashes identify
-bytes, while occurrence IDs keep origins separate even when two comments match.
-A transaction assigns event order. Payloads are encrypted; events form a signed
-linked chain and a signed seal commits to its length and head. An independent
-verifier needs a separately trusted key. Tampering fails relative to that seal,
-but a signature does not establish truth or legal blame. Tool-only capture and
-missing payloads remain visibly insufficient for replay.”
-Questions: Why isn't a bundled public key a trust anchor? Why do identical bytes
-need different occurrence IDs? No comprehension answers recorded.
-
-Next: P3 isolated fresh simulator decisions, interventions, strict matching,
-unsupported branches, negative egress/secret/traversal probes and real-model limits.
+User requested stopping after context compaction. No P4 implementation started.
+Next: prompts/04-INVESTIGATION.md; durable experiment jobs and fixed-plan statistics.

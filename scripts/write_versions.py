@@ -55,10 +55,10 @@ def manifest() -> dict:
         },
         "mcp_protocol_revision": MCP_PROTOCOL_REVISION,
         "mcp_transport_scope": (
-            "owned stdio ticket/files/mail mocks verified in P1; recorder coverage pending P2"
+            "owned stdio tools and transparent recorder verified; protocol 2026-07-28 only"
         ),
         "models": {"local_model": "not configured", "remote_model": "not configured"},
-        "replay_isolation": "unavailable; no verified worker exists",
+        "replay_isolation": "P3 no-network Linux container verified; setup/probe required locally",
     }
 
 

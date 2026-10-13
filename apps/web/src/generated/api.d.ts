@@ -71,15 +71,15 @@ export interface components {
             modes: components["schemas"]["ModeCapability"][];
             /**
              * Phase
-             * @default P2
+             * @default P3
              */
             phase: string;
             /**
              * Replay Isolation
              * @default unavailable
-             * @constant
+             * @enum {string}
              */
-            replay_isolation: "unavailable";
+            replay_isolation: "unavailable" | "verified_no_network";
             /**
              * Schema Version
              * @default 1.0
@@ -145,7 +145,7 @@ export interface components {
             database: components["schemas"]["DatabaseReadiness"];
             /**
              * Phase
-             * @default P2
+             * @default P3
              */
             phase: string;
             /** Ready */

@@ -102,3 +102,18 @@ of scenario IDs. Full narrative and two unanswered questions: evidence/P1.md.
 Actual debugging story: untyped MCP dict output arrived as JSON text rather than
 structured_content; decode both supported result forms and reject ambiguous output.
 
+
+## P2/P3 — implemented evidence and isolated simulator
+
+The recorder combines transparent owned stdio traffic with exact simulator input
+capture, encrypted payloads and signed ordered events. A separately trusted key
+verifies integrity relative to the seal, not truth or individual blame.
+Fresh simulator trials run in a tested no-network container; strict recorded reads
+require matching occurrence and state. Unknown reads are invalid, not harmless.
+Playback has no fresh decisions. Removing required task context can stop useful
+work, so safety and task checks remain separate. No local model exists here.
+Actual failures: incorrect image root path, strict downstream fallback found in
+review, and a Windows startup deadline flake; all repaired before SIM gate.
+Questions: Why are two identical comments distinct interventions? Why can't a
+signed playback establish the effect of removing a comment?
+

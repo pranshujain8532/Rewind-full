@@ -200,3 +200,25 @@ Revisit trigger:
 Supersedes / superseded by:
 ~~~
 
+
+## ADR-013 — Isolated owned-world replay and honest divergence
+
+Date: 2026-10-13. Status: ACCEPTED for P3 simulator only.
+Question: how to rerun changed inputs without external side effects or stale decisions?
+Context: Windows host, working Linux Docker engine, no subject model.
+Options: host subprocess; no-network container with full snapshot; cached playback.
+Chosen: fresh stateless DSL decisions in non-root, no-network, read-only Linux
+container, CPU/memory/PID limits, private outboxes, no bind mounts/host credentials.
+Strict reads require tool/schema/arguments/occurrence/environment-state matches;
+unknown initial or downstream reads invalidate the trial. Versioned mocks are
+labelled sandbox re-execution, not arbitrary production reconstruction.
+Why: separates genuine transformed-input harness execution from playback and
+establishes a tested side-effect boundary. Trade-offs: Docker required; no kernel
+security certification, production tool adapter or real-model claim. The root
+launcher uses the host Docker API; workers receive no Docker socket.
+Evidence: replay tests 4/4, full check 36/36, thirteen actual isolation probes;
+artifacts/p3 and evidence/P3-SIM.md. Revisit: real runtime/provider availability,
+new tools or threat model. Affected: rewind_replay, runner state digests,
+containers/replay.Dockerfile, capabilities/contracts/generated types and tests.
+ADR-002 remains incomplete for real-model paths; this decision accepts only SIM.
+

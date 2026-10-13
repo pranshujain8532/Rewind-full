@@ -3,9 +3,10 @@
 Accountability infrastructure for AI agents: one recorder supporting Forensics,
 Ledger, Sentinel and Preflight. Prepared for Pranshu Jain.
 
-P0 implements the local application foundation: typed readiness/capabilities,
-migrated SQLite storage and a web workspace. Agent recording, simulation,
-replay, experiments, enforcement and signed records belong to later phases.
+P0-P3 implement the local foundation, owned synthetic agent, encrypted signed
+capture and fresh isolated simulator replay. The web remains a capabilities shell.
+Investigation jobs/statistics, evidence records/regressions, Sentinel and Preflight
+are next phases. Real models are unavailable; the user has no local model/runtime.
 
 ## Start locally (PowerShell)
 
@@ -52,7 +53,8 @@ owned stdio MCP tools. Its attempted send reaches only a local synthetic outbox;
 this is not an LLM experiment or isolated replay. Browser tests
 use a separate database under `artifacts/p0/browser-data`. Evidence is written
 in timestamped `artifacts/browser` directories (latest.txt identifies the run).
-See [P1 evidence](docs/project/evidence/P1.md) and the historical P0 index.
+The demo now also captures and exports a signed bundle. See the phase evidence
+under docs/project/evidence. Its host mock run is separate from isolated replay.
 
 After changing a backend contract:
 
@@ -68,7 +70,7 @@ selected versions. Setup uses locked installs and disables npm lifecycle scripts
 Runtime patches can be updated deliberately within the selected Python/Node
 lines; rerun verification and refresh the manifest when doing so.
 
-## Linux / WSL2 development and future isolation
+## Linux / WSL2 development and replay isolation
 
 Linux instructions are **not_run** in P0. Install Python 3.13 and Node 22/npm 10
 in the Linux environment and clone/copy source without `.venv`, `.tools`,
@@ -85,8 +87,23 @@ npm run test:e2e
 
 WSL2 is a Linux development path; by itself it does not disable external network
 access. [The replay environment guide](docs/implementation/09-LOCAL-DEVELOPMENT.md)
-specifies the container boundary to implement and prove in P3. No replay image
-or worker exists in P0, and native subprocesses do not provide isolation.
+documents the verified P3 Linux Docker boundary. Native Linux/WSL host setup
+remains untested; the Linux worker was tested through Windows Docker Desktop.
+Native subprocesses do not provide network isolation.
+
+With the Docker Linux engine running, build and probe once (PowerShell):
+
+```powershell
+.venv/Scripts/python.exe -m rewind_replay.cli setup
+.venv/Scripts/python.exe -m rewind_replay.cli probe
+.venv/Scripts/python.exe -m rewind_replay.cli run --bundle artifacts/p2/bundle.json --trusted-key data/keys/trusted-public.ed25519
+```
+
+Use your captured bundle and its separately trusted key. Add `--remove` followed
+by captured occurrence UUIDs for an intervention. Rebuild/probe after changing
+worker code. Execution uses the pinned local image ID, no network, no host mounts,
+non-root UID, read-only source and bounded resources. It never starts real inference.
+On Linux replace `.venv/Scripts/python.exe` with `.venv/bin/python` (host not_run).
 
 ## Repository boundaries
 
@@ -95,8 +112,8 @@ or worker exists in P0, and native subprocesses do not provide isolation.
 | `apps/web` | React client, original REWIND shell, generated API types |
 | `services/api/rewind_api` | FastAPI read-only P0 endpoints |
 | `packages/rewind_core` | Shared contracts and SQLite bootstrap |
-| `packages/rewind_capture` | P2 recorder/adapter boundary, currently documentation |
-| `packages/rewind_replay` | P3 isolation/re-execution boundary, currently documentation |
+| `packages/rewind_capture` | Bounded recorder, encrypted payloads, signed capture/verifier |
+| `packages/rewind_replay` | Isolated simulator and strict-read replay worker |
 | `packages/rewind_eval` | P4/P5 experiment/regression boundary, currently documentation |
 | `sandbox`, `fixtures` | P1 owned mocks and scenario boundaries, no fixtures yet |
 | `migrations`, `schemas`, `scripts`, `tests` | Storage, contracts, commands and verification |

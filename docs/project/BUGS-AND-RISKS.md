@@ -66,3 +66,21 @@ unauthorised persistent mutation. It was not executed and is not required for
 P0; ENV-002 uses the read-only command already verified. Do not retry ownership
 changes or silently add global Git trust settings.
 
+
+## P3 boundary review — 2026-10-13
+
+- BUG-003 verified: proxy deadline test flaked in the full suite because its
+  six-second process bound included Windows imports before the relay timer.
+  Independent run passed; bounded test deadline now fifteen seconds including
+  startup. Production relay lifetime unchanged. First failure preserved in
+  artifacts/p3/check.log; repaired full suite 36/36 in check-repaired.log.
+- BUG-004 verified: strict downstream file read initially fell back to mock world.
+  Removed before P3 gate; test_strict_downstream_read_never_falls_back proves
+  missing downstream match invalidates a fresh trial. No positive finding shipped.
+- ENV-001 now verified for P3 Docker isolation, not just daemon availability;
+  thirteen actual probes passed. Native WSL/Linux host app remains not_run.
+- Real-model runtime unavailable, confirmed by user. No real-model gate claim.
+- Read-only API is still a shell; local authentication must precede P4 mutations.
+  No production/private-data deployment, external trust anchoring or kernel security
+  guarantee. Last UI inspection P2; P3 metadata changes build/type-checked only.
+

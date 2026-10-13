@@ -9,6 +9,11 @@ boundaries are in `09-LOCAL-DEVELOPMENT.md`. Remaining recorder/replay/evaluatio
 enforcement mechanisms below are still future contracts. No feature is enabled
 solely because its dependency or directory exists.
 
+P3 update (2026-10-13): owned sandbox, bounded signed capture and isolated
+simulator replay contracts are verified. Stats/jobs/enforcement/record/regression
+sections remain future contracts. See project/evidence/P3-SIM.md and P3-REAL.md;
+real inference is blocked, not fulfilled by simulator trials.
+
 ## 1. Small improvements to the accepted idea
 
 | Improvement | Why it helps now | Effect on the idea |
