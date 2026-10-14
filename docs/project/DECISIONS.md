@@ -38,12 +38,15 @@ Acceptance evidence: P2 coverage tests.
 
 ## ADR-004 — Fixed-plan statistics before sequential methods
 
-Status: PROPOSED.  
+Status: ACCEPTED for P4 simulator; evidence/P4-SIM.md, full check 64/64, browser 12/12.
 Choice: bounded discovery, fresh fixed-N confirmation, independent-proportion intervals and multiplicity adjustment.  
 Alternative: immediately combine bisection, Shapley and SPRT.  
 Reason: simpler to implement and audit; avoids hidden optional stopping.  
 Trade-off: potentially higher compute; limited interaction search.  
 Revisit: measured compute bottleneck and a reviewed sequential design.
+P4 evidence: pinned statsmodels 0.14.6 explicit newcomb/diff API; independent Wilson
+derivation and null Monte Carlo tests, fresh fixed plans, alpha=0.05/m, no optional
+stopping. Deterministic fixtures use N=1 without CI. EXP-003 retains raw trials.
 
 ## ADR-005 — Local modular application before distributed services
 
@@ -222,3 +225,90 @@ new tools or threat model. Affected: rewind_replay, runner state digests,
 containers/replay.Dockerfile, capabilities/contracts/generated types and tests.
 ADR-002 remains incomplete for real-model paths; this decision accepts only SIM.
 
+
+## ADR-014 — Frozen simulator plans and a durable single-worker lifecycle
+
+Date: 2026-10-14 (Asia/Calcutta). Status: ACCEPTED for P4 simulator after final gate.
+Question: how can P4 report conditional evidence while remaining recoverable and affordable?
+Context: P3 simulator is isolated; no real adapter or paid budget exists.
+Options: in-request evaluation and ephemeral progress; durable SQLite reservations,
+one worker process and committed application events; distributed task services.
+Chosen: additive 0003 migration, source trust/config/schema admission, observable
+graph and transparent ranking, eight selected candidates with full coverage, bounded
+single/top-three-pair/group discovery and captured owned benign/neutral controls.
+Freeze finalists, fresh independent streams/order, N, budget, alpha/threshold and
+abort-on-invalid policy before confirmation. N=1/no CI for deterministic fixtures;
+stochastic default N=40 and at most three finalists. Explicit new starts are required
+after interruption; never silently resume, pool experiments or change a plan.
+Why: preserve actual trials and truthful UI state without adding infrastructure.
+Trade-offs: bounded search lacks global minimality; conservative all-trials task
+success rule; up to eight in-flight trials can finish after cancellation. A local
+trust anchor and same-origin local cookie handshake do not establish external
+identity or a multi-user deployment. Legacy captures lacking the neutral control
+are preserved but unsupported for this design. Real-model methods remain blocked.
+Evidence: P4 mechanism tests, EXP-003 actual Docker cases/worker kill and browser
+refresh/cancellation/interruption journeys; final references in evidence/P4-SIM.md.
+Revisit trigger: real adapter availability, independently reviewed retry/sequential
+design, measured resource bottleneck or private/remote deployment requirement.
+Affected files: rewind_eval, 0003 migration, API routes/auth, Forensics.tsx, command
+scripts, dependency locks, generated contracts and tests.
+
+## ADR-015 — Backend-only Gemini broker with an explicit billing declaration
+
+Date: 2026-10-14 (Asia/Calcutta). Status: ACCEPTED for exploratory CLI only.
+Question: can the supplied Gemini key enable fresh decisions without granting the
+subject agent network, credentials or external tool side effects?
+Context: user supplied api.txt and explicitly authorised a free-tier project,
+spend $0. Model catalog authentication and actual generateContent calls succeeded.
+Options: key/network inside the worker; broad provider SDK/tool execution; narrow
+parent HTTPS broker with one bound pipe exchange and structured mock proposals.
+Chosen: original standard-library transport, fixed gemini-3.1-flash-lite endpoint,
+no redirects/proxies, non-root no-network container, exact transformed-request
+validation, token/cost reservation captured before generation and no cache/retry.
+Inference defaults disabled. User-declared free-tier requests reserve $0; paid
+requests require a positive authorised cap. Key alone cannot verify project billing.
+Why: the hosted exception stays explicit while tools and secrets stay isolated.
+Trade-offs: structured decisions support only owned synthetic mail mocks; unknown
+arguments invalidate trials. CLI budgets are per invocation, not resumable P4 jobs.
+The model seed is not a determinism guarantee. Three exploratory calls establish
+transport/adapter operation, not provider variability or intervention causality.
+Signed capture completeness is distinct from trial and mode eligibility. Real
+Forensics admission remains closed; no simulator fallback or real interval exists.
+Evidence: EXP-008 raw three-response smoke, two valid/one invalid; signed audits
+and actual P4 admission refusals; eight provider-free Gemini tests and 13 isolation
+checks. Third outcome recovered from retained raw result after the persistence fix.
+Revisit trigger: P4-REAL durable reservations and explicit owned argument schemas,
+fresh affordable frozen confirmation plan, provider variability/independence review.
+Affected files: rewind_replay/gemini*.py, runtime/worker, capture input envelope,
+API capability reasons, browser selection, ignore rules, Gemini tests and guide.
+Official protocol/pricing sources are registered in COMPONENT-SOURCES.md.
+
+## ADR-016 — Sign stored-fact bundles and separate original-attack defence contracts
+
+Date: 2026-10-14 (Asia/Calcutta). Status: ACCEPTED for verified P5-SIM.
+Question: how can a portable record preserve actual evidence and test a defence
+without confusing input ablation, containment and behavioural improvement?
+Context: P4-SIM is valid; Gemini is exploratory/ineligible; local trust is explicit.
+Options: generated prose-only reports; signatures over a summary alone; canonical
+artifact manifests plus code-derived reports and fixed original-input regressions.
+Chosen: sign report/trace/investigation digests with existing Ed25519 key under a
+separate domain; encrypt immutable bundles with AES-GCM; verify with a supplied
+trusted public key outside API/DB; bound JSON sizes/depth/nodes and recompute facts.
+Preserve unknown model identity, absent approvals, pending governance and row-instance
+impact. Source completeness/validity gates regression separately from integrity.
+Regression cases bind the full original world and two documented configuration arms.
+N=1 deterministic simulator, no CI; behavioural measures attempts, containment measures
+dispatches and residual attempts. Require exact summary AND owner-requested sends.
+Why: a signed summary cannot protect detached trials; attack removal tests attribution,
+not a patched defence. Blocking all tools is insufficient where tools are needed.
+Trade-offs: supported simulator/presets only; no full Sentinel mandate/approval flow,
+external legal/compliance mapping or public-app authentication. Local keys are not
+independently anchored. No stochastic/real regression claim or pooled run inference.
+Browser uploads use original bytes because JSON Number rounding changes 64-bit seeds;
+legacy wrappers are for lossless clients only. Export refuses existing filenames.
+Evidence: actual EXP-004, source/regression artifacts and CLI outside application;
+87 repository tests, post-upload 15 P5 tests, three inspected viewport journeys.
+Revisit: real capture eligibility, separately budgeted stochastic regression plan,
+approved governance source controls, signed Sentinel mandates and external key custody.
+Affected: rewind_ledger, 0004 migration, replay mock enforcement, shared worker/API,
+Ledger controls, schema generation, tests, benchmark and documentation.

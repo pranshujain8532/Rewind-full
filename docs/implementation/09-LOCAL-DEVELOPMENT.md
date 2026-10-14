@@ -97,10 +97,65 @@ The runtime contract for that future image is:
   tools before advertising simulator/local-model **replay** readiness.
 
 Hosted re-execution additionally needs a bounded provider-only inference broker
-outside the worker with credentials and a non-zero authorised budget. It never
+outside the worker with credentials and an explicit affordable billing/budget policy. It never
 grants general networking or arbitrary connector access to the worker.
 
 No runnable `docker run rewind-replay` example is advertised: the image does not
 exist yet. Linux setup, WSL startup, container execution and all isolation negative
 tests are **not_run** in this session. P1 can implement owned synthetic local
 mocks independently; that does not prove P3 isolation.
+
+## Current P4 development commands — 2026-10-14
+
+The preceding P0 sections are historical environment/gate notes. The current API
+head is `0003_investigation`. Simulator and playback are available; only verified
+simulator isolation is eligible for fresh investigation. Gemini has an exploratory
+CLI; real fixed-plan Forensics remains unsupported.
+`python scripts/rewind.py dev` now starts API, web and one separate persistent
+`rewind_eval.worker` process. `api` alone does not start a worker: queued jobs remain
+truthfully queued. Run `.venv/Scripts/python.exe -m rewind_eval.worker` separately,
+or `--once` to process one job. Setup/migrate remain additive and preserve captures.
+
+The browser establishes a local HttpOnly/SameSite session via `/api/auth/local`.
+Mutation requests require an allowed loopback Origin, `X-REWIND-Local: 1`, and
+idempotency keys on starts. No broad CORS or remote/private deployment is enabled.
+Capture an owned demo in the browser to record P4's benign neutral control. Legacy
+captures without that control remain stored but cannot fulfil this experiment plan.
+
+Run `.venv/Scripts/python.exe scripts/p4_benchmark.py` for actual fresh MCP/Docker
+experiments; it writes unique EXP-003 directories and a real worker-kill audit.
+Run `npm run test:e2e` for real browser journeys and unique screenshot/trace/data
+directories. Unit execution stubs stay in tests and never enable production modes.
+
+## Gemini CLI follow-up — 2026-10-14
+
+The user supplied root api.txt and authorised a free-tier project, spend $0. That
+file remains unchanged, Git-ignored and Docker-excluded. Backend-only credential
+loading, actual catalog access and three live smoke requests were tested. See
+packages/rewind_replay/GEMINI.md for commands, limits and capture behavior.
+Inference defaults disabled; no paid provisioning/fallback or automatic retry.
+The three-call smoke cap is exhausted; browser checks make no provider requests.
+Catalog cannot establish project billing; the explicit free-tier declaration is
+the configured policy for this slice. New invocations need an explicitly affordable
+request/token/time plan and must remain within the user's $0 authorisation.
+
+The API exposes remote mode as experimental CLI-only, unavailable for API/Forensics
+investigations. Its signed captures are listed but disabled in the simulator picker.
+CLI partial captures and invalid proposals are not findings. STATE and P3-REAL
+evidence describe the failed neutral control and next admission/budget task.
+
+## Current P5 Ledger — 2026-10-14
+
+Storage head 0004_ledger is additive. The shared rewind_eval.worker now handles
+queued investigations and regressions with exclusive claims. API alone queues work.
+Use the browser's signed-record/download/original-attack controls after an investigation,
+or rewind_ledger.cli {record,verify,case,run,compare}. Guide:
+packages/rewind_ledger/README.md. Reviewable actual synthetic samples and separately
+selected demonstration public key: docs/project/evidence/p5-example/.
+Independent verification opens no DB/API and never infers trust from a bundled key.
+CLI exports refuse existing filenames; stored bundles/manifests are encrypted and
+immutable. Only bounded simulator regressions are supported; no P5 provider call.
+For API verification send original bytes and X-REWIND-Trusted-Public-Key. Lossy
+JS parse/stringify alters large seeds and must fail verification.
+P5 acceptance evidence: docs/project/evidence/P5-SIM.md. P6 is the next product
+phase; native Linux/WSL host/fresh-machine/public serving remain not_run/unsupported.

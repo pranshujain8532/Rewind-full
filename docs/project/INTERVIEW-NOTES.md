@@ -1,7 +1,8 @@
 # Interview notes — grow this with the code
 
-Current state: P0 API/storage/web foundation verified. Agent experiments and
-product mechanisms are not implemented yet; no model/benchmark result is claimed.
+Current state: P0-P4 simulator/capture/replay/investigation gates verified with
+actual simulator measurements, 64/64 repository and 12/12 browser tests.
+Real-model evidence, Ledger, Sentinel and Preflight remain unavailable/unimplemented.
 
 ## Explanation to practise now
 
@@ -117,3 +118,61 @@ review, and a Windows startup deadline flake; all repaired before SIM gate.
 Questions: Why are two identical comments distinct interventions? Why can't a
 signed playback establish the effect of removing a comment?
 
+
+## P4 explanation — 2026-10-14
+
+“REWIND builds a graph from captured inputs and observed decisions/actions, then
+ranks candidate occurrences using visible origin and proximity features. Ranking
+cannot see planted answers. A bounded discovery search tries singles, selected
+pairs/groups and benign/neutral/task-failure controls, preserving every tested
+subset and untested candidate. It freezes a fresh confirmation plan before running
+new trials. Code counts harmful attempts and useful work, computes rate differences
+and Newcombe intervals, and adjusts alpha for all predeclared finalists. Our
+simulator case went from 32 harmful attempts out of 40 to zero out of 40: an
+estimated 80-point reduction with a 62.8–89.5-point 95% interval. That uncertainty
+belongs only to the declared stochastic simulator. Missing trials cannot become
+safe outcomes. Durable jobs and committed events make refresh, cancellation and
+worker crashes visible, rather than inventing progress.”
+
+Questions: Why must invalid/missing trials remain outside the harmless denominator?
+Why can a positive lower bound still produce an inconclusive finding when the
+estimated reduction misses the prespecified meaningful-effect threshold?
+Comprehension answers not yet recorded. P5 will sign these investigation records
+and regress the original attack against a changed defence, retaining useful work.
+
+## Gemini exploratory adapter — 2026-10-14
+
+60-second explanation: “The API key stays in the backend. A non-root container has
+no network and sends one bound request through a pipe. The parent validates the
+actual transformed input, reserves an authorised budget and calls only Gemini.
+The model returns a structured summary and proposed actions; code checks those
+actions against the owned world and writes only to private mock outboxes. We ran
+three actual requests: the baseline and removal were valid, while neutral replacement
+guessed an invalid attachment and was rejected. We retained that failure rather
+than counting it as harmless. Signed captures verify what was recorded, not whether
+an experiment is valid. Two individual observations cannot establish a reliable
+effect or interval, and real-model Forensics remains ineligible. The free-tier
+billing declaration is explicit; it is not something an API key proves.”
+
+Questions: Why does an invalid tool proposal prevent a harmless-outcome count?
+Why does authenticating a key fail to establish billing tier or causal evidence?
+Comprehension answers not yet recorded. Next: explicit argument schemas and durable
+remote budgets/admission before a fresh affordable fixed confirmation plan.
+
+## P5 — 60-second explanation, 2026-10-14
+
+“The record is computed from stored traces and trials. It retains the original seal,
+configuration and fixture digests, counts, coverage and limitations. We sign the
+report together with its artifacts so someone can verify them outside the app using
+a separately trusted public key. That establishes integrity under a key assumption,
+not truth or personal blame. The regression uses the whole original attack twice:
+first the vulnerable configuration, then a fixed configuration. A behavioural fix
+prevents attempts. A containment fix can retain an attempt while preventing dispatch,
+and the result must show that distinction. Both must preserve the legitimate task.
+Our blanket-denial control blocked a required owner send and failed. Invalid or
+missing evidence remains inconclusive. These are simulator results, not LLM reliability
+estimates or compliance certificates; external governance mapping remains pending.”
+
+Questions: Why does a trusted signature fail to establish that an observation was
+true? Why can a containment patch pass while the behavioural contract fails?
+Comprehension answers not yet recorded. Next product phase P6, full evidence UX.

@@ -1,94 +1,73 @@
 # Handoff
 
-Read AGENTS, STATE, TASKS, relevant DECISIONS and the current prompt.
-Checkpoint parent: `fbb5202460660e9ab1c1cc953dc139815a9b026d`. Latest continuation: P3-SIM VERIFIED.
+Updated 2026-10-14 (Asia/Calcutta). P5-SIM VERIFIED; real investigations unsupported.
+User explicitly requested P5 and authorised GitHub pushes, superseding the P4-REAL
+next-task note. Do not restart, reset user work, alter old authors or backdate commits.
 
-# Current project state
+Read AGENTS, STATE, TASKS, ADR-014/015/016, EXP-003/008/004 and recent bugs.
+Current code: rewind_ledger contracts/evidence/bundle/store/regression/worker/CLI;
+0004_ledger migration; authenticated API; original Ledger.tsx browser controls.
+Shared persistent worker handles investigation and regression queues exclusively.
+Original attack world/input is bound to the signed source; no ablation in regression.
 
-Updated 2026-10-13. P3-SIM verified; P3-REAL blocked; P4 next, P1-P10 authorised.
+Evidence record fields derive from trace/trial artifacts, not a model. Counts,
+findings/intervals, coverage, original seal/config/fixture/tool digests, actual mock
+impact, uncaptured approvals and pending governance stay explicit. Stored bundles
+are encrypted and immutable. Trusted-key verification is independent of API/DB;
+8 MB JSON limit, depth/node bounds, schema/signer/digest checks and fact projection.
+Unknown/incomplete/invalid evidence cannot become a successful regression.
 
-P0-P2 foundation, owned MCP scenarios, bounded recorder, encrypted ordered events,
-signed chain/seal, trusted CLI verification and actual session count work.
-P3 adds fresh isolated simulator trials and interventions, strict read resolution,
-independent private world state, actual request/response digests and timings.
-Linux container is non-root, no-network, read-only and resource-limited; 13 probes
-passed. Source setup/probe required after worker changes; image ID pinned locally.
+Regression versions: vulnerable-v1 interprets original directives, no enforcement;
+behavioural-v1 retains input but ignores external executable directives;
+containment-v1 retains attempts and checks owned recipient allowlist;
+deny-all-v1 is a negative task-failure control. Exact summary and required owner
+SEND dispatches must both succeed. N=1 per arm, no CI, two fresh trials/turns,
+60s default, no paid inference. No full Sentinel signature/approval lifecycle claim.
+15s lease/1s heartbeat; interrupted/cancelled trials stay incomplete/inconclusive.
+Plans/trials/results/cases/records are immutable; comparisons use the same case.
 
-Modes: simulated verified (deterministic DSL, no LLM); playback recording only;
-local/remote model unavailable. User has no local model; no provider or paid budget.
-Forensics statistics/jobs, Ledger records/regression, Sentinel/Preflight still planned.
-Resources/prompts/HTTP MCP and arbitrary frameworks unsupported. Local keys have
-no independent external anchor; signatures do not prove truth or legal blame.
+IMPORTANT: browser verification sends downloaded bytes directly and a separately
+selected key hex in X-REWIND-Trusted-Public-Key. JavaScript JSON round-trips round
+64-bit seeds and correctly fail signatures. Legacy object wrapper is supported only
+for lossless clients. CLI output refuses existing filenames. Local trust is not
+external anchoring, observed truth, blame or a compliance certificate.
 
-Commands (PowerShell):
-```
-python scripts/rewind.py setup
-.venv/Scripts/python.exe -m rewind_replay.cli setup
-.venv/Scripts/python.exe -m rewind_replay.cli probe
-python scripts/rewind.py check
-python scripts/rewind.py demo
-python scripts/rewind.py dev
-```
-Linux uses .venv/bin/python; host app on native Linux/WSL not yet tested.
-Replay gate: tests/test_replay.py 4/4, artifacts/p3/pytest.xml and intervention/probe
-JSON. Full integration check logged artifacts/p3/check-repaired.log; first failure
-preserved in check.log. Windows host and
-Linux Docker worker tested; fresh machine and real inference not_run.
-Next exact prompt: prompts/04-INVESTIGATION.md.
-Session stopped at user's request after context compaction. P4-P10 still authorised,
-but not implemented. P4 dependency versions were researched, not added or locked.
+Actual EXP-004: artifacts/p5/EXP-004/20261014T101549809036Z/. Seven source
+Docker trials, ten regression trials. Expected version verdicts fail/pass/fail/pass/
+fail; containment residual attempt=1, dispatch=0, task true. Deny-all fails owner
+send. Owner send was added before capture; malicious occurrence unchanged. Raw
+requests/results and original seals preserved. Independent CLI in separate cwd/no
+DB verifies; report/trace/trial modifications fail. Public synthetic example files:
+docs/project/evidence/p5-example/. Public key is a demonstration trust assumption.
 
+Checks: root 87/87 in 373.88s, check-first.log and checks/20261014T101550529821Z/pytest.xml;
+post-upload-fix focused P5 15/15 in 18.26s; final lint/format/schema/build/manifest pass.
+Second full browser run passes 15 existing checks; corrected P5 journeys pass at all
+three viewports. Final desktop renders: browser/2026-10-14T10-43-47-906Z/;
+mobile: browser/2026-10-14T10-47-39-965Z/. Inspected detail/full renders. Original
+failures retained: unit fixture used untyped mode; browser rounded seeds, old-run
+assertion race, short confirmation wait and mobile min-content overflow. No single
+18/18 browser result is claimed. No optional P5 checks remain.
 
-Goal: complete P3 simulator gate; real-model gate separately blocked.
+Image 763e9c95f02be674769c4ee285cb039b357a8bc5a5973e72d0e8976a553b1c62,
+13 actual isolation probes pass. Runtime image contains the new mock enforcement.
+P4 source/statistics protocol unchanged, statsmodels 0.14.6. Core remains CPU-only.
+Gemini key in ignored api.txt; never show its contents. User authorisation declared
+free-tier project/$0, previous three-call cap exhausted. P5 performs no provider call.
+Gemini CLI exploratory only, two valid/one invalid prior smoke; no real confirmation.
 
-Implemented fresh full-snapshot trials, occurrence removals and length-matched
-neutral replacements, separate attempted/dispatch/task predicates, cloned private
-outboxes, strict recorded reads keyed by tool/schema/arguments/occurrence/state.
-An unknown initial or downstream read invalidates the trial without fallback.
-Actual transformed requests, fresh responses, digests, seeds and timings are saved.
-Playback remains a recording reader and cannot establish intervention effects.
+Commands: python scripts/rewind.py dev; check; npm run test:e2e;
+.venv/Scripts/python.exe -m rewind_ledger.cli {record,verify,case,run,compare};
+.venv/Scripts/python.exe scripts/p5_benchmark.py. API alone leaves jobs queued.
+Existing data migrated additively to 0004; no reset/deletion. Git host needs command-
+scoped safe.directory for this exact repo; do not change ownership/global trust.
 
-Commands: .venv/Scripts/python.exe -m rewind_replay.cli setup; same module probe;
-pytest tests/test_replay.py --junitxml=artifacts/p3/pytest.xml (4/4 passed);
-python scripts/rewind.py check (see artifacts/p3/check-repaired.log).
-Final full check: 36/36 tests in 97.84 seconds, lint/format/schema checks,
-TypeScript/Vite build and dependency manifest passed. New browser screenshots
-were not run after the P3 metadata-only shell change; P2 renders remain the last
-inspected UI evidence. P6 still requires the full rendered evidence journey.
-Thirteen actual container probes passed: non-root, DNS/TCP blocked, no host mount,
-credentials, evaluator or Docker socket, read-only source, dropped capabilities,
-no-new-privileges and enforced CPU/memory/PID bounds. Host-secret result establishes
-absence of declared host mounts; it is not a general kernel security certification.
-Traversal and unknown tool/state/schema reads fail closed. Actual batch results:
-artifacts/p3/interventions.json; probe: artifacts/p3/isolation-probe.json.
-Image identity and build timestamp are pinned locally in data/replay-runtime.json.
-No source or secret host bind mounts; all sends terminate in private mock outboxes.
+GitHub: https://github.com/pranshujain8532/Rewind-full.git, public empty remote/main
+verified. User selected noreply identity 241415102+pranshujain8532@users.noreply.github.com;
+name pranshu jain. New commits/push authorised; preserve older Codex-authored history.
+Code/context commits and push still pending final delivery; secrets/private keys/local
+DB/artifacts excluded, actual public synthetic sample retained for review.
 
-Failed experiment: initial image build used an incorrect root parent; corrected
-the path before a successful build. Strict downstream fallback was found in review
-and removed before gate completion. No external replay effects were performed.
-The first full check failed a proxy lifetime test: its six-second process deadline
-included Windows import startup as well as the one-second relay timer. Independent
-reproduction passed (artifacts/p3/proxy-followup.xml). The test deadline is now
-bounded at fifteen seconds including startup; production relay limits are unchanged.
-The failure log is preserved at artifacts/p3/check.log.
-
-Real-model gate BLOCKED: user confirms no local model/runtime; no hosted provider
-or authorised budget. No real-model request/trial is claimed. To unblock, choose
-a licensed CPU-compatible local runtime/model and implement/test its fresh adapter
-inside isolation; alternatively implement the narrowly constrained inference IPC
-broker and explicitly authorised provider budget. No service has been purchased.
-Deterministic fixture repeats show identical outcomes, not provider determinism.
-
-Interview explanation: We start every trial from the captured world and change
-only specified input occurrences before a fresh simulator decision. The worker
-runs non-root with no network, no host secrets and explicit resource limits.
-Versioned mocks can answer owned-world reads; strict replay instead requires
-exact schema, arguments, occurrence and state matches. An unmatched branch stops
-the trial. Harm attempts and useful work are separate. These are simulator
-experiments; playback and signatures cannot turn them into real-model evidence.
-Questions: Why can an unknown read not count as harm absent? Why is a subprocess
-insufficient to prove replay isolation?
-
-User requested stopping after context compaction. No P4 implementation started.
-Next: prompts/04-INVESTIGATION.md; durable experiment jobs and fixed-plan statistics.
+Next exact task: prompts/06-FRONTEND.md. Full session/evidence explorer and accessible
+comparison journeys. Real P3/P4 gates, native Linux/WSL host/fresh machine, remote
+hosting, Sentinel and Preflight remain unsupported/not_run/planned respectively.

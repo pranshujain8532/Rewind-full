@@ -74,3 +74,61 @@ identity recorded in data/replay-runtime.json. Source/dependency versions in loc
 Exact base digest observed in Docker build output; tag refresh requires deliberate
 rebuild/probe. No third-party application source was copied in these phases.
 
+## P4 statistics and original browser controls — 2026-10-14
+
+Forensics.tsx, provenance/ranking, jobs and worker are original repository code.
+No UI registry component, external font/image/telemetry or copied application code.
+Final corrected-count renders inspected at all three viewports; browser 12/12.
+
+statsmodels 0.14.6 is deliberately pinned, rather than silently adopting a newer
+API. Official API inspected: https://www.statsmodels.org/stable/generated/statsmodels.stats.proportion.confint_proportions_2indep.html
+and release https://pypi.org/project/statsmodels/0.14.6/. Installed proportion.py
+was inspected: Newcombe combines Wilson marginal bounds for independent binomial
+samples. The API is explicitly called with compare=diff, method=newcomb, alpha=0.05/m.
+Installed statsmodels-0.14.6.dist-info/licenses/LICENSE.txt inspected (BSD terms);
+notices retained. No source is copied or vendored.
+
+New locked transitive stack: NumPy 2.5.4, SciPy 1.18.1, pandas 3.0.6, patsy 1.0.3
+plus dateutil/six/tzdata. Installed NumPy licence expression includes BSD-3-Clause,
+0BSD, MIT, Zlib and CC0-1.0; NumPy LICENSE.txt/libdivide notices inspected.
+SciPy dist-info LICENSE.txt and bundled uarray licence, and pandas dist-info LICENSE
+were inspected (BSD-3-Clause); bundled notices remain intact. Full resolved pins
+and hashes live in uv.lock; selected runtime manifest is versions.json.
+
+## Gemini REST adapter — 2026-10-14
+
+Original repository code; no copied SDK/component source, new dependency or lock
+version. Existing Python 3.13 standard-library urllib/ssl/json transport is used.
+The provider documentation was inspected for current request schema, authentication,
+model availability, token counting, structured JSON, seed and pricing:
+
+- https://ai.google.dev/gemini-api/docs/api-key
+- https://ai.google.dev/api/generate-content
+- https://ai.google.dev/gemini-api/docs/generate-content/structured-output
+- https://ai.google.dev/gemini-api/docs/pricing
+- https://ai.google.dev/gemini-api/docs/billing
+- https://ai.google.dev/gemini-api/docs/rate-limits
+
+Actual catalog/generation accepted the pinned gemini-3.1-flash-lite model. Text-only
+standard paid prices pinned on 2026-10-14: $0.25 input/$1.50 output per million tokens,
+used only to reserve a paid cap when paid mode is separately authorised. This user
+authorised declared free tier/$0 only. Key identity does not prove project billing.
+No provider function executor is enabled: structured proposals go to owned mocks.
+The no-network worker contains no credentials; parent transport restricts endpoints.
+DOM eligibility controls and updated copy are original UI. Final three-viewport
+renders and test paths are referenced in evidence/P3-REAL.md. Tests' display controls
+and fake HTTP replies are labelled unit-only; they are not runtime measurements.
+
+## P5 Ledger and original-attack UI — 2026-10-14
+
+rewind_ledger, Ledger.tsx, bundle verifier, regression jobs and mobile scroll region
+are original repository code. No copied SDK/UI component, new dependency/version,
+external font, telemetry or hosted service. Existing cryptography 50.0.2 Ed25519 and
+AES-GCM APIs are reused with a separate signing domain and identity-bound encryption;
+official API/licence sources remain in the P2 entry. Source images/protocol remain
+the pinned owned runtime; no generative report service is used.
+Current API contracts generated from Python. Three Ledger renders inspected; browser
+and raw experiment artifacts are referenced in evidence/P5-SIM.md. Public examples
+are actual synthetic experiment outputs with explicit trust limitations, not inserted
+runtime measurements. No exact external governance control was imported or mapped.
+

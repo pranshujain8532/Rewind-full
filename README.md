@@ -3,10 +3,12 @@
 Accountability infrastructure for AI agents: one recorder supporting Forensics,
 Ledger, Sentinel and Preflight. Prepared for Pranshu Jain.
 
-P0-P3 implement the local foundation, owned synthetic agent, encrypted signed
-capture and fresh isolated simulator replay. The web remains a capabilities shell.
-Investigation jobs/statistics, evidence records/regressions, Sentinel and Preflight
-are next phases. Real models are unavailable; the user has no local model/runtime.
+The local implementation includes encrypted signed capture, isolated simulator
+replay, durable investigations, transparent ranking and fixed-plan statistics,
+plus signed evidence and original-attack defence regressions. The browser uses
+stored results and supports evidence downloads. Sentinel and Preflight remain planned.
+Gemini has an experimental, explicitly budgeted CLI; real-model confirmation remains
+unsupported. Simulator and playback need no GPU or paid model service.
 
 ## Start locally (PowerShell)
 
@@ -32,6 +34,8 @@ python scripts/rewind.py migrate
 python scripts/rewind.py api
 # Second terminal
 python scripts/rewind.py web
+# Third terminal: investigations and regression jobs
+.venv/Scripts/python.exe -m rewind_eval.worker
 ```
 
 ## Check and demonstrate the foundation
@@ -51,7 +55,7 @@ is downloaded under `.tools/playwright`; later browser runs can be offline.
 The current `demo` runs the single-injection deterministic simulator through three
 owned stdio MCP tools. Its attempted send reaches only a local synthetic outbox;
 this is not an LLM experiment or isolated replay. Browser tests
-use a separate database under `artifacts/p0/browser-data`. Evidence is written
+use a separate database under each browser artifact directory. Evidence is written
 in timestamped `artifacts/browser` directories (latest.txt identifies the run).
 The demo now also captures and exports a signed bundle. See the phase evidence
 under docs/project/evidence. Its host mock run is separate from isolated replay.
@@ -110,16 +114,36 @@ On Linux replace `.venv/Scripts/python.exe` with `.venv/bin/python` (host not_ru
 | Path | Role |
 |---|---|
 | `apps/web` | React client, original REWIND shell, generated API types |
-| `services/api/rewind_api` | FastAPI read-only P0 endpoints |
+| `services/api/rewind_api` | Authenticated local capture, investigation and Ledger APIs |
 | `packages/rewind_core` | Shared contracts and SQLite bootstrap |
 | `packages/rewind_capture` | Bounded recorder, encrypted payloads, signed capture/verifier |
 | `packages/rewind_replay` | Isolated simulator and strict-read replay worker |
-| `packages/rewind_eval` | P4/P5 experiment/regression boundary, currently documentation |
-| `sandbox`, `fixtures` | P1 owned mocks and scenario boundaries, no fixtures yet |
+| `packages/rewind_eval` | Provenance, bounded discovery, fixed statistics and durable jobs |
+| `packages/rewind_ledger` | Signed stored-fact records, independent verifier and original-attack regressions |
+| `sandbox`, `fixtures` | Versioned owned mocks and synthetic scenarios |
 | `migrations`, `schemas`, `scripts`, `tests` | Storage, contracts, commands and verification |
 | `docs/project` | Current state, decisions, evidence and handoff |
 
 There is one editable Python distribution; later modules can join it without
-adding services. Dependencies for graph UI, ML and statistics are deferred until
-their implementation phase. See [STATE](docs/project/STATE.md) for current truth.
-The exact next assignment after the P0 gate is **`prompts/01-SANDBOX.md`**.
+adding services. Statistics use the documented pinned independent-sample method.
+See [STATE](docs/project/STATE.md) for current gates and limitations.
+
+## Evidence and defence regression
+
+Complete an investigation in the browser, create its signed record, download the
+bundle and run a behavioural or containment regression. Both arms receive the full
+original attack. Containment can block dispatch while retaining harmful attempts;
+the result reports those attempts and useful task completion separately.
+
+Independent verification requires a trusted public key supplied explicitly:
+
+```powershell
+.venv/Scripts/python.exe -m rewind_ledger.cli verify --bundle evidence.json --trusted-public-key data/keys/trusted-public.ed25519
+.venv/Scripts/python.exe scripts/p5_benchmark.py
+```
+
+[Ledger guide](packages/rewind_ledger/README.md) documents commands, APIs, bounds,
+configuration versions, byte-preserving uploads and the trust assumption. Signing
+detects changes relative to a trusted key; it does not prove truth, blame or compliance.
+[Gemini guide](packages/rewind_replay/GEMINI.md) describes the exploratory hosted path.
+Credentials, private keys and local databases are excluded from version control.

@@ -14,6 +14,13 @@ simulator replay contracts are verified. Stats/jobs/enforcement/record/regressio
 sections remain future contracts. See project/evidence/P3-SIM.md and P3-REAL.md;
 real inference is blocked, not fulfilled by simulator trials.
 
+P4 update (2026-10-14): section 10 and the investigation portion of section 13 are
+implemented in `rewind_eval` and the local API. Final gate evidence is recorded in
+project/evidence/P4-SIM.md. Deterministic confirmation is N=1 without inference;
+stochastic default N=40 and at most three finalists. Captured owned neutral controls
+are required, so older captures without them are explicitly unsupported for this
+design. No real-model adapter or paid inference was added. P5-P10 remain future work.
+
 ## 1. Small improvements to the accepted idea
 
 | Improvement | Why it helps now | Effect on the idea |
@@ -158,6 +165,19 @@ For local_model and simulated modes, run the worker in a non-root container with
 
 For remote_model, the worker still has no general network. It may request model completions through a constrained pipe/IPC broker in the parent environment. The broker owns credentials and permits only the configured inference provider; it cannot send email, fetch arbitrary URLs or call arbitrary tools. This mode is not wholly offline. Provider calls receive only the synthetic demo data unless explicitly configured otherwise.
 
+Current Gemini slice (2026-10-14): exploratory CLI only, using the pinned
+gemini-3.1-flash-lite REST adapter and structured proposals to owned mock tools.
+The worker has no key/network; the parent checks exact transformed input and a
+one-request nonce-bound RPC. Signed reservations precede generation. Inference
+defaults disabled; an explicit billing declaration and bounded request/token/time/
+monetary policy are required. The user authorised a free-tier project and $0;
+project billing is not independently verifiable from a key. No automatic retry or
+paid fallback. Invalid returned results are retained/sealed with completed=false;
+an interrupted CLI can leave an unsealed partial capture. This path does not have
+P4's durable job lifecycle or real-model confirmation admission. Generic capture
+integrity/readiness alone cannot enable an unsupported model contract. See ADR-015
+and packages/rewind_replay/GEMINI.md; P4 real-mode gate remains separate.
+
 A host process launched with a “network_disabled=true” boolean is not isolation. Prove the boundary with negative tests.
 
 ### Tool response resolution
@@ -294,6 +314,26 @@ Declare one of two regression contracts before running:
 
 A mandate-only patch can satisfy containment while failing the behavioural regression. Never present that as an elimination of the model's unsafe intent. Run both contracts when both improvements are claimed. The input-ablation experiment and the defence-regression experiment have different interventions and remain separate records.
 
+Current P5 implementation (2026-10-14, ADR-016): rewind_ledger projects terminal
+stored investigation/trace facts into a versioned report. A domain-separated Ed25519
+manifest binds report and artifacts; encrypted immutable storage uses 0004_ledger.
+Independent CLI verification requires an explicit 32-byte trusted key, opens no
+database/API, bounds JSON and recomputes reported facts. Governance remains pending,
+missing model identity/approvals remain explicit and impact is synthetic row instances.
+Browser verification preserves original bytes; JS integer rounding must not change
+canonicalisation. Raw uploads supply X-REWIND-Trusted-Public-Key separately.
+
+Regression cases bind full original world/input and source record, not ablated
+discovery inputs. Current presets are deterministic simulator only, one fresh trial
+per vulnerable/fixed arm, two-turn budget and 60s default. Exact summary and every
+owner-task SEND dispatch are required. Behavioural ignores executable external
+directives while retaining their input; containment uses the owned recipient rule
+and reports residual attempts. Deny-all is a task-failure control. This is not the
+full Sentinel signed mandate/approval lifecycle. Frozen jobs use the existing
+persistent worker, exclusive claims, 15s lease/1s heartbeat, partial cancellation/
+interruption and immutable signed results. Same-case comparisons do not pool samples.
+Full real/stochastic regression and generic production tools remain unsupported.
+
 ## 13. API and events
 
 | Method / route | Purpose |
@@ -310,9 +350,12 @@ A mandate-only patch can satisfy containment while failing the behavioural regre
 | POST /api/investigations/{id}/cancel | Cooperative cancellation |
 | POST /api/approvals/{id}/decision | Authenticated, idempotent decision |
 | GET /api/records/{id}/download | Signed evidence bundle |
+| POST /api/records | Freeze a stored-fact report from a terminal investigation |
 | POST /api/records/verify | Bounded verification of uploaded record |
 | POST /api/regressions/from-record/{id} | Create an original-attack test |
 | POST /api/regression-runs | Run selected tests |
+| GET /api/regression-runs/{id}/download | Immutable signed regression bundle |
+| GET /api/regression-comparison | Compare configuration versions on the same case |
 | POST /api/preflight-runs | Run owned sandbox scenarios under budget |
 | GET /api/capabilities | Available, experimental and unavailable features |
 

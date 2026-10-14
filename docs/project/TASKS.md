@@ -9,9 +9,9 @@ IMPLEMENTED means code exists; VERIFIED means the named gate passed.
 | P1 | Sandbox | Synthetic clean/attack/control scenarios and local sinks | VERIFIED | P0 | docs/project/evidence/P1.md |
 | P2 | Capture | Recorder + adapter + signed chain + tamper tests | VERIFIED | P1 | docs/project/evidence/P2.md |
 | P3-SIM | Replay | Isolated simulator and honest playback separation | VERIFIED | P2 | docs/project/evidence/P3-SIM.md |
-| P3-REAL | Replay | Fresh real-model decisions under controlled intervention | BLOCKED | P2, model availability | evidence/P3-REAL.md; user has no local model |
-| P4 | Investigation | Valid discovery/confirmation/statistics/jobs | TODO | Valid P3 mode | Not run |
-| P5 | Ledger | Trusted verification and original-attack regression | TODO | P4 | Not run |
+| P3-REAL | Replay | Fresh real-model decisions under controlled intervention | IMPLEMENTED | P2, model availability | Gemini exploratory CLI; EXP-008 two valid/one invalid; full real gate unverified |
+| P4 | Investigation | Valid discovery/confirmation/statistics/jobs | VERIFIED | Valid P3 mode | Simulator only; evidence/P4-SIM.md; full check 64/64, browser 12/12, actual EXP-003 |
+| P5 | Ledger | Trusted verification and original-attack regression | VERIFIED | P4-SIM | evidence/P5-SIM.md; actual EXP-004, independent CLI, 87 tests plus post-upload focused 15, three rendered P5 journeys |
 | P6 | Frontend | Real-data investigation journey and visual/accessibility QA | TODO | P4, P5 | Not run |
 | P7 | Sentinel | Mandate checks and safe approval lifecycle | TODO | P2, P6 | Not run |
 | P8 | Preflight | Owned sandbox suite with actual counts and budgets | TODO | P3, P4, P6 | Not run |
@@ -21,10 +21,34 @@ IMPLEMENTED means code exists; VERIFIED means the named gate passed.
 
 ## Current slice
 
-P3-SIM VERIFIED; P3-REAL BLOCKED. P4-P10 authorised but unstarted.
-Session stopped at user's request after context compaction.
-Next prompt: `prompts/04-INVESTIGATION.md`; restart instructions:
-`prompts/91-RESUME-P4-P10.md`. Check `evidence/P3-SIM.md` and saved artifacts.
+P5-SIM VERIFIED on 2026-10-14. User explicitly requested this phase, superseding
+the earlier P4-REAL next task below. Signed stored-fact downloads, independent
+trusted-key verification, unchanged original attack, behavioural/containment contracts,
+immutable manifests, budgets/leases and same-case comparison pass the supported gate.
+Actual EXP-004: seven source trials and ten regression trials; vulnerable fails,
+correct fixes pass safety AND owner task, residual attempts remain visible, deny-all
+fails useful work. Invalid source/trial evidence cannot pass. No paid/real inference.
+Current acceptance matrix and exact paths: evidence/P5-SIM.md. Remaining P5 checks
+none. Commit/push is the pending delivery step, explicitly authorised by user.
+Next product task: prompts/06-FRONTEND.md. Preserve old history and all user work.
+
+P4-SIM VERIFIED. User's Gemini key authenticates and supports fresh remote CLI
+trials on the explicitly declared free-tier project with spend $0. EXP-008 is an
+exploratory smoke, not confirmation: two valid trials, one invalid tool proposal.
+P3-REAL's repeated-input variability and complete contract gate remain unverified;
+P4-REAL source admission, durable budgets and confirmation are unsupported.
+Historical post-Gemini next task (superseded by the explicit P5 request): P4-REAL,
+starting with explicit captured owned-file/tool argument
+schemas; integrate the broker with durable reservations/jobs and reject plans that
+cannot fit the explicitly configured request/token/time/$0 budget. No additional
+live requests under the exhausted three-call smoke cap. Keep N=40/max-three-finalist
+proposal and independent-sample/frozen-plan invariants. P5 Ledger follows this mode
+decision. Restart from STATE/HANDOFF/ADR-015/EXP-008; preserve all historical evidence.
+
+Gemini slice checks VERIFIED: 72/72 repository tests, lint/format/schema/types/build/
+manifest; 15/15 browser journeys, three target renders inspected. Evidence paths
+and the separate real-mode acceptance matrix: evidence/P3-REAL.md. Full P3-REAL
+and P4-REAL remain unverified; CLI test success cannot enable those findings.
 
 ## Verified P0 subgates
 

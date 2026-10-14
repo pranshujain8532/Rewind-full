@@ -6,15 +6,15 @@ and environment limitations follow the retained templates.
 
 | ID | Severity | Risk | Mitigation / gate | Status |
 |---|---|---|---|---|
-| R-001 | Critical | Cached replies masquerade as counterfactual inference | Mode separation and fresh-request tests | OPEN |
-| R-002 | Critical | Replay can dispatch real side effects | Runtime isolation and local mock tools | OPEN |
-| R-003 | High | Partial capture produces overconfident findings | Replay-readiness and explicit unsupported states | OPEN |
-| R-004 | High | Invalid statistical inference | Frozen confirmation design and tested interval method | OPEN |
+| R-001 | Critical | Cached replies masquerade as counterfactual inference | Mode separation and fresh-request tests | MITIGATED (SIM, EXPLORATORY GEMINI CLI); REAL CONFIRMATION UNSUPPORTED |
+| R-002 | Critical | Replay can dispatch real side effects | Runtime isolation and local mock tools | MITIGATED (OWNED SIM/GEMINI MOCKS); OTHER TOOLS UNSUPPORTED |
+| R-003 | High | Partial capture produces overconfident findings | Replay-readiness and explicit unsupported states | MITIGATED (SUPPORTED CAPTURE); OTHER INTEGRATIONS UNSUPPORTED |
+| R-004 | High | Invalid statistical inference | Frozen confirmation design and tested interval method | MITIGATED (P4 SIM); REAL ASSUMPTIONS UNVERIFIED |
 | R-005 | High | Policy approval reused or bypassed | Action binding, expiry, one-time consumption | OPEN |
 | R-006 | High | Evidence store leaks content or implies false trust | Synthetic data, encryption, redaction and trusted-key verification | OPEN |
-| R-007 | Medium | Real model unavailable on budget/hardware | Explicit capability state and offline fallback | OPEN |
-| R-008 | Medium | Protocol/library mismatch | Pin versions and test integration | OPEN |
-| R-009 | Medium | UI presents invented progress or certainty | Durable events and shared evidence components | OPEN |
+| R-007 | Medium | Real model unavailable on budget/hardware | Explicit capability state and offline fallback | GEMINI CLI AVAILABLE ($0 USER-DECLARED FREE TIER); REAL FORENSICS UNSUPPORTED |
+| R-008 | Medium | Protocol/library mismatch | Pin versions and test integration | MITIGATED (OWNED STDIO); OTHER TRANSPORTS UNSUPPORTED |
+| R-009 | Medium | UI presents invented progress or certainty | Durable events and shared evidence components | MITIGATED (P4 JOBS); FULL P6 UX UNVERIFIED |
 | R-010 | Medium | Accepted scope expands too far | Phase gates and explicit research backlog | OPEN |
 
 ## Bug template
@@ -84,3 +84,68 @@ changes or silently add global Git trust settings.
   No production/private-data deployment, external trust anchoring or kernel security
   guarantee. Last UI inspection P2; P3 metadata changes build/type-checked only.
 
+
+## P4 observations — 2026-10-14 (Asia/Calcutta)
+
+- BUG-005: unit job tests depended on the mutable live runtime manifest. A rebuild
+  temporarily sets isolation_verified=false; the third P4 run consequently failed
+  9/26 tests. Fixed with a test-only admission stub, separate from the actual Docker
+  benchmark. artifacts/p4/third-pytest.xml is retained; subsequent suite passes.
+- BUG-006: tightening schema admission briefly referenced schema before assignment.
+  Caught by lint and the sixth suite (13 failed/15 passed), never accepted as a gate.
+  Fixed ordering and fail-closed malformed/changed schema handling. New schema and
+  cached-result refusal tests pass; artifacts/p4/sixth-pytest.xml and
+  seventh-pytest.xml retain failure and corrected 28/28 results.
+- BUG-007: visual QA found that the overview retained its initial session count
+  after a successful capture (first 1440 screenshot showed zero alongside a stored
+  investigation). Implemented a quiet backend metadata refresh and a count-aware
+  badge; final 12/12 browser run and inspected count screenshots verify the fix.
+- Initial browser P4 assertions used the default five-second wait, shorter than
+  actual MCP capture work and the declared 15-second worker lease expiry. First run
+  6 failed/5 passed in artifacts/browser/2026-10-13T18-52-54-385Z. Bound assertions
+  now allow 60 seconds and bind to the newly returned durable job ID; second run
+  11/11 in 2026-10-13T18-55-56-299Z. Final corrected-count run 12/12 in
+  artifacts/browser/2026-10-13T19-14-25-635Z; real worker termination verified.
+- TypeScript caught an optional generated tested_subsets default; the contract now
+  requires the stored coverage array and the renderer handles absent historical
+  data defensively. Final build/types/schema drift checks pass.
+- ENV-003: sandbox process setup failed (helper setup refresh errors). Authorised
+  host execution works with repository-scoped safe.directory. No ownership/global
+  Git trust changes, repository reset, paid inference or external message.
+- R-004/R-009 mitigated for the tested simulator/job boundary: stored counts,
+  frozen independent plans, refusal of deterministic/paired inference, task checks,
+  durable SSE and lease recovery. Real-model assumptions and full P6 evidence UX
+  remain unverified. Raw trials are not yet signed Ledger records (P5).
+
+## Gemini follow-up — 2026-10-14
+
+BUG-008, R-012/R-013 and ENV-004 are recorded in
+[GEMINI-NOTES.md](evidence/GEMINI-NOTES.md), with original failure artifacts,
+the actual invalid-response limitation, signed recovery disclosure and budget scope.
+Fresh hosted decisions now work through the exploratory CLI. Remote fixed-plan
+investigations and their durable budget/independence gate remain unsupported.
+
+## P5 observed issues — 2026-10-14
+
+- BUG-009 VERIFIED FIXED: browser parse/stringify rounded 64-bit seeds and failed
+  genuine downloaded bundles. Exact bytes verified independently. API now accepts
+  original bytes with explicit X-REWIND-Trusted-Public-Key; rounded input is rejected
+  in unit tests. Schema regenerated. Do not change signing canonicalisation to JS.
+- BUG-010 VERIFIED FIXED: starting a new regression temporarily showed the previous
+  completed run; the browser test also asserted that old ID. Pending state now clears
+  the old result, stored contract/version are shown, and tests bind the returned ID.
+- BUG-011 VERIFIED FIXED: readable wide table caused mobile grid min-content overflow.
+  Grid child min-width=0 contains a keyboard-scrollable result region; final 390 test
+  and inspected render pass. Earlier 2/3 output/trace retained.
+- ENV-005: fixed-plan browser wait was 60s; actual queued/batched work and cold
+  interval loading exceeded it. Stored job subsequently completed. Test waits now
+  bounded at 120s within the unchanged 600s experiment budget. No sample/stopping
+  rule changed; successful refresh clears stale transport warnings.
+- Initial P5 unit suite 14/15 failed an untyped string injected via model_copy;
+  corrected enum construction passes. This is not evidence of a provider attempt.
+- R-005 remains OPEN for full Sentinel approvals; P5 only has declared owned
+  recipient/deny-all presets. Governance mapping pending; signer trust lacks an
+  external anchor. Full real-mode and generic production regression remain unsupported.
+- Public GitHub push is explicitly authorised; user selected a real noreply identity.
+  Private keys, api.txt, data and ordinary artifacts remain excluded. Previous commit
+  authors/timestamps are retained. No fabricated contribution history.
