@@ -5,6 +5,13 @@ const mode = process.argv[2];
 if (!['install', 'test'].includes(mode)) throw new Error('Use install or test.');
 const args = mode === 'install' ? ['install', 'chromium'] : ['test', ...process.argv.slice(3)];
 const fs = require('node:fs');
+if (mode === 'test') {
+  const build = spawnSync(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['run', 'build'], {
+    stdio: 'inherit', shell: process.platform === 'win32',
+  });
+  if (build.error) throw build.error;
+  if (build.status !== 0) process.exit(build.status ?? 1);
+}
 const artifactDir = path.resolve('artifacts/browser', new Date().toISOString().replace(/[:.]/g, '-'));
 if (mode === 'test') {
   fs.mkdirSync(artifactDir, { recursive: true });

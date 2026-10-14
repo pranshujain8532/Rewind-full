@@ -153,7 +153,7 @@
             "type": "array"
           },
           "phase": {
-            "default": "P5",
+            "default": "P6",
             "title": "Phase",
             "type": "string"
           },
@@ -791,7 +791,7 @@
             "$ref": "#/components/schemas/DatabaseReadiness"
           },
           "phase": {
-            "default": "P5",
+            "default": "P6",
             "title": "Phase",
             "type": "string"
           },
@@ -837,6 +837,61 @@
           "available_modes"
         ],
         "title": "HealthResponse",
+        "type": "object"
+      },
+      "InputView": {
+        "additionalProperties": false,
+        "properties": {
+          "blob_digest": {
+            "title": "Blob Digest",
+            "type": "string"
+          },
+          "display_truncated": {
+            "title": "Display Truncated",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "model_event_id": {
+            "title": "Model Event Id",
+            "type": "string"
+          },
+          "origin": {
+            "title": "Origin",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "source_uri": {
+            "title": "Source Uri",
+            "type": "string"
+          },
+          "target": {
+            "title": "Target",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "target",
+          "model_event_id",
+          "origin",
+          "source_uri",
+          "blob_digest",
+          "text",
+          "display_truncated"
+        ],
+        "title": "InputView",
         "type": "object"
       },
       "InvestigationRequest": {
@@ -940,6 +995,18 @@
             "title": "Created At",
             "type": "string"
           },
+          "elapsed_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed Seconds"
+          },
           "evidence_status": {
             "$ref": "#/components/schemas/EvidenceStatus"
           },
@@ -1005,6 +1072,17 @@
               }
             ],
             "title": "Plan Digest"
+          },
+          "plan_json": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Json"
           },
           "reason": {
             "anyOf": [
@@ -1182,6 +1260,11 @@
       "RegressionSnapshot": {
         "additionalProperties": false,
         "properties": {
+          "cancel_requested": {
+            "default": false,
+            "title": "Cancel Requested",
+            "type": "boolean"
+          },
           "case_id": {
             "title": "Case Id",
             "type": "string"
@@ -1193,6 +1276,18 @@
           "created_at": {
             "title": "Created At",
             "type": "string"
+          },
+          "elapsed_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed Seconds"
           },
           "heartbeat_at": {
             "anyOf": [
@@ -1208,6 +1303,26 @@
           "id": {
             "title": "Id",
             "type": "string"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "behavioural",
+                  "containment"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind"
+          },
+          "last_event_seq": {
+            "default": 0,
+            "title": "Last Event Seq",
+            "type": "integer"
           },
           "manifest": {
             "anyOf": [
@@ -1226,6 +1341,17 @@
             "title": "Plan",
             "type": "object"
           },
+          "plan_json": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Json"
+          },
           "reason": {
             "anyOf": [
               {
@@ -1236,6 +1362,17 @@
               }
             ],
             "title": "Reason"
+          },
+          "record_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Record Id"
           },
           "schema_version": {
             "const": "1.0",
@@ -1294,6 +1431,148 @@
         ],
         "title": "RunMode",
         "type": "string"
+      },
+      "SessionDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "capture_coverage": {
+            "additionalProperties": true,
+            "title": "Capture Coverage",
+            "type": "object"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/TraceEvent"
+            },
+            "maxItems": 512,
+            "title": "Events",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "inputs": {
+            "items": {
+              "$ref": "#/components/schemas/InputView"
+            },
+            "maxItems": 16,
+            "title": "Inputs",
+            "type": "array"
+          },
+          "integrity": {
+            "additionalProperties": true,
+            "title": "Integrity",
+            "type": "object"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "outcome": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome"
+          },
+          "replay": {
+            "additionalProperties": true,
+            "title": "Replay",
+            "type": "object"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "sealed": {
+            "title": "Sealed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "sealed",
+          "metadata",
+          "capture_coverage",
+          "integrity",
+          "replay",
+          "events",
+          "inputs",
+          "outcome",
+          "limitations"
+        ],
+        "title": "SessionDetail",
+        "type": "object"
+      },
+      "TraceEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "payload": {
+            "title": "Payload"
+          },
+          "payload_digest": {
+            "title": "Payload Digest",
+            "type": "string"
+          },
+          "payload_text": {
+            "title": "Payload Text",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "seq": {
+            "title": "Seq",
+            "type": "integer"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "time": {
+            "title": "Time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "seq",
+          "kind",
+          "source",
+          "time",
+          "payload_digest",
+          "payload",
+          "payload_text"
+        ],
+        "title": "TraceEvent",
+        "type": "object"
       },
       "ValidationError": {
         "properties": {
@@ -2285,6 +2564,70 @@
         "summary": "Run Download"
       }
     },
+    "/api/regression-runs/{identity}/events": {
+      "get": {
+        "operationId": "events_api_regression_runs__identity__events_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "title": "Identity",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "After",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "last-event-id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Last-Event-Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Events"
+      }
+    },
     "/api/regressions/from-record/{identity}": {
       "post": {
         "operationId": "case_api_regressions_from_record__identity__post",
@@ -2410,6 +2753,47 @@
           }
         },
         "summary": "Sessions"
+      }
+    },
+    "/api/sessions/{identity}": {
+      "get": {
+        "operationId": "detail_api_sessions__identity__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detail"
       }
     },
     "/api/sessions/{session_id}/graph": {

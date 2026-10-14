@@ -37,7 +37,7 @@ def test_http_contract_and_empty_capabilities(migrated_directory, monkeypatch):
         assert response.status_code == 200
         health = HealthResponse.model_validate(response.json())
         assert health.ready
-        assert health.database.migration_revision == "0004_ledger"
+        assert health.database.migration_revision == "0005_workspace"
         assert health.database.journal_mode == "wal"
         assert set(health.available_modes) == {RunMode.SIMULATED, RunMode.PLAYBACK}
         matrix = CapabilitiesResponse.model_validate(client.get("/api/capabilities").json())

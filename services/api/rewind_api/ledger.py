@@ -1,5 +1,7 @@
 """Authenticated, bounded Ledger API; fresh evaluation runs in the separate worker."""
 
+import asyncio
+
 from fastapi import Depends, Header, HTTPException, Query, Request
 from rewind_ledger.bundle import MAX_BUNDLE_BYTES, bounded_json, verify_bundle
 from rewind_ledger.contracts import (
@@ -11,7 +13,7 @@ from rewind_ledger.contracts import (
     VerificationResult,
 )
 from rewind_sandbox.fixtures import canonical
-from starlette.responses import Response
+from starlette.responses import Response, StreamingResponse
 
 from rewind_api.investigations import authenticated, mutation
 
@@ -148,6 +150,51 @@ def install_routes(app):
     def snapshot(identity: str, request: Request):
         request.app.state.ledger.recover()
         return translate(lambda: request.app.state.ledger.snapshot(identity))
+
+    @app.get("/api/regression-runs/{identity}/events", dependencies=[Depends(authenticated)])
+    async def events(
+        identity: str,
+        request: Request,
+        after: int = Query(0, ge=0),
+        last_event_id: str | None = Header(default=None),
+    ):
+        store = request.app.state.ledger
+        try:
+            await asyncio.to_thread(store.raw_run, identity)
+        except KeyError as error:
+            raise HTTPException(404, "Unknown regression run") from error
+        if last_event_id:
+            try:
+                prefix, seq = last_event_id.rsplit(":", 1)
+                if prefix != identity or int(seq) < 0:
+                    raise ValueError
+                after = max(after, int(seq))
+            except ValueError as error:
+                raise HTTPException(400, "Invalid Last-Event-ID for this run") from error
+
+        async def stream():
+            cursor = after
+            while not await request.is_disconnected():
+                await asyncio.to_thread(store.recover)
+                persisted = await asyncio.to_thread(store.events, identity, cursor)
+                for event in persisted:
+                    cursor = event["job_seq"]
+                    yield f"id: {event['id']}\ndata: {canonical(event).decode()}\n\n"
+                run = await asyncio.to_thread(store.raw_run, identity)
+                if run["status"] in {"completed", "cancelled", "failed", "interrupted"}:
+                    if not await asyncio.to_thread(store.events, identity, cursor):
+                        break
+                yield ": heartbeat\n\n"
+                await asyncio.sleep(0.5)
+
+        return StreamingResponse(
+            stream(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "X-Accel-Buffering": "no",
+            },
+        )
 
     @app.post(
         "/api/regression-runs/{identity}/cancel",

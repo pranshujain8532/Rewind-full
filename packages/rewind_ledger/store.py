@@ -12,7 +12,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from rewind_capture.store import CaptureStore
 from rewind_core.storage import make_engine
-from rewind_eval.store import LEASE_SECONDS, TERMINAL, utc
+from rewind_eval.store import LEASE_SECONDS, TERMINAL, execution_seconds, utc
 from rewind_sandbox.fixtures import canonical, digest
 from sqlalchemy import text
 
@@ -324,6 +324,9 @@ class LedgerStore:
                         "time": utc(),
                     },
                 )
+                self._event(
+                    connection, identity, "failed" if reason else "queued", {"reason": reason}
+                )
                 if reason:
                     self._seal(connection, identity)
         return self.snapshot(identity)
@@ -340,6 +343,38 @@ class LedgerStore:
         if not row:
             raise KeyError("Unknown regression run")
         return dict(row)
+
+    def _event(self, connection, identity: str, kind: str, data: dict):
+        seq = connection.scalar(
+            text("SELECT coalesce(max(seq),0)+1 FROM regression_events WHERE run_id=:id"),
+            {"id": identity},
+        )
+        body = {
+            "schema_version": "1.0",
+            "id": f"{identity}:{seq}",
+            "job_id": identity,
+            "job_seq": seq,
+            "type": kind,
+            "time": utc(),
+            "data": data,
+        }
+        connection.execute(
+            text("INSERT INTO regression_events VALUES(:id,:seq,:body)"),
+            {"id": identity, "seq": seq, "body": canonical(body).decode()},
+        )
+
+    def events(self, identity: str, after: int = 0):
+        with self.engine.connect() as connection:
+            return [
+                json.loads(row.body)
+                for row in connection.execute(
+                    text(
+                        "SELECT body FROM regression_events WHERE run_id=:id AND seq>:after "
+                        "ORDER BY seq LIMIT 1024"
+                    ),
+                    {"id": identity, "after": after},
+                )
+            ]
 
     def trials(self, identity: str, connection=None):
         if connection is None:
@@ -395,20 +430,34 @@ class LedgerStore:
 
     def snapshot(self, identity: str) -> RegressionSnapshot:
         row = self.raw_run(identity)
+        case = self.case(row["case_id"])
         trials = self.trials(identity)
         bundle = self.decrypt(identity, row["manifest"]) if row["manifest"] else None
         report = bundle["report"] if bundle else None
+        with self.engine.connect() as connection:
+            last_event_seq = connection.scalar(
+                text("SELECT coalesce(max(seq),0) FROM regression_events WHERE run_id=:id"),
+                {"id": identity},
+            )
         return RegressionSnapshot(
             id=identity,
             case_id=row["case_id"],
+            record_id=case["record_id"],
+            kind=case["kind"],
             status=row["status"],
             verdict=report["verdict"] if report else "inconclusive",
             reason=row["reason"],
             created_at=row["created_at"],
             heartbeat_at=row["heartbeat_at"],
+            elapsed_seconds=execution_seconds(
+                self.engine, "regression", identity, row["started_at"], row["status"]
+            ),
+            cancel_requested=bool(row["cancel_requested"]),
             started_trials=len(trials),
             completed_trials=sum(t["result"] is not None for t in trials),
+            last_event_seq=last_event_seq,
             plan=json.loads(row["plan"]),
+            plan_json=row["plan"],
             manifest=report,
         )
 
@@ -439,6 +488,7 @@ class LedgerStore:
                     {"id": identity},
                 )
                 self._seal(connection, identity)
+                self._event(connection, identity, "interrupted", {"reason": "worker_lease_expired"})
 
     def claim(self, worker_id: str):
         self.recover()
@@ -470,6 +520,7 @@ class LedgerStore:
                     "lease": time.time() + LEASE_SECONDS,
                 },
             )
+            self._event(connection, identity, "started", {})
             return identity
 
     def heartbeat(self, identity: str, worker_id: str):
@@ -517,6 +568,9 @@ class LedgerStore:
                 text("INSERT INTO regression_trials VALUES(:id,:ordinal,:spec,NULL)"),
                 {"id": identity, "ordinal": ordinal, "spec": canonical(spec).decode()},
             )
+            self._event(
+                connection, identity, "trial_started", {"ordinal": ordinal, "arm": spec["arm"]}
+            )
 
     def record(self, identity: str, worker_id: str, ordinal: int, result: dict):
         with self.transaction() as connection:
@@ -528,6 +582,7 @@ class LedgerStore:
                 ),
                 {"id": identity, "ordinal": ordinal, "result": canonical(result).decode()},
             )
+            self._event(connection, identity, "trial_completed", {"ordinal": ordinal})
 
     def finish(self, identity: str, worker_id: str, status: str, reason=None):
         with self.transaction() as connection:
@@ -539,6 +594,7 @@ class LedgerStore:
                 {"id": identity, "status": status, "reason": reason},
             )
             self._seal(connection, identity)
+            self._event(connection, identity, status, {"reason": reason})
 
     def cancel(self, identity: str):
         with self.transaction() as connection:
@@ -561,6 +617,12 @@ class LedgerStore:
                         {"id": identity},
                     )
                     self._seal(connection, identity)
+                self._event(
+                    connection,
+                    identity,
+                    "cancelled" if row.status == "queued" else "cancellation_requested",
+                    {},
+                )
         return self.snapshot(identity)
 
     def compare(self, left: str, right: str):

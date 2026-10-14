@@ -14,6 +14,6 @@ export default defineConfig({
   use: { baseURL: 'http://127.0.0.1:5173', browserName: 'chromium', trace: 'retain-on-failure' },
   webServer: [
     { command: `"${python}" scripts/e2e_api.py`, url: 'http://127.0.0.1:8000/api/health', reuseExistingServer: false, timeout: 30000 },
-    { command: 'npm run dev', url: 'http://127.0.0.1:5173', reuseExistingServer: false, timeout: 30000 },
+    { command: 'npm run preview --workspace apps/web', url: 'http://127.0.0.1:5173', reuseExistingServer: false, timeout: 30000 },
   ],
 });

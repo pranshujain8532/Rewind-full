@@ -313,6 +313,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/regression-runs/{identity}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Events */
+        get: operations["events_api_regression_runs__identity__events_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/regressions/from-record/{identity}": {
         parameters: {
             query?: never;
@@ -356,6 +373,23 @@ export interface paths {
         };
         /** Sessions */
         get: operations["sessions_api_sessions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/sessions/{identity}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Detail */
+        get: operations["detail_api_sessions__identity__get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -462,7 +496,7 @@ export interface components {
             modes: components["schemas"]["ModeCapability"][];
             /**
              * Phase
-             * @default P5
+             * @default P6
              */
             phase: string;
             /**
@@ -730,7 +764,7 @@ export interface components {
             database: components["schemas"]["DatabaseReadiness"];
             /**
              * Phase
-             * @default P5
+             * @default P6
              */
             phase: string;
             /** Ready */
@@ -759,6 +793,31 @@ export interface components {
             stored_session_count: number;
             /** Version */
             version: string;
+        };
+        /** InputView */
+        InputView: {
+            /** Blob Digest */
+            blob_digest: string;
+            /** Display Truncated */
+            display_truncated: boolean;
+            /** Id */
+            id: string;
+            /** Model Event Id */
+            model_event_id: string;
+            /** Origin */
+            origin: string;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Source Uri */
+            source_uri: string;
+            /** Target */
+            target: string;
+            /** Text */
+            text: string;
         };
         /** InvestigationRequest */
         InvestigationRequest: {
@@ -820,6 +879,8 @@ export interface components {
             coverage: components["schemas"]["Candidate"][];
             /** Created At */
             created_at: string;
+            /** Elapsed Seconds */
+            elapsed_seconds?: number | null;
             evidence_status: components["schemas"]["EvidenceStatus"];
             /** Findings */
             findings: components["schemas"]["Finding"][];
@@ -840,6 +901,8 @@ export interface components {
             } | null;
             /** Plan Digest */
             plan_digest: string | null;
+            /** Plan Json */
+            plan_json?: string | null;
             /** Reason */
             reason: string | null;
             /**
@@ -914,16 +977,30 @@ export interface components {
         };
         /** RegressionSnapshot */
         RegressionSnapshot: {
+            /**
+             * Cancel Requested
+             * @default false
+             */
+            cancel_requested: boolean;
             /** Case Id */
             case_id: string;
             /** Completed Trials */
             completed_trials: number;
             /** Created At */
             created_at: string;
+            /** Elapsed Seconds */
+            elapsed_seconds?: number | null;
             /** Heartbeat At */
             heartbeat_at: string | null;
             /** Id */
             id: string;
+            /** Kind */
+            kind?: ("behavioural" | "containment") | null;
+            /**
+             * Last Event Seq
+             * @default 0
+             */
+            last_event_seq: number;
             /** Manifest */
             manifest: {
                 [key: string]: unknown;
@@ -932,8 +1009,12 @@ export interface components {
             plan: {
                 [key: string]: unknown;
             };
+            /** Plan Json */
+            plan_json?: string | null;
             /** Reason */
             reason: string | null;
+            /** Record Id */
+            record_id?: string | null;
             /**
              * Schema Version
              * @default 1.0
@@ -958,6 +1039,70 @@ export interface components {
          * @enum {string}
          */
         RunMode: "playback" | "simulated" | "local_model" | "remote_model";
+        /** SessionDetail */
+        SessionDetail: {
+            /** Capture Coverage */
+            capture_coverage: {
+                [key: string]: unknown;
+            };
+            /** Events */
+            events: components["schemas"]["TraceEvent"][];
+            /** Id */
+            id: string;
+            /** Inputs */
+            inputs: components["schemas"]["InputView"][];
+            /** Integrity */
+            integrity: {
+                [key: string]: unknown;
+            };
+            /** Limitations */
+            limitations: string[];
+            /** Metadata */
+            metadata: {
+                [key: string]: unknown;
+            };
+            /** Outcome */
+            outcome: {
+                [key: string]: unknown;
+            } | null;
+            /** Replay */
+            replay: {
+                [key: string]: unknown;
+            };
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Sealed */
+            sealed: boolean;
+        };
+        /** TraceEvent */
+        TraceEvent: {
+            /** Id */
+            id: string;
+            /** Kind */
+            kind: string;
+            /** Payload */
+            payload: unknown;
+            /** Payload Digest */
+            payload_digest: string;
+            /** Payload Text */
+            payload_text: string;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Seq */
+            seq: number;
+            /** Source */
+            source: string;
+            /** Time */
+            time: string;
+        };
         /** ValidationError */
         ValidationError: {
             /** Context */
@@ -1654,6 +1799,41 @@ export interface operations {
             };
         };
     };
+    events_api_regression_runs__identity__events_get: {
+        parameters: {
+            query?: {
+                after?: number;
+            };
+            header?: {
+                "last-event-id"?: string | null;
+            };
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     case_api_regressions_from_record__identity__post: {
         parameters: {
             query?: never;
@@ -1731,6 +1911,37 @@ export interface operations {
                     "application/json": {
                         [key: string]: unknown;
                     }[];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    detail_api_sessions__identity__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SessionDetail"];
                 };
             };
             /** @description Validation Error */

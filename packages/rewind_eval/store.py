@@ -25,6 +25,34 @@ def utc() -> str:
     return datetime.now(UTC).isoformat()
 
 
+def execution_seconds(engine, family: str, identity: str, started_at, status: str):
+    """Server-clock duration; terminal ends require a real persisted transition."""
+    if started_at is None:
+        return None
+    tables = {
+        "investigation": ("investigation_events", "job_id"),
+        "regression": ("regression_events", "run_id"),
+    }
+    table, column = tables[family]
+    ended_at = time.time()
+    if status in TERMINAL:
+        with engine.connect() as connection:
+            ended = connection.scalar(
+                text(
+                    f"SELECT json_extract(body,'$.time') FROM {table} WHERE {column}=:id "
+                    "AND json_extract(body,'$.type') "
+                    "IN ('completed','failed','interrupted','cancelled') "
+                    "ORDER BY seq DESC LIMIT 1"
+                ),
+                {"id": identity},
+            )
+        if not ended:
+            return None
+        ended_at = datetime.fromisoformat(ended).timestamp()
+    duration = ended_at - started_at
+    return round(duration, 3) if duration >= 0 else None
+
+
 class JobStore:
     def __init__(self, directory: Path):
         self.directory = directory.resolve()
@@ -217,9 +245,13 @@ class JobStore:
             reason=job["reason"],
             created_at=job["created_at"],
             heartbeat_at=job["heartbeat_at"],
+            elapsed_seconds=execution_seconds(
+                self.engine, "investigation", job_id, job["started_at"], job["status"]
+            ),
             cancel_requested=bool(job["cancel_requested"]),
             budget=request.budget,
             plan=plan,
+            plan_json=job["plan"],
             plan_digest=job["plan_digest"],
             completed_trials=len(results),
             started_trials=len(rows),

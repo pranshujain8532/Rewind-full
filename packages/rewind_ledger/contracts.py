@@ -58,12 +58,18 @@ class RegressionRequest(Contract):
 class RegressionSnapshot(Contract):
     id: str
     case_id: str
+    record_id: str | None = None
+    kind: Literal["behavioural", "containment"] | None = None
     status: Literal["queued", "running", "completed", "cancelled", "failed", "interrupted"]
     verdict: Literal["pass", "fail", "inconclusive"]
     reason: str | None
     created_at: str
     heartbeat_at: str | None
+    elapsed_seconds: float | None = Field(default=None, ge=0, allow_inf_nan=False)
+    cancel_requested: bool = False
     started_trials: int
     completed_trials: int
+    last_event_seq: int = 0
     plan: dict[str, Any]
+    plan_json: str | None = None
     manifest: dict[str, Any] | None

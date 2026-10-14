@@ -93,9 +93,11 @@ class JobSnapshot(Contract):
     reason: str | None
     created_at: str
     heartbeat_at: str | None
+    elapsed_seconds: float | None = Field(default=None, ge=0, allow_inf_nan=False)
     cancel_requested: bool
     budget: Budget
     plan: dict[str, Any] | None
+    plan_json: str | None = None
     plan_digest: str | None
     completed_trials: int
     started_trials: int

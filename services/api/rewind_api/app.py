@@ -39,6 +39,9 @@ def create_app(directory: Path | None = None) -> FastAPI:
     from rewind_api.ledger import install_routes as install_ledger
 
     install_ledger(app)
+    from rewind_api.workspace import install_routes as install_workspace
+
+    install_workspace(app)
 
     @app.get(
         "/api/health", response_model=HealthResponse, responses={503: {"model": HealthResponse}}

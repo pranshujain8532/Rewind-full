@@ -4,3 +4,7 @@
 *.tsx text eol=lf
 *.json text eol=lf
 *.md text eol=lf
+
+# Preserve reviewed font/notice bytes, including upstream notice whitespace.
+apps/web/public/fonts/*.ttf -text
+apps/web/public/licenses/*.txt -text -whitespace
