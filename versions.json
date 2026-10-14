@@ -15,7 +15,11 @@
     "pytest": "9.1.1",
     "httpx": "0.28.1",
     "ruff": "0.17.0",
-    "cryptography": "50.0.2"
+    "cryptography": "50.0.2",
+    "statsmodels": "0.14.6",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pandas": "3.0.6"
   },
   "web_dependencies": {
     "node_modules/@playwright/test": "1.64.0",
@@ -30,7 +34,7 @@
   "mcp_transport_scope": "owned stdio tools and transparent recorder verified; protocol 2026-07-28 only",
   "models": {
     "local_model": "not configured",
-    "remote_model": "not configured"
+    "remote_model": "Gemini CLI experimental; real confirmation unsupported"
   },
   "replay_isolation": "P3 no-network Linux container verified; setup/probe required locally"
 }

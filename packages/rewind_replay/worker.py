@@ -36,7 +36,13 @@ def probe() -> dict:
         checks["source_readonly"] = True
     checks["no_host_credentials"] = not any(
         key in os.environ
-        for key in ("OPENAI_API_KEY", "AWS_SECRET_ACCESS_KEY", "REWIND_AUTH_TOKEN")
+        for key in (
+            "OPENAI_API_KEY",
+            "GEMINI_API_KEY",
+            "GOOGLE_API_KEY",
+            "AWS_SECRET_ACCESS_KEY",
+            "REWIND_AUTH_TOKEN",
+        )
     )
     status = Path("/proc/self/status").read_text()
     checks["dropped_capabilities"] = "CapEff:\t0000000000000000" in status
@@ -54,7 +60,17 @@ def probe() -> dict:
 
 
 def main():
-    raw = sys.stdin.buffer.read(8_000_001)
+    raw = sys.stdin.buffer.readline(8_000_001)
+    if len(raw) > 8_000_000:
+        raise SystemExit("Replay input bound exceeded")
+    decoded = json.loads(raw)
+    if decoded.get("operation") == "gemini_trial":
+        from rewind_replay.gemini_runtime import worker_trial
+
+        result = worker_trial(decoded, sys.stdin, sys.stdout)
+        print(json.dumps({"type": "trial_result", "result": result}, allow_nan=False), flush=True)
+        return
+    raw += sys.stdin.buffer.read(8_000_001 - len(raw))
     if len(raw) > 8_000_000:
         raise SystemExit("Replay input bound exceeded")
     request = BatchRequest.model_validate_json(raw)

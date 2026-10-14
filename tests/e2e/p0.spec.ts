@@ -15,10 +15,11 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 1280, height: 720
     await page.goto('/');
     await expect(page.getByText('Foundation is online')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Your first run starts here.' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Run demo scenario' })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Capture demo scenario' })).toBeEnabled();
     await expect(page.getByText('Unavailable', { exact: true })).toHaveCount(2);
     await expect(page.getByText('Available', { exact: true })).toHaveCount(2);
-    await expect(page.getByText('Evidence: unavailable')).toHaveCount(3);
+    await expect(page.getByText('Evidence: unavailable')).toHaveCount(2);
+    await expect(page.getByText('Evidence: exploratory')).toHaveCount(1);
     await page.getByRole('button', { name: 'Refresh status' }).focus();
     await expect(page.getByRole('button', { name: 'Refresh status' })).toBeFocused();
     await page.keyboard.press('Enter');
@@ -35,7 +36,7 @@ test('unreachable API is visible and refresh recovers', async ({ page }) => {
   await page.route('**/api/**', route => route.abort('connectionrefused'));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Backend unavailable' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Run demo scenario' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Capture demo scenario' })).toHaveCount(0);
   await page.screenshot({ path: path.join(artifacts, 'backend-unavailable.png'), fullPage: true });
   await page.unroute('**/api/**');
   await page.getByRole('button', { name: 'Refresh status' }).click();

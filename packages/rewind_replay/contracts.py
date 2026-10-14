@@ -15,6 +15,7 @@ class TrialRequest(Contract):
     mode: RunMode = RunMode.SIMULATED
     intervention: Intervention = Field(default_factory=Intervention)
     trust_external: bool = True
+    enforcement: Literal["none", "recipient_allowlist", "deny_all"] = "none"
     stochastic: bool = False
     attempt_probability: float = Field(default=0.8, ge=0, le=1)
     seed: int = Field(default=0, ge=0, le=2**64 - 1)

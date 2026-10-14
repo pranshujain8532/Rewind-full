@@ -4,6 +4,23 @@
  */
 
 export interface paths {
+    "/api/auth/local": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Local Session */
+        post: operations["local_session_api_auth_local_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/capabilities": {
         parameters: {
             query?: never;
@@ -15,6 +32,23 @@ export interface paths {
         get: operations["get_capabilities_api_capabilities_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demo/runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Demo */
+        post: operations["demo_api_demo_runs_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -38,6 +72,264 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/investigations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Jobs */
+        get: operations["jobs_api_investigations_get"];
+        put?: never;
+        /** Start */
+        post: operations["start_api_investigations_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/investigations/{job_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Snapshot */
+        get: operations["snapshot_api_investigations__job_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/investigations/{job_id}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Cancel */
+        post: operations["cancel_api_investigations__job_id__cancel_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/investigations/{job_id}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Events */
+        get: operations["events_api_investigations__job_id__events_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/investigations/{job_id}/trials": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Trials */
+        get: operations["trials_api_investigations__job_id__trials_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Records */
+        get: operations["records_api_records_get"];
+        put?: never;
+        /** Create */
+        post: operations["create_api_records_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/records/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Verify */
+        post: operations["verify_api_records_verify_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/records/{identity}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Record */
+        get: operations["record_api_records__identity__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/records/{identity}/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download */
+        get: operations["download_api_records__identity__download_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/regression-comparison": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Compare */
+        get: operations["compare_api_regression_comparison_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/regression-runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Runs */
+        get: operations["runs_api_regression_runs_get"];
+        put?: never;
+        /** Start */
+        post: operations["start_api_regression_runs_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/regression-runs/{identity}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Snapshot */
+        get: operations["snapshot_api_regression_runs__identity__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/regression-runs/{identity}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Cancel */
+        post: operations["cancel_api_regression_runs__identity__cancel_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/regression-runs/{identity}/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Run Download */
+        get: operations["run_download_api_regression_runs__identity__download_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/regressions/from-record/{identity}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Case */
+        post: operations["case_api_regressions_from_record__identity__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/scenarios": {
         parameters: {
             query?: never;
@@ -55,10 +347,109 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Sessions */
+        get: operations["sessions_api_sessions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/sessions/{session_id}/graph": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Graph */
+        get: operations["graph_api_sessions__session_id__graph_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** Budget */
+        Budget: {
+            /**
+             * Authorised Cost Usd
+             * @default 0
+             */
+            authorised_cost_usd: number;
+            /**
+             * Max Model Turns
+             * @default 256
+             */
+            max_model_turns: number;
+            /**
+             * Max Seconds
+             * @default 600
+             */
+            max_seconds: number;
+            /**
+             * Max Tokens
+             * @default 0
+             */
+            max_tokens: number;
+            /**
+             * Max Trials
+             * @default 256
+             */
+            max_trials: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+        };
+        /** Candidate */
+        Candidate: {
+            /** Coverage */
+            coverage: string;
+            /** Features */
+            features: {
+                [key: string]: number | null;
+            };
+            /** Id */
+            id: string;
+            /** Origin */
+            origin: string;
+            /** Position */
+            position: number;
+            /** Rank */
+            rank: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Score */
+            score: number;
+            /** Selected */
+            selected: boolean;
+            /** Target */
+            target: string;
+            /** Tested Subsets */
+            tested_subsets: number[];
+        };
         /** CapabilitiesResponse */
         CapabilitiesResponse: {
             /** Features */
@@ -71,7 +462,7 @@ export interface components {
             modes: components["schemas"]["ModeCapability"][];
             /**
              * Phase
-             * @default P3
+             * @default P5
              */
             phase: string;
             /**
@@ -86,6 +477,44 @@ export interface components {
              * @constant
              */
             schema_version: "1.0";
+        };
+        /** CaseRequest */
+        CaseRequest: {
+            /**
+             * Kind
+             * @default behavioural
+             * @enum {string}
+             */
+            kind: "behavioural" | "containment";
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+        };
+        /** Counts */
+        Counts: {
+            /** Dispatched */
+            dispatched: number;
+            /** Harmful */
+            harmful: number;
+            /** Incomplete */
+            incomplete: number;
+            /** Invalid */
+            invalid: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Started */
+            started: number;
+            /** Task Success */
+            task_success: number;
+            /** Valid */
+            valid: number;
         };
         /** DatabaseReadiness */
         DatabaseReadiness: {
@@ -106,6 +535,81 @@ export interface components {
              * @constant
              */
             schema_version: "1.0";
+        };
+        /** DemoRequest */
+        DemoRequest: {
+            /**
+             * Scenario
+             * @enum {string}
+             */
+            scenario: "clean" | "single" | "harmless" | "interaction" | "redundant" | "authorised";
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+        };
+        /** EvidenceRecord */
+        EvidenceRecord: {
+            /** Candidate Scope */
+            candidate_scope: components["schemas"]["Candidate"][];
+            /** Capture Coverage */
+            capture_coverage: {
+                [key: string]: unknown;
+            };
+            /** Counts */
+            counts: {
+                [key: string]: components["schemas"]["Counts"];
+            };
+            /** Created At */
+            created_at: string;
+            evidence_status: components["schemas"]["EvidenceStatus"];
+            /** Findings */
+            findings: components["schemas"]["Finding"][];
+            /** Governance Mapping */
+            governance_mapping: {
+                [key: string]: unknown;
+            };
+            /** Id */
+            id: string;
+            /** Investigation Id */
+            investigation_id: string;
+            /** Limitations */
+            limitations: string[];
+            mode: components["schemas"]["RunMode"];
+            /** Observed Synthetic Impact */
+            observed_synthetic_impact: {
+                [key: string]: unknown;
+            };
+            /** Policy Approval Trail */
+            policy_approval_trail: {
+                [key: string]: unknown;
+            };
+            /** Provenance */
+            provenance: {
+                [key: string]: unknown;
+            };
+            /** Regression Ids */
+            regression_ids: {
+                [key: string]: string;
+            };
+            /** Replay Coverage */
+            replay_coverage: {
+                [key: string]: unknown;
+            };
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Session Id */
+            session_id: string;
+            /** Session Seal */
+            session_seal: {
+                [key: string]: unknown;
+            } | null;
         };
         /**
          * EvidenceStatus
@@ -138,6 +642,87 @@ export interface components {
          * @enum {string}
          */
         FeatureMaturity: "planned" | "implemented" | "verified" | "experimental";
+        /** Finding */
+        Finding: {
+            /** Adjusted Alpha */
+            adjusted_alpha: number;
+            /** Arm */
+            arm: string;
+            /** Base Flip Rate */
+            base_flip_rate: number | null;
+            baseline: components["schemas"]["Counts"];
+            /** Baseline Rate */
+            baseline_rate: number | null;
+            /** Complete */
+            complete: boolean;
+            /** Effect */
+            effect: number | null;
+            evidence_status: components["schemas"]["EvidenceStatus"];
+            /** Interval */
+            interval: number[] | null;
+            /** Interval Level */
+            interval_level: number;
+            /** Interval Method */
+            interval_method: string | null;
+            intervention: components["schemas"]["Counts"];
+            /** Intervention Rate */
+            intervention_rate: number | null;
+            /** Meaningful Effect */
+            meaningful_effect: number;
+            mode: components["schemas"]["RunMode"];
+            /**
+             * Nominal Level
+             * @default 0.95
+             */
+            nominal_level: number;
+            /** Reason */
+            reason: string;
+            /** Remedy Eligible */
+            remedy_eligible: boolean;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Scope */
+            scope: string;
+            /** Targets */
+            targets: string[];
+        };
+        /** GraphResponse */
+        GraphResponse: {
+            /** Candidates */
+            candidates: components["schemas"]["Candidate"][];
+            /** Edges */
+            edges: {
+                [key: string]: string;
+            }[];
+            /** Limitations */
+            limitations?: string[];
+            /** Nodes */
+            nodes: {
+                [key: string]: unknown;
+            }[];
+            /**
+             * Ranking Formula
+             * @default 4*present + before + 2*external + 1/(1+graph_distance)
+             */
+            ranking_formula: string;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Target Nodes */
+            target_nodes?: string[];
+        };
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
+        };
         /** HealthResponse */
         HealthResponse: {
             /** Available Modes */
@@ -145,7 +730,7 @@ export interface components {
             database: components["schemas"]["DatabaseReadiness"];
             /**
              * Phase
-             * @default P3
+             * @default P5
              */
             phase: string;
             /** Ready */
@@ -175,6 +760,104 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** InvestigationRequest */
+        InvestigationRequest: {
+            /**
+             * Attempt Probability
+             * @default 0.8
+             */
+            attempt_probability: number;
+            budget?: components["schemas"]["Budget"];
+            /**
+             * Discovery Budget
+             * @default 24
+             */
+            discovery_budget: number;
+            /**
+             * Max Finalists
+             * @default 3
+             */
+            max_finalists: number;
+            /**
+             * Meaningful Effect
+             * @default 0.2
+             */
+            meaningful_effect: number;
+            /** @default simulated */
+            mode: components["schemas"]["RunMode"];
+            /**
+             * N
+             * @default 40
+             */
+            n: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /**
+             * Seed
+             * @default 4471
+             */
+            seed: number;
+            /** Session Id */
+            session_id: string;
+            /**
+             * Stochastic
+             * @default false
+             */
+            stochastic: boolean;
+        };
+        /** JobSnapshot */
+        JobSnapshot: {
+            budget: components["schemas"]["Budget"];
+            /** Cancel Requested */
+            cancel_requested: boolean;
+            /** Completed Trials */
+            completed_trials: number;
+            /** Coverage */
+            coverage: components["schemas"]["Candidate"][];
+            /** Created At */
+            created_at: string;
+            evidence_status: components["schemas"]["EvidenceStatus"];
+            /** Findings */
+            findings: components["schemas"]["Finding"][];
+            /** Heartbeat At */
+            heartbeat_at: string | null;
+            /** Id */
+            id: string;
+            /** Last Event Seq */
+            last_event_seq: number;
+            /** Limitations */
+            limitations: string[];
+            mode: components["schemas"]["RunMode"];
+            /** Model Turns */
+            model_turns: number;
+            /** Plan */
+            plan: {
+                [key: string]: unknown;
+            } | null;
+            /** Plan Digest */
+            plan_digest: string | null;
+            /** Reason */
+            reason: string | null;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Session Id */
+            session_id: string;
+            /** Started Trials */
+            started_trials: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "running" | "completed" | "cancelled" | "failed" | "interrupted";
+        };
         /** ModeCapability */
         ModeCapability: {
             /** Available */
@@ -193,11 +876,122 @@ export interface components {
              */
             schema_version: "1.0";
         };
+        /** RecordRequest */
+        RecordRequest: {
+            /** Investigation Id */
+            investigation_id: string;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+        };
+        /** RegressionRequest */
+        RegressionRequest: {
+            budget?: components["schemas"]["Budget"];
+            /** Case Id */
+            case_id: string;
+            /**
+             * Fixed Configuration
+             * @default behavioural-v1
+             * @enum {string}
+             */
+            fixed_configuration: "vulnerable-v1" | "behavioural-v1" | "containment-v1" | "deny-all-v1";
+            /** @default simulated */
+            mode: components["schemas"]["RunMode"];
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /**
+             * Seed
+             * @default 4471
+             */
+            seed: number;
+        };
+        /** RegressionSnapshot */
+        RegressionSnapshot: {
+            /** Case Id */
+            case_id: string;
+            /** Completed Trials */
+            completed_trials: number;
+            /** Created At */
+            created_at: string;
+            /** Heartbeat At */
+            heartbeat_at: string | null;
+            /** Id */
+            id: string;
+            /** Manifest */
+            manifest: {
+                [key: string]: unknown;
+            } | null;
+            /** Plan */
+            plan: {
+                [key: string]: unknown;
+            };
+            /** Reason */
+            reason: string | null;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Started Trials */
+            started_trials: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "running" | "completed" | "cancelled" | "failed" | "interrupted";
+            /**
+             * Verdict
+             * @enum {string}
+             */
+            verdict: "pass" | "fail" | "inconclusive";
+        };
         /**
          * RunMode
          * @enum {string}
          */
         RunMode: "playback" | "simulated" | "local_model" | "remote_model";
+        /** ValidationError */
+        ValidationError: {
+            /** Context */
+            ctx?: Record<string, never>;
+            /** Input */
+            input?: unknown;
+            /** Location */
+            loc: (string | number)[];
+            /** Message */
+            msg: string;
+            /** Error Type */
+            type: string;
+        };
+        /** VerificationResult */
+        VerificationResult: {
+            /** Evidence Complete */
+            evidence_complete: boolean;
+            /** Integrity Valid */
+            integrity_valid: boolean;
+            /** Reason */
+            reason: string;
+            /** Regression Eligible */
+            regression_eligible: boolean;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Signing Key Id */
+            signing_key_id?: string | null;
+            /** Trusted */
+            trusted: boolean;
+        };
     };
     responses: never;
     parameters: never;
@@ -207,6 +1001,24 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    local_session_api_auth_local_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     get_capabilities_api_capabilities_get: {
         parameters: {
             query?: never;
@@ -223,6 +1035,43 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["CapabilitiesResponse"];
+                };
+            };
+        };
+    };
+    demo_api_demo_runs_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DemoRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -256,6 +1105,592 @@ export interface operations {
             };
         };
     };
+    jobs_api_investigations_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobSnapshot"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_api_investigations_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InvestigationRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    snapshot_api_investigations__job_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                job_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_api_investigations__job_id__cancel_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                job_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    events_api_investigations__job_id__events_get: {
+        parameters: {
+            query?: {
+                after?: number;
+            };
+            header?: {
+                "last-event-id"?: string | null;
+            };
+            path: {
+                job_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    trials_api_investigations__job_id__trials_get: {
+        parameters: {
+            query?: {
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                job_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    }[];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    records_api_records_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvidenceRecord"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_api_records_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvidenceRecord"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    verify_api_records_verify_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-REWIND-Trusted-Public-Key"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VerificationResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    record_api_records__identity__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvidenceRecord"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    download_api_records__identity__download_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    compare_api_regression_comparison_get: {
+        parameters: {
+            query: {
+                left: string;
+                right: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    runs_api_regression_runs_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RegressionSnapshot"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_api_regression_runs_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegressionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RegressionSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    snapshot_api_regression_runs__identity__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RegressionSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_api_regression_runs__identity__cancel_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RegressionSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    run_download_api_regression_runs__identity__download_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    case_api_regressions_from_record__identity__post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CaseRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     scenarios_api_scenarios_get: {
         parameters: {
             query?: never;
@@ -272,6 +1707,70 @@ export interface operations {
                 };
                 content: {
                     "application/json": string[];
+                };
+            };
+        };
+    };
+    sessions_api_sessions_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    }[];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    graph_api_sessions__session_id__graph_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GraphResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

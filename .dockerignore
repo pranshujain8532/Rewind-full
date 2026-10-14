@@ -13,3 +13,4 @@
 !fixtures/scenarios/
 !fixtures/scenarios/**
 !fixtures/manifest.json
+**/api.txt

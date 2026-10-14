@@ -1,5 +1,6 @@
 """Readiness describes the API, not readiness to run agent experiments."""
 
+import secrets
 from contextlib import asynccontextmanager
 from importlib.metadata import version
 from pathlib import Path
@@ -18,11 +19,26 @@ def create_app(directory: Path | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         app.state.engine = make_engine(directory or data_directory())
+        from rewind_eval.store import JobStore
+
+        app.state.jobs = JobStore(directory or data_directory())
+        from rewind_ledger.store import LedgerStore
+
+        app.state.ledger = LedgerStore(directory or data_directory())
+        app.state.local_token = secrets.token_urlsafe(32)
         yield
+        app.state.jobs.engine.dispose()
+        app.state.ledger.engine.dispose()
         app.state.engine.dispose()
 
     app = FastAPI(title="REWIND API", version=version("rewind"), lifespan=lifespan)
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost"])
+    from rewind_api.investigations import install_routes
+
+    install_routes(app)
+    from rewind_api.ledger import install_routes as install_ledger
+
+    install_ledger(app)
 
     @app.get(
         "/api/health", response_model=HealthResponse, responses={503: {"model": HealthResponse}}

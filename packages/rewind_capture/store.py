@@ -138,16 +138,32 @@ class CaptureStore:
             connection.commit()
         return {"body": body, "event_hash": event_hash, "signature": signature}
 
-    def capture_input(self, session_id: str, request, schemas: dict) -> None:
+    def capture_input(
+        self,
+        session_id: str,
+        request,
+        schemas: dict,
+        *,
+        model_requested: str = "instruction-dsl-v1",
+        provider_request: dict | None = None,
+        provider_configuration: dict | None = None,
+    ) -> None:
         envelope = {
             "schema_version": "1.0",
             "request": request.model_dump(mode="json"),
-            "model_requested": "instruction-dsl-v1",
+            "model_requested": model_requested,
             "tool_schemas": schemas,
             "memory": {"stateless": True},
             "response_cache": False,
             "tool_schema_role": "framework configuration for fixed DSL tool calls",
         }
+        if provider_request is not None:
+            envelope.update(
+                provider="gemini",
+                provider_request=provider_request,
+                provider_configuration=provider_configuration,
+                tool_schema_role="owned mock action proposals in constrained JSON",
+            )
         event = self.append(session_id, "model_request", envelope)
         for position, item in enumerate(request.inputs):
             blob = self.append(session_id, "input_occurrence", {"text": item.text})

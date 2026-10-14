@@ -1,4 +1,5 @@
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
@@ -126,7 +127,7 @@ def test_actual_isolated_interventions_and_private_state(tmp_path):
     assert not interaction["harmful_action_attempted"]
     assert unknown["validity"] == "invalid" and not unknown["fresh_decision"]
     assert digest(source) == before
-    output = Path("artifacts/p3")
+    output = Path("artifacts/replay") / datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ")
     output.mkdir(parents=True, exist_ok=True)
     (output / "isolation-probe.json").write_text(json.dumps(probe, indent=2))
     (output / "interventions.json").write_text(json.dumps(result, indent=2))

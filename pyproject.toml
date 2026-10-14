@@ -15,13 +15,14 @@ dependencies = [
   "uvicorn==0.54.0",
   "mcp==2.3.0",
   "cryptography==50.0.2",
+  "statsmodels==0.14.6",
 ]
 
 [dependency-groups]
 dev = ["pytest==9.1.1", "httpx==0.28.1", "ruff==0.17.0"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["packages/rewind_core", "packages/rewind_sandbox", "packages/rewind_capture", "packages/rewind_replay", "services/api/rewind_api"]
+packages = ["packages/rewind_core", "packages/rewind_sandbox", "packages/rewind_capture", "packages/rewind_replay", "packages/rewind_eval", "packages/rewind_ledger", "services/api/rewind_api"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

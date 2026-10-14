@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { readSystem } from './api';
+import { Forensics } from './Forensics';
 
 type System = Awaited<ReturnType<typeof readSystem>>;
 type State = { kind: 'loading' } | { kind: 'error'; message: string } | { kind: 'loaded'; data: System };
@@ -7,9 +8,9 @@ type State = { kind: 'loading' } | { kind: 'error'; message: string } | { kind: 
 export function App() {
   const [state, setState] = useState<State>({ kind: 'loading' });
   const generation = useRef(0);
-  const refresh = useCallback(async () => {
+  const refresh = useCallback(async (showLoading = true) => {
     const request = ++generation.current;
-    setState({ kind: 'loading' });
+    if (showLoading) setState({ kind: 'loading' });
     try {
       const data = await readSystem();
       if (request === generation.current) setState({ kind: 'loaded', data });
@@ -29,7 +30,7 @@ export function App() {
         <nav aria-label="Main navigation"><a className="nav-active" href="/" aria-current="page"><span aria-hidden="true">◫</span> Overview</a></nav>
         <div className="sidebar-roadmap">
           <p className="eyebrow">THE WORKSPACE AHEAD</p>
-          {['Forensics', 'Ledger', 'Sentinel', 'Preflight'].map(name => <div className="roadmap-item" key={name}><span>{name}</span><span className="tiny-label">Planned</span></div>)}
+          {['Forensics', 'Ledger', 'Sentinel', 'Preflight'].map(name => <div className="roadmap-item" key={name}><span>{name}</span><span className="tiny-label">{name === 'Forensics' ? 'Simulator' : name === 'Ledger' ? 'Evidence' : 'Planned'}</span></div>)}
         </div>
         <div className="sidebar-footer"><span className="local-dot" aria-hidden="true" /><span>Local development<br /><small>Pranshu Jain · REWIND</small></span></div>
       </aside>
@@ -40,29 +41,30 @@ export function App() {
           <div aria-live="polite" aria-atomic="true" className="status-announcement">{state.kind === 'loading' ? 'Checking backend readiness…' : state.kind === 'error' ? 'Backend unavailable' : state.data.health.ready ? `API ready. Available modes: ${state.data.health.available_modes.join(', ')}.` : 'API requires attention.'}</div>
           {state.kind === 'loading' && <section className="panel loading-panel"><span className="pulse-dot" aria-hidden="true" /><p>Reading system capabilities…</p></section>}
           {state.kind === 'error' && <section className="panel error-panel" role="alert"><h2>Backend unavailable</h2><p>{state.message}</p><p className="muted">Start the local API, then refresh to read its current capabilities.</p><code>python scripts/rewind.py dev</code></section>}
-          {state.kind === 'loaded' && <SystemView data={state.data} />}
-          <footer className="main-footer"><span>Evidence before conclusions.</span><span>Local, single-user development · No real-model calls</span></footer>
+          {state.kind === 'loaded' && <SystemView data={state.data} onCaptured={() => void refresh(false)} />}
+          <footer className="main-footer"><span>Evidence before conclusions.</span><span>Local, single-user development · Simulator investigations</span></footer>
         </main>
       </div>
     </div>
   );
 }
 
-function SystemView({ data }: { data: System }) {
+function SystemView({ data, onCaptured }: { data: System; onCaptured: () => void }) {
   const { health, capabilities } = data;
   const recorder = capabilities.features.find(feature => feature.id === 'recorder');
   return <>
     <section className="readiness panel" aria-labelledby="readiness-title">
-      <div><span className={`signal ${health.ready ? 'ready' : 'attention'}`} aria-hidden="true" /><div><h2 id="readiness-title">{health.ready ? 'Foundation is online' : 'Foundation needs attention'}</h2><p>{health.ready ? 'API and storage are ready. CLI simulation uses owned mocks; real-model replay remains unavailable.' : `Storage readiness: ${health.database.reason}. Run the migration command.`}</p></div></div>
+      <div><span className={`signal ${health.ready ? 'ready' : 'attention'}`} aria-hidden="true" /><div><h2 id="readiness-title">{health.ready ? 'Foundation is online' : 'Foundation needs attention'}</h2><p>{health.ready ? 'API and storage are ready. Simulator investigations use an isolated owned sandbox. Gemini has an exploratory CLI; real-model confirmation is unsupported.' : `Storage readiness: ${health.database.reason}. Run the migration command.`}</p></div></div>
       <span className={`badge ${health.ready ? 'success' : 'caution'}`}>{health.ready ? 'API ready' : 'Not ready'}</span>
     </section>
     <div className="content-grid">
       <div>
+        <Forensics onCaptured={onCaptured} />
         <section className="panel evidence-panel" aria-labelledby="evidence-title">
-          <div className="section-top"><p className="eyebrow">EVIDENCE WORKSPACE</p><span className="badge">Empty</span></div>
+          <div className="section-top"><p className="eyebrow">EVIDENCE WORKSPACE</p><span className="badge">{health.stored_session_count ? `${health.stored_session_count} sessions` : 'Empty'}</span></div>
           <div className="empty-glyph" aria-hidden="true">↶</div><h2 id="evidence-title">{health.stored_session_count > 0 ? 'Recorded sessions are ready.' : 'Your first run starts here.'}</h2>
-          <p>{health.stored_session_count} recorded sessions stored in this workspace.<br />The recorder is available through the CLI; the interactive explorer follows in P6.</p>
-          <div className="empty-action"><button disabled>Run demo scenario</button><span>CLI: python scripts/rewind.py demo · Synthetic local sinks only</span></div>
+          <p>{health.stored_session_count} recorded sessions stored in this workspace.<br />Capture an owned scenario above or through the CLI. The full session explorer follows in P6.</p>
+          <div className="empty-action"><code>python scripts/rewind.py demo</code><span>Synthetic local sinks only</span></div>
         </section>
         <section className="feature-section" aria-labelledby="features-title"><div className="section-title"><h2 id="features-title">One evidence layer, four perspectives</h2><span>Planned capabilities</span></div><div className="feature-grid">{capabilities.features.filter(feature => feature.id !== 'recorder').map(feature => <article className="panel feature-card" key={feature.id}><div><h3>{feature.label}</h3><span className="tiny-label">{feature.maturity}</span></div><p>{feature.description}</p><p className="feature-reason">{feature.reason}</p></article>)}</div></section>
       </div>

@@ -37,6 +37,10 @@ def manifest() -> dict:
                 "httpx",
                 "ruff",
                 "cryptography",
+                "statsmodels",
+                "numpy",
+                "scipy",
+                "pandas",
             ]
         },
         "web_dependencies": {
@@ -57,7 +61,10 @@ def manifest() -> dict:
         "mcp_transport_scope": (
             "owned stdio tools and transparent recorder verified; protocol 2026-07-28 only"
         ),
-        "models": {"local_model": "not configured", "remote_model": "not configured"},
+        "models": {
+            "local_model": "not configured",
+            "remote_model": "Gemini CLI experimental; real confirmation unsupported",
+        },
         "replay_isolation": "P3 no-network Linux container verified; setup/probe required locally",
     }
 

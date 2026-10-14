@@ -91,6 +91,7 @@ def dev() -> None:
     # The child runner executes npm.cmd; its process shares the terminal's Ctrl+C.
     children = [subprocess.Popen(api_command() + ["--reload"], cwd=ROOT)]
     try:
+        children.append(subprocess.Popen([str(PYTHON), "-m", "rewind_eval.worker"], cwd=ROOT))
         children.append(subprocess.Popen([sys.executable, __file__, "web"], cwd=ROOT))
         print("Web: http://127.0.0.1:5173 · API: http://127.0.0.1:8000/api/health", flush=True)
         while all(child.poll() is None for child in children):

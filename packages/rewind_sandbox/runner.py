@@ -24,10 +24,11 @@ async def run_world(
     trust_external: bool = True,
     capture_store=None,
     adapter_capture: bool = True,
+    run_id: str | None = None,
 ) -> RunResult:
     model = model_for(mode, trust_external)
     world = world.model_copy(deep=True)
-    run_id = str(uuid4())
+    run_id = run_id or str(uuid4())
     working = directory / run_id
     working.mkdir(parents=True, exist_ok=False)
     world_path = working / "world.json"

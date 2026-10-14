@@ -40,8 +40,10 @@ def capabilities() -> CapabilitiesResponse:
         ),
         (
             RunMode.REMOTE_MODEL,
-            "Hosted model re-execution",
-            "Provider adapter, authorised budget and constrained inference broker are absent.",
+            "Hosted model (CLI only)",
+            "Gemini's budgeted exploratory CLI makes fresh decisions in owned mocks. "
+            "Invalid or unsupported tool proposals remain invalid. API/Forensics real-model "
+            "eligibility is unsupported; CLI inference needs an explicit billing declaration.",
         ),
     ]
     features = [
@@ -74,9 +76,13 @@ def capabilities() -> CapabilitiesResponse:
                 available=mode in {RunMode.PLAYBACK, RunMode.SIMULATED},
                 maturity=FeatureMaturity.VERIFIED
                 if mode in {RunMode.PLAYBACK, RunMode.SIMULATED}
+                else FeatureMaturity.EXPERIMENTAL
+                if mode == RunMode.REMOTE_MODEL
                 else FeatureMaturity.PLANNED,
                 evidence_status=EvidenceStatus.FIXTURE_EFFECT_OBSERVED
                 if mode == RunMode.SIMULATED
+                else EvidenceStatus.EXPLORATORY
+                if mode == RunMode.REMOTE_MODEL
                 else EvidenceStatus.UNAVAILABLE,
                 reason=reason,
             )
@@ -87,13 +93,23 @@ def capabilities() -> CapabilitiesResponse:
                 id=id_,
                 label=label,
                 description=description,
-                available=id_ == "recorder",
-                maturity=FeatureMaturity.VERIFIED if id_ == "recorder" else FeatureMaturity.PLANNED,
+                available=id_ in {"recorder", "ledger"} or (id_ == "forensics" and isolated),
+                maturity=FeatureMaturity.VERIFIED
+                if id_ in {"recorder", "ledger"}
+                else (
+                    FeatureMaturity.IMPLEMENTED if id_ == "forensics" else FeatureMaturity.PLANNED
+                ),
                 evidence_status=EvidenceStatus.UNAVAILABLE,
                 reason=(
                     "Signed, encrypted owned-stdio capture with explicit simulator adapter; "
                     "other integrations unsupported."
                     if id_ == "recorder"
+                    else "P4 simulator discovery, fixed plans and durable jobs. "
+                    "Requires locally verified replay isolation; real confirmation unsupported."
+                    if id_ == "forensics"
+                    else "Signed stored-fact evidence, independent trusted-key verification and "
+                    "original-attack simulator regressions. Governance mapping pending."
+                    if id_ == "ledger"
                     else f"Requires {dependency}; not implemented yet."
                 ),
             )
