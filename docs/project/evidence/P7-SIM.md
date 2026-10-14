@@ -4,7 +4,9 @@ Date: 2026-10-15 (Asia/Calcutta). **VERIFIED for the owned simulator/database ad
 Recovered clean source checkpoint 373a0e8eb3c0ae72e9965c4a121936c362a90aa1,
 master tracking origin/main. Implementation uses ordinary new commits and retains
 all prior signed artifacts, logs and unrelated work. Source/artifact hashes and
-publication revision mapping: P7-ARTIFACTS.json.
+publication revision mapping: P7-ARTIFACTS.json. Implementation
+aca72bd2f0d0278ee1b323a0a318d51fc92d2ff9 is published to origin/main and remote
+SHA verified. Git author and committer are the user's authorised Pranshu Jain identity.
 
 ## Working behaviour
 

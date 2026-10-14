@@ -79,8 +79,10 @@ Original signed samples/hash indexes remain unchanged. Historical Git IDs resolv
 through evidence/GIT-IDENTITY-20261014.md after the explicit author correction.
 GitHub pranshujain8532/Rewind-full main; local master tracks origin/main. Commit
 identity Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com authorised.
-Recovered clean head 373a0e8; origin/main verified unchanged before P7 publication.
-Local master tracks origin/main. Validated P7 ordinary commit/publication follows.
+Recovered clean head 373a0e8. P7 implementation aca72bd2f0d0278ee1b323a0a318d51fc92d2ff9
+published to origin/main and remote SHA verified. Local master tracks origin/main.
+Source/artifact revision mapping: evidence/P7-ARTIFACTS.json. Publication metadata
+is recorded in the ordinary documentation follow-up; implementation/evidence are stable.
 
 Next product task: prompts/08-PREFLIGHT.md. P7 is complete for the owned adapter;
 P8 not started. Generic external tools, mandate editing API and multi-user identity

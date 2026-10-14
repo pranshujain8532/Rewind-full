@@ -652,3 +652,15 @@ P7-SIM and artifact index. Git remote read still 373a0e8; local master tracks ma
 approved Pranshu Jain identity configured. Next: ordinary validated P7 commit/push,
 then prompts/08-PREFLIGHT.md. Generic MCP/real agents, editing mandate API, external
 trust/production hosting/anomaly FPR/native environment certification remain unsupported.
+## P7 publication — 2026-10-15
+
+Ordinary implementation commit aca72bd2f0d0278ee1b323a0a318d51fc92d2ff9, message
+“Implement Sentinel mandates and exact single-use approvals”, contains 47 scoped
+files. Author/committer verified as Pranshu Jain and the authorised noreply email.
+git push origin HEAD:main succeeded as a fast-forward from 373a0e8. Independent
+git ls-remote origin refs/heads/main returns the exact implementation SHA. Worktree
+clean and master still tracks origin/main. All eight public files match their staged
+SHA-256; 59 tested source Git blobs match the staged tree. No secret/private data or
+unrelated path staged. Evidence index now binds this source revision; ordinary
+documentation follow-up records publication without altering code/tests/signatures.
+Next product task remains P8; no P8 implementation began.

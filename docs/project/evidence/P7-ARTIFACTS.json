@@ -3,7 +3,7 @@
   "phase": "P7",
   "date": "2026-10-15 Asia/Calcutta",
   "parent_revision": "373a0e8eb3c0ae72e9965c4a121936c362a90aa1",
-  "source_revision": "to be bound to the ordinary implementation commit",
+  "source_revision": "aca72bd2f0d0278ee1b323a0a318d51fc92d2ff9",
   "source_git_blob": {
     "apps/web/src/api.ts": "a51ebd9be5ad6cd4129b4058396c9dcca8749d7d",
     "apps/web/src/App.tsx": "8cd25370892e0cbdac8b033f6c1f5916aba79827",
@@ -266,5 +266,11 @@
     },
     "provider_requests": 0
   },
-  "limits": "Owned simulator and atomic database mock effects only; raw data/key stores excluded. Public key is demonstration trust, not automatic anchoring."
+  "limits": "Owned simulator and atomic database mock effects only; raw data/key stores excluded. Public key is demonstration trust, not automatic anchoring.",
+  "source_publication": {
+    "remote": "origin/main",
+    "verified_sha": "aca72bd2f0d0278ee1b323a0a318d51fc92d2ff9",
+    "previous_sha": "373a0e8eb3c0ae72e9965c4a121936c362a90aa1",
+    "method": "ordinary fast-forward push; independently read with ls-remote"
+  }
 }

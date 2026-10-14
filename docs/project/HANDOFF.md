@@ -5,7 +5,9 @@ Read AGENTS, STATE, TASKS, ADR-018, EXP-010 and evidence/P7-SIM.md first; P6-UI.
 and ADR-014?017 retain the recorder/replay/Ledger/UI boundaries. Do not restart.
 Recovered clean 373a0e8 on master tracking origin/main. Publication remains authorised
 under Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com. P7 source and
-artifact revision mapping is in evidence/P7-ARTIFACTS.json; ordinary publication follows.
+artifact revision mapping is in evidence/P7-ARTIFACTS.json. P7 implementation
+aca72bd2f0d0278ee1b323a0a318d51fc92d2ff9 published and remote SHA verified. The ordinary
+evidence follow-up binds that source; no history rewrite or force push.
 
 P7 implementation: packages/rewind_core/sentinel/{contracts,policy,store,verify}.py;
 0006_sentinel; local API sentinel.py; apps/web/src/Sentinel.tsx. Signed mandate binds
