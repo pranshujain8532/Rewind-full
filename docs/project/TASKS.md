@@ -29,7 +29,8 @@ Actual EXP-004: seven source trials and ten regression trials; vulnerable fails,
 correct fixes pass safety AND owner task, residual attempts remain visible, deny-all
 fails useful work. Invalid source/trial evidence cannot pass. No paid/real inference.
 Current acceptance matrix and exact paths: evidence/P5-SIM.md. Remaining P5 checks
-none. Commit/push is the pending delivery step, explicitly authorised by user.
+none. Code/evidence commits e756deb/70d7a01 published successfully to origin/main,
+explicitly authorised by user; publication handoff marker follows.
 Next product task: prompts/06-FRONTEND.md. Preserve old history and all user work.
 
 P4-SIM VERIFIED. User's Gemini key authenticates and supports fresh remote CLI

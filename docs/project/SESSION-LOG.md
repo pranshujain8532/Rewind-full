@@ -493,3 +493,14 @@ Next: prompts/06-FRONTEND.md. P3/P4 real gates and full real regression remain
 unverified/unsupported; Gemini free-tier/$0 authorisation persists with exhausted
 previous three-call smoke cap. Native Linux/WSL host, fresh machine and public app
 serving remain not_run/unsupported. Stop optional P5 checks; complete authorised push.
+
+### P5 publication checkpoint — 2026-10-14
+
+Author/committer of new commits: Pranshu Jain with the user-approved GitHub noreply.
+Source/tests e756deb and context/actual synthetic evidence 70d7a01 committed after
+validation. Credential scan of 172 tracked/staged files: zero provider/private-key
+matches; public examples independently verify. Source/evidence hash index matches.
+git push -u origin HEAD:main succeeded, created remote main and set local master to
+track origin/main. No force push, old-author rewrite, invented dates, deployment,
+provider call or external tool dispatch. STATE/HANDOFF/TASKS updated to truthful
+published status. A documentation-only publication marker records this delivery.

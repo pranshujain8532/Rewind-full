@@ -64,8 +64,9 @@ scoped safe.directory for this exact repo; do not change ownership/global trust.
 
 GitHub: https://github.com/pranshujain8532/Rewind-full.git, public empty remote/main
 verified. User selected noreply identity 241415102+pranshujain8532@users.noreply.github.com;
-name pranshu jain. New commits/push authorised; preserve older Codex-authored history.
-Code/context commits and push still pending final delivery; secrets/private keys/local
+name Pranshu Jain. New commits/push authorised; preserve older Codex-authored history.
+Code e756deb and context/evidence 70d7a01 pushed successfully to origin/main.
+Local master tracks origin/main. Publication marker follows; secrets/private keys/local
 DB/artifacts excluded, actual public synthetic sample retained for review.
 
 Next exact task: prompts/06-FRONTEND.md. Full session/evidence explorer and accessible

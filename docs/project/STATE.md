@@ -65,9 +65,10 @@ artifacts/browser/2026-10-14T10-43-47-906Z/, mobile at 10-47-39-965Z/.
 All required renders inspected. Earlier failures retained; no single 18/18 claim.
 
 GitHub publication authorised: pranshujain8532/Rewind-full, default main. New
-commit identity pranshu jain / 241415102+pranshujain8532@users.noreply.github.com,
+commit identity Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com,
 explicitly selected by user. Preserve previous history; no fabricated dates/authorship.
-Code/context commits and push are the final pending delivery step.
+Code e756deb and evidence/context 70d7a01 published to origin/main successfully.
+Publication handoff marker follows; no pending P5 implementation/verification.
 
 Next exact product task: prompts/06-FRONTEND.md (P6), full evidence/session explorer,
 accessible comparison and remaining rendered journey. Real-mode admission/budgets
