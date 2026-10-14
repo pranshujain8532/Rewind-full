@@ -64,11 +64,14 @@ P5 three journeys pass after identity binding, final desktops at
 artifacts/browser/2026-10-14T10-43-47-906Z/, mobile at 10-47-39-965Z/.
 All required renders inspected. Earlier failures retained; no single 18/18 claim.
 
-GitHub publication authorised: pranshujain8532/Rewind-full, default main. New
-commit identity Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com,
-explicitly selected by user. Preserve previous history; no fabricated dates/authorship.
-Code e756deb and evidence/context 70d7a01 published to origin/main successfully.
-Publication handoff marker follows; no pending P5 implementation/verification.
+GitHub: pranshujain8532/Rewind-full, default main; local master tracks origin/main.
+User requested correction of four older Codex author/committer identities to
+Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com. Published with
+an explicit force-with-lease; remote rewrite head verified as 63d9595. All seven
+commit trees/messages/dates preserved; local original-history ref and bundle kept.
+Code now d10873c (original e756deb); evidence/context now 80cb213 (original 70d7a01).
+Full mapping: evidence/GIT-IDENTITY-20261014.md. Historical evidence hashes and
+signed artifacts remain unchanged. No pending P5 implementation/verification.
 
 Next exact product task: prompts/06-FRONTEND.md (P6), full evidence/session explorer,
 accessible comparison and remaining rendered journey. Real-mode admission/budgets

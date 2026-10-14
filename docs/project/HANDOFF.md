@@ -2,7 +2,9 @@
 
 Updated 2026-10-14 (Asia/Calcutta). P5-SIM VERIFIED; real investigations unsupported.
 User explicitly requested P5 and authorised GitHub pushes, superseding the P4-REAL
-next-task note. Do not restart, reset user work, alter old authors or backdate commits.
+next-task note. Subsequently requested correcting older Codex Git identities to
+the approved Pranshu Jain identity; this rewrite is published and verified below.
+Do not restart, reset user work or fabricate dates. Preserve historical evidence.
 
 Read AGENTS, STATE, TASKS, ADR-014/015/016, EXP-003/008/004 and recent bugs.
 Current code: rewind_ledger contracts/evidence/bundle/store/regression/worker/CLI;
@@ -62,12 +64,16 @@ Commands: python scripts/rewind.py dev; check; npm run test:e2e;
 Existing data migrated additively to 0004; no reset/deletion. Git host needs command-
 scoped safe.directory for this exact repo; do not change ownership/global trust.
 
-GitHub: https://github.com/pranshujain8532/Rewind-full.git, public empty remote/main
-verified. User selected noreply identity 241415102+pranshujain8532@users.noreply.github.com;
-name Pranshu Jain. New commits/push authorised; preserve older Codex-authored history.
-Code e756deb and context/evidence 70d7a01 pushed successfully to origin/main.
-Local master tracks origin/main. Publication marker follows; secrets/private keys/local
-DB/artifacts excluded, actual public synthetic sample retained for review.
+GitHub: https://github.com/pranshujain8532/Rewind-full.git, public main verified.
+User selected noreply identity 241415102+pranshujain8532@users.noreply.github.com;
+name Pranshu Jain. Explicit subsequent request corrected author AND committer on
+four older Codex commits. Seven original trees/messages/dates unchanged; descendant
+IDs changed. Published with force-with-lease against b8aec154; remote 63d9595 verified.
+Code d10873c / context 80cb213 replace e756deb / 70d7a01. Full mapping and backup:
+evidence/GIT-IDENTITY-20261014.md. Existing artifact indexes retain original revision
+IDs; resolve through this map rather than editing/re-signing measured evidence.
+Local master tracks origin/main. Secrets/private keys/local DB/artifacts excluded;
+actual public synthetic sample retained for review. Follow-up commit records context.
 
 Next exact task: prompts/06-FRONTEND.md. Full session/evidence explorer and accessible
 comparison journeys. Real P3/P4 gates, native Linux/WSL host/fresh machine, remote

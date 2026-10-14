@@ -504,3 +504,29 @@ git push -u origin HEAD:main succeeded, created remote main and set local master
 track origin/main. No force push, old-author rewrite, invented dates, deployment,
 provider call or external tool dispatch. STATE/HANDOFF/TASKS updated to truthful
 published status. A documentation-only publication marker records this delivery.
+
+### Git author correction — 2026-10-14
+
+Goal: user's explicit request to replace Codex attribution on the four older commits
+with the already approved Pranshu Jain / GitHub private noreply identity. This
+supersedes the earlier choice to preserve those identity fields; no product rescope.
+
+Before: clean local master and remote main both b8aec154f40c0ed74e03cad8ae529fea75be4ecf.
+Seven linear commits; four Codex author/committer pairs, three already correct.
+Created a local original-history backup ref and verified git bundle before rewriting.
+Git plumbing replaced only the four author/committer pairs and descendant parent IDs.
+Byte checks for every commit preserved tree, complete message, timestamp and timezone;
+git diff old/new was empty, seven commits retained, working tree clean.
+Raw verification: artifacts/git-author-fix/20261014T120906676047Z/verification.json;
+backup bundle in that directory. Committed map: evidence/GIT-IDENTITY-20261014.md.
+
+git push --force-with-lease=refs/heads/main:b8aec154f40c0ed74e03cad8ae529fea75be4ecf
+origin HEAD:main succeeded; remote main now 63d9595b33ec792e6ba125a4bcf1181156254e67.
+First post-push ls-remote hit a transient DNS failure; immediate repeat succeeded
+and matched the rewritten head. All seven main author/committer identities are the
+approved Pranshu Jain identity. Original-history backup remains local, not published.
+
+Updated STATE, HANDOFF, TASKS and this append-only log; historical experiment logs,
+artifact hash indexes, signed bundles and code unchanged. Application tests not_run:
+metadata/context change only; verification targeted commit bytes and remote status.
+Next: publish the context follow-up under the same identity; product task remains P6.

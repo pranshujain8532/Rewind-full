@@ -29,9 +29,13 @@ Actual EXP-004: seven source trials and ten regression trials; vulnerable fails,
 correct fixes pass safety AND owner task, residual attempts remain visible, deny-all
 fails useful work. Invalid source/trial evidence cannot pass. No paid/real inference.
 Current acceptance matrix and exact paths: evidence/P5-SIM.md. Remaining P5 checks
-none. Code/evidence commits e756deb/70d7a01 published successfully to origin/main,
-explicitly authorised by user; publication handoff marker follows.
-Next product task: prompts/06-FRONTEND.md. Preserve old history and all user work.
+none. Code/evidence originally e756deb/70d7a01, now d10873c/80cb213 after the user's
+explicit Git identity correction; published successfully to origin/main.
+Attribution maintenance VERIFIED: four Codex author/committer identities corrected,
+seven commit trees/messages/dates preserved, local backup verified, lease-protected
+push and remote-head read passed. Evidence: evidence/GIT-IDENTITY-20261014.md.
+Historical artifact revisions/signatures remain intact and resolve through that map.
+Next product task: prompts/06-FRONTEND.md. Preserve all user work.
 
 P4-SIM VERIFIED. User's Gemini key authenticates and supports fresh remote CLI
 trials on the explicitly declared free-tier project with spend $0. EXP-008 is an
