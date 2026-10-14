@@ -3,11 +3,13 @@
 Date: 2026-10-15 (Asia/Calcutta). **VERIFIED for the fixed owned simulator suite.**
 Real-model/generation/classifier support absent.
 Recovered clean 709ff0d6cc7c0975ad4422eb058e0bfa05f97795 on master tracking origin/main.
-Source and actual artifact hashes/staged-blob binding: P8-ARTIFACTS.json. P8 is
-locally validated/staged; no P8 commit exists yet. Automatic approval review rejected
-commit/push to default origin/main because the earlier grant was judged P7-only.
-No rejected command ran. The user explicitly approved P8 commit and push to
-origin/main on 2026-10-15; publication is now authorised and pending execution.
+Source and actual artifact hashes: P8-ARTIFACTS.json. Implementation commit
+5e62cc8aa54e4a1491968c6b73e0fc459462344a was published by ordinary fast-forward push
+to origin/main and independently checked with ls-remote. All 113 source blobs,
+152 raw artifacts and ten public artifacts match the recorded hashes.
+Automatic review first rejected publication because the prior grant was judged
+P7-only; no rejected command ran. The user then explicitly approved P8 commit/push
+on 2026-10-15. SESSION-LOG.md preserves the rejection, approval and publication.
 
 ## Working product path
 

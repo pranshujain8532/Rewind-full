@@ -3,7 +3,7 @@
   "phase": "P8",
   "date": "2026-10-15 Asia/Calcutta",
   "parent_revision": "709ff0d6cc7c0975ad4422eb058e0bfa05f97795",
-  "source_revision": null,
+  "source_revision": "5e62cc8aa54e4a1491968c6b73e0fc459462344a",
   "source_git_blob": {
     ".gitattributes": "cd4969758b3116ceb2f2ad0060535ac2f416f6d5",
     "apps/web/src/api.ts": "a51ebd9be5ad6cd4129b4058396c9dcca8749d7d",
@@ -328,6 +328,13 @@
     "schema_version": "1.0"
   },
   "limitations": "Fixed owned simulator suite; deliberate invalid controls retained; no classifier/evasion measurement or evolutionary/LLM generation. Private stores/keys excluded.",
-  "validation_state": "verified_staged_worktree",
-  "publication_status": "explicit_P8_approval_received_pending_publication"
+  "validation_state": "verified_published_source",
+  "publication_status": "published",
+  "source_publication": {
+    "remote": "origin/main",
+    "verified_sha": "5e62cc8aa54e4a1491968c6b73e0fc459462344a",
+    "previous_sha": "709ff0d6cc7c0975ad4422eb058e0bfa05f97795",
+    "method": "ordinary_fast_forward_push_then_ls_remote",
+    "authorisation": "explicit_user_P8_commit_and_push_approval_2026-10-15"
+  }
 }

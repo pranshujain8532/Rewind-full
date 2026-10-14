@@ -4,10 +4,11 @@ Updated 2026-10-15 (Asia/Calcutta). P8 fixed owned suite VERIFIED; P7/P6/P4-SIM/
 remain verified. Read AGENTS, STATE, TASKS, ADR-019, EXP-011 and evidence/P8-SIM.md.
 Recovered clean 709ff0d on master tracking origin/main. Configured identity is
 Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com. P8 source and
-artifact binding is in evidence/P8-ARTIFACTS.json (validated staged blobs, no P8 commit).
-After automatic review judged the prior grant P7-only, the user explicitly approved
-P8 commit and push to origin/main on 2026-10-15. Publication is now authorised and
-pending execution. All implementation gates pass; 57 scoped files are staged locally.
+artifact binding is in evidence/P8-ARTIFACTS.json. P8 implementation commit
+5e62cc8aa54e4a1491968c6b73e0fc459462344a is published to origin/main, remote SHA
+verified. All 113 source blobs/152 raw/10 public hashes match. The user explicitly
+approved P8 publication after the prior grant was judged P7-only; SESSION-LOG.md
+preserves that boundary. This documentation follow-up records the published source.
 Do not restart, reset user work or rewrite history. Next product phase is P9, not started.
 
 P8 code: packages/rewind_core/preflight/{contracts,fixtures,runtime,store,worker}.py,

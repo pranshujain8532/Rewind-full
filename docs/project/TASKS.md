@@ -27,6 +27,8 @@ resource caps, shared-worker leases, partial captures, invalid coverage and fail
 navigation implemented. 150/150 repository tests, 25/25 final mechanisms, initial
 4/4 initial browser and EXP-011 actual suites/limits/investigations pass. Final full
 browser 33/33 in 8.1m; three viewports reviewed. Local migration preserves all data.
+Published source 5e62cc8aa54e4a1491968c6b73e0fc459462344a verified on origin/main;
+exact source/artifact hash binding is in evidence/P8-ARTIFACTS.json.
 Next task prompts/09-MCP-TOOLS.md; P9 not started.
 No provider call, LLM variations, classifier/evasion claim or evolutionary generation.
 

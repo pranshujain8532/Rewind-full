@@ -98,9 +98,10 @@ results, 14 separate source-investigation trials, 100.756558s. Caps retain unkno
 iteration three starts; one-second timeout one incomplete. Zero provider requests.
 Final browser: artifacts/browser/2026-10-14T20-23-25-771Z/; final cancellation/maturity
 fields covered by affected 25/25 plus full 33 browser. P8-SIM.md/P8-ARTIFACTS.json
-bind exact staged source/evidence. Recovered 709ff0d; 57 validated P8 files staged.
-User explicitly approved P8 commit/push to origin/main on 2026-10-15; publication
-is next. The earlier automatic-review rejection remains recorded in SESSION-LOG.md.
+bind source/evidence to published P8 commit 5e62cc8aa54e4a1491968c6b73e0fc459462344a.
+User explicitly approved P8 publication; ordinary push to origin/main and remote SHA
+verified. All 113 source blobs/152 raw/10 public hashes match. SESSION-LOG.md retains
+the earlier automatic-review rejection and subsequent approval/publication.
 Generic external tools, mandate editing API and multi-user identity
 cannot inherit the atomic database mock guarantee. P7 made zero provider calls.
 Real-mode budgets/admission, production multi-user hosting, external trust/governance,

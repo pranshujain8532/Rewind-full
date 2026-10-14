@@ -736,3 +736,19 @@ review. Rechecked master tracking origin/main, clean unstaged diff, 57 scoped st
 files, configured identity and remote 709ff0d6cc7c0975ad4422eb058e0bfa05f97795.
 No new implementation changes or provider requests. Next: ordinary commit/push,
 remote SHA verification and documentation checkpoint; P9 remains unstarted.
+
+## P8 published source checkpoint - 2026-10-15
+
+Ordinary commit 5e62cc8aa54e4a1491968c6b73e0fc459462344a (57 scoped files) and
+`git push origin HEAD:main` succeeded after explicit P8 approval. `git ls-remote
+origin refs/heads/main` returned that exact SHA. Author and committer both match
+Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com. Worktree was clean
+after the implementation push; no history rewrite or force push.
+
+Rechecked the published tree: 113 source Git blobs, 152 retained raw artifact SHA256s
+and ten public artifact SHA256s all match P8-ARTIFACTS.json (zero mismatches). Bound
+that index and STATE/HANDOFF/TASKS/P8-SIM to the actual implementation SHA in this
+ordinary documentation follow-up. `git diff --cached --check` is the publication
+format check; mechanism/browser suites are unchanged from the recorded passing
+150 root / 25 final affected / 33 full-browser checks and were not rerun for prose.
+No provider requests or deployment. Next product task: P9, not started.
