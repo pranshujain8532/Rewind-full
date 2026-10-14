@@ -343,11 +343,19 @@ def main():
 
     ledger = LedgerStore(data_directory())
     regression = RegressionWorker(ledger)
+    from rewind_core.preflight.store import PreflightStore
+    from rewind_core.preflight.worker import PreflightWorker
+
+    preflight_store = PreflightStore(data_directory())
+    preflight = PreflightWorker(preflight_store)
     for sig in (signal.SIGINT, signal.SIGTERM):
-        signal.signal(sig, lambda *_: (worker.stop.set(), regression.stop.set()))
+        signal.signal(
+            sig, lambda *_: (worker.stop.set(), regression.stop.set(), preflight.stop.set())
+        )
     try:
         while not worker.stop.is_set():
-            worked = regression.run_one() or worker.run_one()
+            preflight_store.recover()
+            worked = regression.run_one() or worker.run_one() or preflight.run_one()
             if args.once:
                 break
             if not worked:
@@ -355,6 +363,7 @@ def main():
     finally:
         store.engine.dispose()
         ledger.engine.dispose()
+        preflight_store.engine.dispose()
 
 
 if __name__ == "__main__":

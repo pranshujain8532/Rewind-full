@@ -18,8 +18,13 @@ def capabilities() -> CapabilitiesResponse:
     from rewind_replay.container import MANIFEST
 
     isolated = False
+    preflight_ready = False
     try:
         isolated = json.loads(MANIFEST.read_bytes()).get("isolation_verified") is True
+        preflight_ready = (
+            json.loads(MANIFEST.read_bytes()).get("preflight_runtime_version")
+            == "preflight-fixed-v1"
+        )
     except (OSError, ValueError):
         pass
     modes = [
@@ -94,12 +99,16 @@ def capabilities() -> CapabilitiesResponse:
                 label=label,
                 description=description,
                 available=id_ in {"recorder", "ledger", "sentinel"}
-                or (id_ == "forensics" and isolated),
+                or (
+                    id_ in {"forensics", "preflight"}
+                    and isolated
+                    and (id_ != "preflight" or preflight_ready)
+                ),
                 maturity=FeatureMaturity.VERIFIED
-                if id_ in {"recorder", "ledger", "sentinel"}
+                if id_ in {"recorder", "ledger", "sentinel", "preflight"}
                 else (
                     FeatureMaturity.IMPLEMENTED
-                    if id_ in {"forensics", "sentinel"}
+                    if id_ in {"forensics", "sentinel", "preflight"}
                     else FeatureMaturity.PLANNED
                 ),
                 evidence_status=EvidenceStatus.UNAVAILABLE,
@@ -116,6 +125,10 @@ def capabilities() -> CapabilitiesResponse:
                     else "Signed mandates, exact single-use approvals and atomic local mock tools. "
                     "Owned stateless simulator only; generic MCP and real agents unsupported."
                     if id_ == "sentinel"
+                    else "Fixed reviewed ticket-comment and mock-file suites in isolation; "
+                    "owned target only. Requires rebuilt/probed P8 runtime. "
+                    "Generation/classifier absent."
+                    if id_ == "preflight"
                     else f"Requires {dependency}; not implemented yet."
                 ),
             )

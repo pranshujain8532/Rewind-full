@@ -42,7 +42,7 @@ export function acceptProgress(event: Progress, id: string, cursor: number): boo
 }
 export const isTerminal = (status?: string) => !!status && ['completed', 'failed', 'cancelled', 'interrupted'].includes(status);
 
-export function useProgress(kind: 'investigations' | 'regression-runs', id: string | undefined, status: string | undefined, seq: number, onProgress: () => void) {
+export function useProgress(kind: 'investigations' | 'regression-runs' | 'preflight-runs', id: string | undefined, status: string | undefined, seq: number, onProgress: () => void) {
   const callback = useRef(onProgress); callback.current = onProgress;
   const [connection, setConnection] = useState('Connecting');
   const [latest, setLatest] = useState<Progress | null>(null);

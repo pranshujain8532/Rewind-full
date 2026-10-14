@@ -664,3 +664,75 @@ SHA-256; 59 tested source Git blobs match the staged tree. No secret/private dat
 unrelated path staged. Evidence index now binds this source revision; ordinary
 documentation follow-up records publication without altering code/tests/signatures.
 Next product task remains P8; no P8 implementation began.
+## P8 first mechanism slice - 2026-10-15
+
+Recovered clean 709ff0d on master/origin/main; read required context, P8 prompt,
+architecture/design/verification, ADR-018/P7 evidence and actual worker/capture/schema
+contracts. Implemented fixed reviewed ticket/comment and owned mock-file text fixtures,
+strict target/version/config contracts, container operation using actual owned SDK
+reads, persisted plan/reservation/events, budgets/leases/cancel/coverage, capture and
+source-investigation APIs. Provider spend remains $0; no generation/model call.
+Read installed official SDK APIs and primary repository docs; no dependency change.
+Runtime rebuild/probe succeeds, 13 checks, image 27023d71a5287de03e5f6ae0888e68640bd47f59a81188e483ada96b905ebc96.
+Initial unit suite 17 pass/1 fail: source integrity valid but capture readiness refuses
+missing explicit tool_schema event. Added actual observed schema event; no invariant
+relaxed. First lint errors retained. Rerun, actual two-surface isolation and UI pending.
+## P8 validated mechanism and actual experiment - 2026-10-15
+
+Full python scripts/rewind.py check passes 150/150 in 177.07s plus static/schema/types/
+build/manifest. Corrected P8 mechanism passes 25/25 in 11.61s; after explicit durable
+cancellation acknowledgement/maturity, final affected 25/25 in 11.37s and static checks
+pass. Initial browser 4/4 in 2.4m, all three viewports, actual raw surface counts,
+invalid coverage, file-source session/investigation links and cancel/offline recovery.
+Final full browser run is in progress, artifacts/p8/browser-final.log.
+
+Reviewed first rendered desktop/phone suite and expanded file failure; no overflow/
+fatal JS/external assets. Added atomic source-header reservation after crash-boundary
+review; unit fault before first event keeps an inspectable unsealed partial source.
+Parent derives measures from actions, checks model/protocol/config/read identity.
+No cached decisions, external target, provider, training or paid resource added.
+
+Final actual scripts/p8_benchmark.py EXP-011 directory 20261014T201810043273Z:
+32 returned, 24 valid/eight deliberate invalids; two surface/config repetitions agree
+with distinct fresh trial IDs. Each surface vulnerable 2/6 harmful attempts+dispatches;
+containment retains 2/6 attempts, blocks 2/2, dispatches 0/6; task 6/6. Classifier/evasion
+not measured. Iteration stops at three starts with 13 unstarted; one-second limit
+retains one incomplete/15 unstarted; queued cancel starts zero. Two actual source
+investigations complete 14 separate trials. Elapsed 100.756558s; provider calls zero.
+Earlier raw experiment retained. Root 0006->0007 migration preserves every prior table
+count/content hash. Final docs/source provenance and publication preparation continue;
+P9 has not started.
+## P8 final browser gate and review - 2026-10-15
+
+Final full npm.cmd run test:e2e passes 33/33 in 8.1m, including all P4/P5/P6/P7
+journeys and P8 raw counts, file-source failure navigation, refresh/cancel/offline.
+Final raw directory artifacts/browser/2026-10-14T20-23-25-771Z. Reviewed suite/full/
+viewport/failure detail at 1440x900,1280x720,390x844; no page overflow, fatal JS or
+external requests. Tall mobile element crop exposes an off-viewport skip link; normal
+full-page/viewport renders are clean and are used for public mobile review. Original
+crop is retained as a screenshot artifact, not relabelled normal viewport behaviour.
+Public actual synthetic source signature/completeness verify against separately
+selected demonstration key; no DB/API opened by that verification. Preserved raw
+samples/keys/screenshots are documentation evidence, never runtime fallback data.
+P8 fixed-suite gate VERIFIED; evolutionary/LLM/classifier extensions remain absent.
+Next: ordinary commit/publication under existing authorisation, then P9 (not started).
+## P8 publication approval boundary - 2026-10-15
+
+All 57 scoped files staged; 113 source Git blobs and ten public evidence files
+verified against the staged tree. Source/evidence/test gates pass. Automatic approval
+review rejected the combined commit-and-push command before process creation: it
+judged the prior publication grant P7-only and mutation of default origin/main to
+require explicit P8 approval. No local commit or push ran. Did not retry/bypass.
+Asked the user for explicit P8 commit/push approval; publication remains pending.
+Updated current context/index to distinguish locally verified implementation from
+publication. Next product task P9 remains unstarted; preserve staged work and await
+the requested grant before dependent Git publication.
+
+## P8 explicit publication approval - 2026-10-15
+
+The user answered the pending approval question: "Approve P8 commit and push to
+origin/main". This grants the specific P8 publication previously rejected by automatic
+review. Rechecked master tracking origin/main, clean unstaged diff, 57 scoped staged
+files, configured identity and remote 709ff0d6cc7c0975ad4422eb058e0bfa05f97795.
+No new implementation changes or provider requests. Next: ordinary commit/push,
+remote SHA verification and documentation checkpoint; P9 remains unstarted.

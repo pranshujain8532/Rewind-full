@@ -28,11 +28,15 @@ def create_app(directory: Path | None = None) -> FastAPI:
         from rewind_core.sentinel.store import SentinelStore
 
         app.state.sentinel = SentinelStore(directory or data_directory())
+        from rewind_core.preflight.store import PreflightStore
+
+        app.state.preflight = PreflightStore(directory or data_directory())
         app.state.local_token = secrets.token_urlsafe(32)
         yield
         app.state.jobs.engine.dispose()
         app.state.ledger.engine.dispose()
         app.state.sentinel.engine.dispose()
+        app.state.preflight.engine.dispose()
         app.state.engine.dispose()
 
     app = FastAPI(title="REWIND API", version=version("rewind"), lifespan=lifespan)
@@ -49,6 +53,9 @@ def create_app(directory: Path | None = None) -> FastAPI:
     from rewind_api.sentinel import install_routes as install_sentinel
 
     install_sentinel(app)
+    from rewind_api.preflight import install_routes as install_preflight
+
+    install_preflight(app)
 
     @app.get(
         "/api/health", response_model=HealthResponse, responses={503: {"model": HealthResponse}}

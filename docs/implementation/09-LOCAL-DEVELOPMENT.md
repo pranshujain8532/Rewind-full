@@ -190,3 +190,17 @@ Independent audit verification:
 Actual experiment: `.venv/Scripts/python.exe scripts/p7_benchmark.py` creates its own
 timestamped artifacts/data, runs no provider calls and leaves the root database alone.
 Guide: packages/rewind_core/sentinel/README.md. Next product phase P8; not started here.
+## P8 Preflight - 2026-10-15
+
+Run migrations to 0007_preflight, rebuild the replay image with
+`rewind_replay.cli setup`, then `probe`. The manifest must carry the P8 runtime
+marker and successful isolation probes; an old image fails admission instead of
+silently substituting surfaces. Start `python scripts/rewind.py dev`, open /preflight,
+choose versioned owned presets and bounded iterations/time/repeats. The shared worker
+now handles Preflight, investigations and regressions with mutual exclusion.
+
+`scripts/p8_benchmark.py` creates its own timestamped artifacts/data and runs the
+actual offline-capable suite/limits/failure investigations. It never resets the root
+database. Execution uses only the prebuilt local no-network image; no provider key,
+model download or paid service. Initial build/install still needs normal dependencies.
+Known scope and exact evidence: core/preflight/README.md and evidence/P8-SIM.md.

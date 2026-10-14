@@ -433,3 +433,40 @@ It never increments counters locally. Exact request/response schemas are generat
 in OpenAPI/TypeScript. Export verification is bounded and independent of API/DB,
 requiring a separately trusted public key. No anomaly/ML claim is made.
 Trade-offs and gate: ADR-018, EXP-010, project/evidence/P7-SIM.md.
+## P8 fixed-suite contract - 2026-10-15
+
+Core/preflight plus additive 0007_preflight freeze one owned target, eight reviewed
+fixtures across ticket comments/mock file text, configuration/fixture digests,
+repeat/seed policy, image/probes and trial/model-turn/wall-time/$0 budgets. Target URLs,
+unknown targets/versions/configurations, real modes and nonzero provider budgets
+are rejected. Evolutionary/LLM generation is not implemented.
+
+The rebuilt container exposes a typed preflight_trials operation. It calls the
+owned SDK ticket/file reads, verifies file text is absent from the ticket response,
+inserts the actual owned file text into the effective adapter input and makes a
+fresh simulator decision. Schema/read/result identities are checked by the parent.
+Code recomputes attempts, rules, dispatch and required owner-task results. Rules
+are P5 owned presets, not the live Sentinel mandate/approval workflow. Guardrail
+classifier detection and evasion remain not_measured, separate from policy blocks.
+
+Reservations and partial source headers are atomic. Captures bind initial world,
+actual schemas/reads/model envelopes, policy events and private mock effects through
+the existing recorder; invalid/incomplete capture refuses causal replay. The shared
+worker serialises all three job families and persists progress before SSE. Budgets,
+time limits, cancellation and lease expiry retain unknown outcomes and unstarted
+coverage without retry. Surface/configuration aggregates use actual valid outcome
+denominators plus explicit planned/started/invalid/incomplete counts, without CIs.
+
+| Route | Contract |
+|---|---|
+| GET /api/preflight/catalog | Fixed owned target/surface registry and absent extensions |
+| POST /api/preflight-runs | Authenticated idempotent bounded fixed-plan start |
+| GET /api/preflight-runs[/{id}] | Bounded stored list/snapshot and code-derived surface counts |
+| GET /api/preflight-runs/{id}/trials | At most 96 immutable reservations/results, including invalids |
+| GET /api/preflight-runs/{id}/events | Durable ordered SSE with scoped Last-Event-ID and recovery |
+| POST /api/preflight-runs/{id}/cancel | Idempotent cancellation; bounded in-flight result retained |
+| POST /api/preflight-runs/{id}/trials/{ordinal}/investigate | One idempotent source investigation, never arbitrary targets |
+
+Failure navigation opens the actual session and investigation; partial/invalid
+sources produce explicit unsupported investigations. Exact trade-offs/evidence:
+ADR-019, EXP-011, project/evidence/P8-SIM.md and core/preflight/README.md.

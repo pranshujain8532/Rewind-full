@@ -201,3 +201,27 @@ investigations and their durable budget/independence gate remain unsupported.
   remain absent; no bundle is rewritten to imply newly captured policy evidence.
 - Gate/source/commands/limits: evidence/P7-SIM.md. No unresolved critical supported
   P7 gate failure remains. Native Linux/WSL/fresh-machine/physical-device checks unrun.
+## P8 observations - 2026-10-15
+
+- BUG-016 VERIFIED FIXED: first mechanism suite returned valid simulator outcomes but
+  their source captures lacked explicit tool_schema events. Trusted integrity passed;
+  completeness correctly failed. Added the actual observed SDK schemas to the existing
+  recorder, preserving the readiness invariant. First 17 pass/1 fail log remains;
+  corrected 25/25 and full 150/150 pass, including actual source admission/navigation.
+- Review found a crash gap between reservation and source-header creation. They now
+  share one transaction. Actual unit fault injection before the first event retains
+  an inspectable unsealed source and incomplete trial, never a completed outcome.
+- Parent recomputes policy-block/useful-task facts and validates fixture/config/model/
+  protocol/read identities. Deliberate invalid argument cases stay in coverage with
+  unknown outcome cells. Duplicate cancellation no longer appends unbounded events.
+- P8 rebuild/probe required for the new surface operation; old image admission fails
+  closed. Runtime 27023d71a5287de03e5f6ae0888e68640bd47f59a81188e483ada96b905ebc96,
+  all 13 isolation probes pass. Existing P3/P4/P5/P7 semantics remain covered by the
+  full repository/browser checks; no runtime protocol/dependency version changed.
+- Policy rules are owned P5 presets. Guardrail classifier detection/evasion, compute
+  monetary cost, evolutionary generation, LLM variations and general external targets
+  remain absent/not measured. Repeated deterministic fixtures do not create IID rates.
+- Offline execution needs the already built/probed local image and installed assets.
+  Native Linux/WSL/fresh-machine/physical-device/screen-reader certification remains unrun.
+- Exact fixed-suite counts, bounded timeout/cancel coverage and source investigation
+  evidence are in EXP-011/evidence/P8-SIM.md; raw failures are not relabelled successes.

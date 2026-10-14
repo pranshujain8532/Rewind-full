@@ -383,3 +383,41 @@ delivery state, agent framework integration, authenticated multi-user mandate is
 separately authorised model budget or measured held-out anomaly baseline benefit.
 Affected: rewind_core/sentinel, 0006_sentinel, local API/auth integration, Sentinel.tsx,
 workspace.css, capability/contracts/schema, tests, benchmark and context/source docs.
+## ADR-019 - Frozen owned two-surface suites with explicit invalid coverage
+
+Date: 2026-10-15 (Asia/Calcutta). Status: ACCEPTED for implemented P8 fixed suite;
+verification status and exact artifacts are recorded in evidence/P8-SIM.md.
+Question: how can Preflight exercise a second real insertion surface, remain
+bounded/offline, and expose failures without inventing classifier/evasion metrics?
+Context: P3 isolated simulator, P4 source investigations, P6 UI and P7 gate exist.
+Provider cap is exhausted and $0 authorisation persists. No classifier is installed.
+Options: arbitrary URL target runner; ticket strings relabelled as file text;
+fixed reviewed owned fixtures with actual SDK reads inside the existing container.
+Chosen: explicit owned-support-agent-v1/preflight-fixed-v1; four cases per surface,
+actual ticket/file SDK reads with the file payload absent from ticket comments;
+fresh simulator decisions and private mock outboxes; existing four owned presets.
+Freeze fixture/config/image/probe/seed/budget bindings. Add 0007 jobs/reservations/
+events, shared-worker exclusion and leases, atomic source-header reservations,
+deadline/model-turn/iteration caps and immutable returned outcomes. Parent checks
+read/schema/identity/config/protocol and computes measures from returned actions.
+Why: a complete fixed-suite product path can test the owned mechanism without
+creating a general attack tool, provider spend or false live progress.
+Trade-offs: deterministic DSL only, not LLM reliability. Repeated fixtures are
+reproducibility checks without CIs. Deliberate unknown-attachment controls remain
+invalid; outcome counts use valid denominators, with full coverage shown separately.
+Policy block measures owned rule enforcement, not guardrail classifier detection;
+classifier/evasion and compute/token monetary costs remain not measured. P7 live
+mandate/approval workflow is not silently substituted for the isolated P5 presets.
+Cancellation retains bounded in-flight work; timeout/lease loss preserves unknowns.
+Capture uses the existing encrypted signed recorder; invalid/partial source admission
+is refused. Investigation links inspect actual earlier source facts, not a generated
+explanation or altered-input cache. No arbitrary targets, credential discovery,
+outbound effects, LLM variations or evolutionary loop is implemented.
+Evidence: fixed payload/source review, initial capture-readiness failure and corrected
+25-test mechanism suite, actual repeated two-surface Docker checks, EXP-011 and
+three-viewport browser journeys; final gate mapping in P8-SIM.md.
+Revisit: explicitly authorised provider budget and a separately bounded reviewed
+variation/lineage protocol, additional owned surfaces, true classifier evaluation,
+measured resource bottleneck or P9 production/MCP protocol scope.
+Affected: core/preflight, 0007 migration, replay operation/probe, shared worker,
+API/capabilities/schema, Preflight.tsx, tests, experiment and living contracts/docs.

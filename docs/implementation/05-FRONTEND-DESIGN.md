@@ -203,3 +203,18 @@ screens, bounded that list and stacked narrow panel descriptions. Modal Escape
 restores focus; stale-state errors disable approval and server revalidation remains
 authoritative. Current review screenshots and limits: project/evidence/P7-SIM.md.
 Preflight remains unavailable. No new third-party source, remote asset or training.
+## P8 Preflight extension - 2026-10-15
+
+Original Preflight.tsx preserves the accepted fourth product mode and existing
+panels, local fonts, badges, native tables/details and navigation. The target is
+explicit and fixed; no external URL input exists. The surface table shows actual
+valid/started/planned, invalid/incomplete/unstarted, harmful attempt, policy block,
+mock dispatch and task numerators/denominators. No decorative risk/evasion percentage.
+Classifier detection stays Not measured. Trial details show digests, model/config,
+seed, resource use, validity reason and actual attempted/executed actions.
+
+Failures link to stored source sessions and an idempotent bounded investigation.
+SSE and REST snapshots preserve truthful counts after refresh/cancel/offline. Mobile
+tables use the established keyboard-scroll region; native details keep long trial
+lists inspectable. Maturity explicitly separates fixed suite from absent generation.
+Actual three-viewport review and screenshots are recorded in project/evidence/P8-SIM.md.

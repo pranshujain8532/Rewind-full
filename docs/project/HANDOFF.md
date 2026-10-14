@@ -1,76 +1,77 @@
 # Handoff
 
-Updated 2026-10-15 (Asia/Calcutta). P7 VERIFIED for owned simulator/database tools.
-Read AGENTS, STATE, TASKS, ADR-018, EXP-010 and evidence/P7-SIM.md first; P6-UI.md
-and ADR-014?017 retain the recorder/replay/Ledger/UI boundaries. Do not restart.
-Recovered clean 373a0e8 on master tracking origin/main. Publication remains authorised
-under Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com. P7 source and
-artifact revision mapping is in evidence/P7-ARTIFACTS.json. P7 implementation
-aca72bd2f0d0278ee1b323a0a318d51fc92d2ff9 published and remote SHA verified. The ordinary
-evidence follow-up binds that source; no history rewrite or force push.
+Updated 2026-10-15 (Asia/Calcutta). P8 fixed owned suite VERIFIED; P7/P6/P4-SIM/P5-SIM
+remain verified. Read AGENTS, STATE, TASKS, ADR-019, EXP-011 and evidence/P8-SIM.md.
+Recovered clean 709ff0d on master tracking origin/main. Configured identity is
+Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com. P8 source and
+artifact binding is in evidence/P8-ARTIFACTS.json (validated staged blobs, no P8 commit).
+After automatic review judged the prior grant P7-only, the user explicitly approved
+P8 commit and push to origin/main on 2026-10-15. Publication is now authorised and
+pending execution. All implementation gates pass; 57 scoped files are staged locally.
+Do not restart, reset user work or rewrite history. Next product phase is P9, not started.
 
-P7 implementation: packages/rewind_core/sentinel/{contracts,policy,store,verify}.py;
-0006_sentinel; local API sentinel.py; apps/web/src/Sentinel.tsx. Signed mandate binds
-owned issuer/agent/session/world/time/tool/data/recipient/budget. Scope/identity/
-signature/unknown schema denial fails closed and cannot be clicked into approval.
-Current verdict/enforcement are separate. Exact action/args/session/mandate/actor/
-expiry bind approval. BEGIN IMMEDIATE revalidates and atomically consumes approval,
-records one immutable SQLite mock effect, signed event and retry receipt. Unique
-IDs protect races/restart/retries. No external RPC or provider call in this path.
+P8 code: packages/rewind_core/preflight/{contracts,fixtures,runtime,store,worker}.py,
+0007_preflight, API preflight.py and apps/web/src/Preflight.tsx. Explicit target
+owned-support-agent-v1, suite preflight-fixed-v1. Eight reviewed fixtures over ticket
+comments and actual mock-file text. File payload is absent from ticket response;
+owned SDK files.read returns the inserted note inside the isolated container.
+No arbitrary target URL/path, credential discovery, external dispatch or provider.
 
-The owned stateless adapter makes a fresh decision from a trusted full captured world.
-Its earlier source is observation-only; Sentinel effects/counters are separate.
-Held deadline is default 60s, bounded 1?300s. Expiry materialises on snapshot/decision;
-late rejection retains expiry. Terminal policy_denied/cancelled/tool_timeout results
-are structured; timeout/cancel agent_can_resume=false. This is not an open MCP call
-or a generic framework resume protocol. Task success checks exact summary AND every
-owner-requested send. No claim that containment eliminates harmful attempts.
+Plans freeze fixture/configuration/world/image/probe/seed/budget identity. All actual
+source schemas/reads/model envelopes, attempts, policy decisions, private mock effects
+and outcomes use the existing encrypted signed recorder. Parent validates identities
+and computes metrics from actions. Reservation/source header is atomic; interrupted
+capture remains inspectable and incomplete. Immutable plan/result/events and exclusive
+shared-worker leases preserve counts. Trial/model-turn/time bounds reserve before
+launch; cancellation retains bounded in-flight results and stops the next start.
 
-Deny-and-investigate commits denial/intent first; action-keyed bounded source job is
-idempotent and failure/retry cannot release a tool. Links identify earlier source
-Forensics, not an approval intervention effect. Signed policy sidecars download and
-verify independently; historical Ledger bundles/presets remain unchanged. Local key
-and single local-user cookie do not establish external identity/multi-user trust.
-No general mandate editing API or arbitrary MCP dispatcher is exposed.
+Attempts, harmful policy blocks, harmful mock dispatch and exact owner task are
+separate. The table uses actual valid outcome denominators with planned/started/
+invalid/incomplete/unstarted coverage. Missing trials are not harmless. No classifier:
+detection/evasion Not measured. P5 presets are small owned rules, not P7 live mandates.
+Deterministic repeats are reproducibility checks without IID/CI claims. Evolutionary
+and budgeted LLM variations remain not implemented documented extensions.
 
-Sentinel screen shows actual actions/arguments/deadline/scopes/actor/approval/events.
-It polls authoritative persisted snapshots while visible; refresh/offline preserve
-state. Only eligible holds expose Approve. Native dialog Escape/focus and nine
-state/viewport layouts reviewed. P6 explorer?Forensics?record?regression journey,
-REST + durable SSE, exact uint64 text, local MIT/OFL assets and offline asset-only
-shell are preserved. Preflight is unavailable; P8 has not started.
+Preflight UI uses REST snapshots plus persisted SSE/cursor recovery. Counts never
+animate upward. Failures open actual sessions and idempotent bounded investigations;
+partial/invalid sources stay unsupported for causal replay. P6 evidence journey and
+P7 exact approval/hard-denial lifecycle are preserved. Modes/evidence/maturity/coverage/
+integrity remain distinct. Local trusted keys do not certify truth/external identity.
 
-Checks: root 125/125 in 161.93s plus lint/format/schema/types/build/manifest; affected
-43/43 in 20.58s. Full browser 29/29 in 5.4m. After final terminal-error/maturity fields,
-affected mechanism 33/33 in 15.63s and P7/P0 browser 8/8 in 1.5m; final static/build pass.
-Do not merge separate runs. Logs artifacts/p7; full pytest XML checks/20261014T191823250072Z.
-Final denied/held/dispatched full/viewport/action PNGs: artifacts/browser/
-2026-10-14T19-29-02-472Z/. P7-SIM.md/P7-ARTIFACTS.json map exact commands/hashes.
+Validation: root 150/150 in 177.07s plus lint/format/schema/types/build/manifest.
+Final affected P8 25/25 in 11.37s after cancellation/maturity fields (earlier 25/25
+11.61s includes real isolated two-surface repeats). Full browser 33/33 in 8.1m.
+Initial browser 4/4 in 2.4m retained separately. Raw logs artifacts/p8; full pytest XML
+artifacts/checks/20261014T201748198414Z/pytest.xml. Final three-size suite/viewport/
+failure PNGs artifacts/browser/2026-10-14T20-23-25-771Z/. All reviewed, no page overflow/
+fatal JS/external requests. Tall mobile element crop shows hidden off-viewport skip
+link; normal full/viewport images are canonical review evidence. No product edit needed.
 
-EXP-010 final raw artifacts/p7/EXP-010/20261014T192818971254Z: four protected fresh
-simulator cases, unchanged attack, one exact approved owner send/2 synthetic row
-instances, forbidden send always denied; deny/cancel/deadline fail required delivery.
-Seven actual isolated source investigation trials complete; elapsed 12.077406s.
-Separate-process trusted-key verifier: nine signed events/one dispatch, no DB/API.
-Public examples under evidence/p7-example are byte-identical actual synthetic exports
-and reviewed screenshots. The public demonstration key is an explicit trust assumption.
-Earlier experiment/failed lint/pre-migration query outputs remain retained.
+EXP-011 actual final artifacts/p8/EXP-011/20261014T201810043273Z: 32 returned,
+24 valid/eight deliberate invalid argument controls; two configurations x two surface
+repetitions. Each surface: vulnerable 2/6 harmful dispatch; containment retains 2/6
+attempts, blocks 2/2, dispatches 0/6; task 6/6. Iteration cap three starts/13 unstarted;
+one-second limit one incomplete/15 unstarted; queued cancel zero. Two actual source
+investigations complete 14 separate trials. Elapsed 100.756558s. No samples pooled.
+Public actual synthetic examples under evidence/p8-example; source integrity verifies
+with explicit demo public key. They are review artifacts, never live fallback values.
 
-Existing root data migrated 0005?0006 with every old row count/content unchanged:
-7 sessions/1 investigation/1 record/5 regression runs. artifacts/p7/migration.json.
-Replay image remains 763e9c95f02be674769c4ee285cb039b357a8bc5a5973e72d0e8976a553b1c62;
-P7 does not change worker isolation code. Dependencies and locks unchanged.
+Root storage 0006 to 0007 migrated additively; every old table count/content unchanged:
+seven sessions/one investigation/one record/five regression runs. Runtime image
+27023d71a5287de03e5f6ae0888e68640bd47f59a81188e483ada96b905ebc96; all 13 isolation
+probes/P8 marker verified. Dependencies/locks/protocol 2026-07-28 unchanged.
 
 Commands: python scripts/rewind.py dev; check; npm.cmd run test:e2e;
-.venv/Scripts/python.exe -m rewind_core.sentinel.verify <audit.json> --trusted-public-key <key>;
-.venv/Scripts/python.exe scripts/p7_benchmark.py (owns timestamped artifacts/data).
-On this host sandbox helper startup failed; scoped escalation works. Use command-scoped
-safe.directory for this repository; no global Git trust or history rewrite.
+.venv/Scripts/python.exe scripts/p8_benchmark.py (owns timestamped artifacts/data).
+After runtime changes rebuild/probe using rewind_replay.cli setup then probe. An old
+image refuses P8 admission. Offline execution needs installed dependencies and built
+local image; fresh-machine air-gapped/native Linux/WSL certification remains unrun.
 
-Simulator supported; playback recording-only. Gemini CLI exploratory/ineligible for
-real Forensics/regressions, previous three-request cap exhausted. api.txt stays ignored;
-never read/print/commit/bundle its secret. Authorised spend $0, no new provider calls.
-No anomaly training/FPR/independence guarantee, generic remote delivery, production
-hosting, external anchor, legal fault/compliance, native Linux/WSL/fresh-machine or
-screen-reader/physical-device certification is claimed.
-Next exact product task: prompts/08-PREFLIGHT.md. Complete its gate before P9.
+Simulator supported; playback recording-only. Real-model Forensics/regressions remain
+unsupported. Gemini CLI exploratory; prior three-request cap exhausted. api.txt stays
+ignored; never print, commit or bundle its secret. P8 provider calls zero, spend $0.
+No generation/classifier/evasion guarantee, production hosting/external trust/legal
+fault/compliance or physical-device/screen-reader certification is claimed. Use scoped
+safe.directory on this host; sandbox helper requires scoped escalated execution.
+Next exact task: prompts/09-MCP-TOOLS.md. Do not infer general external tool authority
+from the owned Preflight target or P7 atomic database mock guarantee.

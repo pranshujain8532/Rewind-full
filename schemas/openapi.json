@@ -317,7 +317,7 @@
             "type": "array"
           },
           "phase": {
-            "default": "P7",
+            "default": "P8",
             "title": "Phase",
             "type": "string"
           },
@@ -1014,7 +1014,7 @@
             "$ref": "#/components/schemas/DatabaseReadiness"
           },
           "phase": {
-            "default": "P7",
+            "default": "P8",
             "title": "Phase",
             "type": "string"
           },
@@ -1576,6 +1576,247 @@
         "title": "ModeCapability",
         "type": "object"
       },
+      "PreflightBudget": {
+        "additionalProperties": false,
+        "properties": {
+          "max_model_turns": {
+            "default": 32,
+            "maximum": 96.0,
+            "minimum": 1.0,
+            "title": "Max Model Turns",
+            "type": "integer"
+          },
+          "max_provider_cost_usd": {
+            "const": 0,
+            "default": 0,
+            "title": "Max Provider Cost Usd",
+            "type": "integer"
+          },
+          "max_seconds": {
+            "default": 180,
+            "maximum": 600.0,
+            "minimum": 1.0,
+            "title": "Max Seconds",
+            "type": "integer"
+          },
+          "max_trials": {
+            "default": 32,
+            "maximum": 96.0,
+            "minimum": 1.0,
+            "title": "Max Trials",
+            "type": "integer"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          }
+        },
+        "title": "PreflightBudget",
+        "type": "object"
+      },
+      "PreflightRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "budget": {
+            "$ref": "#/components/schemas/PreflightBudget"
+          },
+          "configurations": {
+            "default": [
+              "vulnerable-v1",
+              "containment-v1"
+            ],
+            "items": {
+              "enum": [
+                "vulnerable-v1",
+                "containment-v1",
+                "behavioural-v1",
+                "deny-all-v1"
+              ],
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "title": "Configurations",
+            "type": "array"
+          },
+          "repeats": {
+            "default": 1,
+            "maximum": 3.0,
+            "minimum": 1.0,
+            "title": "Repeats",
+            "type": "integer"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "seed": {
+            "default": 4471,
+            "maximum": 4294967295.0,
+            "minimum": 0.0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "suite_version": {
+            "const": "preflight-fixed-v1",
+            "default": "preflight-fixed-v1",
+            "title": "Suite Version",
+            "type": "string"
+          },
+          "target_id": {
+            "const": "owned-support-agent-v1",
+            "default": "owned-support-agent-v1",
+            "title": "Target Id",
+            "type": "string"
+          }
+        },
+        "title": "PreflightRequest",
+        "type": "object"
+      },
+      "PreflightSnapshot": {
+        "additionalProperties": false,
+        "properties": {
+          "cancel_requested": {
+            "default": false,
+            "title": "Cancel Requested",
+            "type": "boolean"
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string"
+          },
+          "elapsed_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed Seconds"
+          },
+          "evidence_status": {
+            "title": "Evidence Status",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "last_event_seq": {
+            "title": "Last Event Seq",
+            "type": "integer"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "maturity": {
+            "default": "verified",
+            "enum": [
+              "implemented",
+              "verified"
+            ],
+            "title": "Maturity",
+            "type": "string"
+          },
+          "mode": {
+            "const": "simulated",
+            "default": "simulated",
+            "title": "Mode",
+            "type": "string"
+          },
+          "model_turns_reserved": {
+            "title": "Model Turns Reserved",
+            "type": "integer"
+          },
+          "plan": {
+            "additionalProperties": true,
+            "title": "Plan",
+            "type": "object"
+          },
+          "plan_digest": {
+            "title": "Plan Digest",
+            "type": "string"
+          },
+          "provider_cost_usd": {
+            "const": 0,
+            "default": 0,
+            "title": "Provider Cost Usd",
+            "type": "integer"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "returned_trials": {
+            "title": "Returned Trials",
+            "type": "integer"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "started_trials": {
+            "title": "Started Trials",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "cancelled",
+              "interrupted",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "surface_counts": {
+            "items": {
+              "$ref": "#/components/schemas/SurfaceCounts"
+            },
+            "title": "Surface Counts",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "evidence_status",
+          "status",
+          "reason",
+          "created_at",
+          "plan",
+          "plan_digest",
+          "started_trials",
+          "returned_trials",
+          "model_turns_reserved",
+          "elapsed_seconds",
+          "last_event_seq",
+          "surface_counts",
+          "limitations"
+        ],
+        "title": "PreflightSnapshot",
+        "type": "object"
+      },
       "RecordRequest": {
         "additionalProperties": false,
         "properties": {
@@ -2085,6 +2326,96 @@
           "source_session_id"
         ],
         "title": "StartRequest",
+        "type": "object"
+      },
+      "SurfaceCounts": {
+        "additionalProperties": false,
+        "properties": {
+          "configuration": {
+            "title": "Configuration",
+            "type": "string"
+          },
+          "guardrail_detection": {
+            "const": "not_measured",
+            "default": "not_measured",
+            "title": "Guardrail Detection",
+            "type": "string"
+          },
+          "harmful_attempts": {
+            "title": "Harmful Attempts",
+            "type": "integer"
+          },
+          "harmful_dispatches": {
+            "title": "Harmful Dispatches",
+            "type": "integer"
+          },
+          "harmful_policy_blocks": {
+            "title": "Harmful Policy Blocks",
+            "type": "integer"
+          },
+          "incomplete": {
+            "title": "Incomplete",
+            "type": "integer"
+          },
+          "invalid": {
+            "title": "Invalid",
+            "type": "integer"
+          },
+          "not_started": {
+            "title": "Not Started",
+            "type": "integer"
+          },
+          "planned": {
+            "title": "Planned",
+            "type": "integer"
+          },
+          "returned": {
+            "title": "Returned",
+            "type": "integer"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "started": {
+            "title": "Started",
+            "type": "integer"
+          },
+          "surface": {
+            "enum": [
+              "ticket_comments",
+              "mock_file_text"
+            ],
+            "title": "Surface",
+            "type": "string"
+          },
+          "task_successes": {
+            "title": "Task Successes",
+            "type": "integer"
+          },
+          "valid": {
+            "title": "Valid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "surface",
+          "configuration",
+          "planned",
+          "started",
+          "returned",
+          "valid",
+          "invalid",
+          "incomplete",
+          "not_started",
+          "harmful_attempts",
+          "harmful_policy_blocks",
+          "harmful_dispatches",
+          "task_successes"
+        ],
+        "title": "SurfaceCounts",
         "type": "object"
       },
       "TraceEvent": {
@@ -2714,6 +3045,346 @@
           }
         },
         "summary": "Trials"
+      }
+    },
+    "/api/preflight-runs": {
+      "get": {
+        "operationId": "runs_api_preflight_runs_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PreflightSnapshot"
+                  },
+                  "title": "Response Runs Api Preflight Runs Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Runs"
+      },
+      "post": {
+        "operationId": "start_api_preflight_runs_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreflightRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreflightSnapshot"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Start"
+      }
+    },
+    "/api/preflight-runs/{identity}": {
+      "get": {
+        "operationId": "detail_api_preflight_runs__identity__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreflightSnapshot"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detail"
+      }
+    },
+    "/api/preflight-runs/{identity}/cancel": {
+      "post": {
+        "operationId": "cancel_api_preflight_runs__identity__cancel_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreflightSnapshot"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cancel"
+      }
+    },
+    "/api/preflight-runs/{identity}/events": {
+      "get": {
+        "operationId": "events_api_preflight_runs__identity__events_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "maximum": 512,
+              "minimum": 0,
+              "title": "After",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "last-event-id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Last-Event-Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Events"
+      }
+    },
+    "/api/preflight-runs/{identity}/trials": {
+      "get": {
+        "operationId": "trials_api_preflight_runs__identity__trials_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "title": "Response Trials Api Preflight Runs  Identity  Trials Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Trials"
+      }
+    },
+    "/api/preflight-runs/{identity}/trials/{ordinal}/investigate": {
+      "post": {
+        "operationId": "investigate_api_preflight_runs__identity__trials__ordinal__investigate_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "ordinal",
+            "required": true,
+            "schema": {
+              "maximum": 96,
+              "minimum": 1,
+              "title": "Ordinal",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Investigate Api Preflight Runs  Identity  Trials  Ordinal  Investigate Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Investigate"
+      }
+    },
+    "/api/preflight/catalog": {
+      "get": {
+        "operationId": "catalog_api_preflight_catalog_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Catalog Api Preflight Catalog Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Catalog"
       }
     },
     "/api/records": {

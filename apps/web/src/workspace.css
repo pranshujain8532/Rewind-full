@@ -324,3 +324,21 @@ dialog::backdrop { background: #10182366; }
 .sentinel-dialog .mono { overflow-wrap: anywhere; }
 @media (max-width: 1000px) { .sentinel-layout { grid-template-columns: 1fr; } .sentinel-runs { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } .sentinel-layout > .panel { order: 2; } .sentinel-workspace { order: 1; } }
 @media (max-width: 600px) { .sentinel-start { display: grid; } .sentinel-start label:first-child { min-width: 0; } .sentinel-facts { grid-template-columns: 1fr; gap: 4px; } .sentinel-facts dd { margin-bottom: 10px; } .sentinel-metrics { gap: 10px; } .sentinel-metrics strong { font-size: 23px; } .sentinel-metrics span { font-size: 13px; } }
+/* P8 uses the existing evidence workspace and native accessible tables. */
+.preflight-form { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 16px; }
+.preflight-setup .panel-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+.preflight-presets { border: 1px solid var(--border); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 20px 0 14px; padding: 14px; }
+.preflight-presets legend { color: var(--muted); font-size: 14px; padding: 0 6px; }
+.preflight-setup .action-row, .preflight-trial .action-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.preflight-stats { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; margin-bottom: 16px; }
+.preflight-stats div { display: grid; gap: 6px; }
+.preflight-stats strong { font-size: 26px; }
+.preflight-stats span { color: var(--muted); font-size: 14px; }
+.preflight-trials { display: grid; gap: 12px; }
+.preflight-trial { border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 0; }
+.preflight-trial > summary { color: var(--ink); font-size: 15px; overflow-wrap: anywhere; }
+.preflight-trial > summary .badge { margin: 6px; }
+.preflight-trial dl { margin: 18px 0; }
+.block { display: block; margin-top: 4px; }
+@media (max-width: 900px) { .preflight-form { grid-template-columns: repeat(2,minmax(0,1fr)); } .preflight-stats { grid-template-columns: repeat(2,minmax(0,1fr)); } .preflight-status .panel-head { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 500px) { .preflight-form { grid-template-columns: 1fr; } .preflight-trial dl { grid-template-columns: 1fr; gap: 5px; } .preflight-trial dd { margin-bottom: 10px; } }

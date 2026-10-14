@@ -493,10 +493,16 @@ class LedgerStore:
     def claim(self, worker_id: str):
         self.recover()
         with self.transaction() as connection:
-            if connection.scalar(
-                text("SELECT count(*) FROM regression_runs WHERE status='running'")
-            ) or connection.scalar(
-                text("SELECT count(*) FROM investigations WHERE status='running'")
+            if (
+                connection.scalar(
+                    text("SELECT count(*) FROM preflight_runs WHERE status='running'")
+                )
+                or connection.scalar(
+                    text("SELECT count(*) FROM regression_runs WHERE status='running'")
+                )
+                or connection.scalar(
+                    text("SELECT count(*) FROM investigations WHERE status='running'")
+                )
             ):
                 return None
             identity = connection.execute(

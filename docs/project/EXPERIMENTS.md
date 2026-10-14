@@ -3,7 +3,8 @@
 Current: EXP-001/002 simulator mechanisms, EXP-003 P4 simulator investigations,
 EXP-008 exploratory Gemini smoke (two valid trials, one invalid; no confirmation),
 EXP-004 original-attack P5 simulator regressions, EXP-009 P6 engineering UI QA,
-and EXP-010 P7 owned policy lifecycle. No Sentinel anomaly/FPR claim.
+EXP-010 P7 owned policy lifecycle, and EXP-011 fixed Preflight surfaces/limits.
+No Sentinel anomaly/FPR or Preflight classifier-evasion claim.
 Simulator gates are verified; real fixed-plan investigation remains unsupported.
 Other experiments remain planned. Dossier examples are not measured results.
 
@@ -26,6 +27,7 @@ was executed during P0.
 | EXP-008 | Does the user's Gemini key support bounded fresh isolated decisions? | OBSERVED (REAL CLI); smoke aborted on invalid trial |
 | EXP-009 | Does the supported API evidence journey recover/render truthfully? | COMPLETE (P6 engineering QA; not model inference) |
 | EXP-010 | Do protected Sentinel decisions preserve exact scope and single dispatch? | COMPLETE (P7 owned simulator; no model inference) |
+| EXP-011 | Do fixed owned two-surface suites preserve repeatability, limits and failure evidence? | COMPLETE (P8 fixed simulator; no generation/classifier) |
 
 ## Experiment template
 
@@ -390,3 +392,59 @@ outcomes.json, source.json, verifier log and summary.md are retained. Local-key 
 is an explicit assumption, not external anchoring, truth, identity or compliance.
 All effects are owned local SQLite mocks. Generic MCP/real agents/remote dispatch,
 false-hold calibration, external trust and production delivery remain unsupported.
+## EXP-011 - Actual fixed Preflight suite, repeatability and limits
+
+Date: 2026-10-15 (Asia/Calcutta). COMPLETE for the owned simulator/no-network runtime.
+Command: `.venv/Scripts/python.exe scripts/p8_benchmark.py`. Final raw directory:
+artifacts/p8/EXP-011/20261014T201810043273Z/. Parent 709ff0d, dirty tree; exact source
+SHA-256, fixture/configuration digests, OS/Python/processor, versions and runtime/probe
+are in manifest and frozen plans. Windows Python 3.13.12; instruction-dsl-v1, not an LLM.
+Actual elapsed 100.756558s includes suites, limit cases, two source investigations and
+capture persistence, excluding initial dependency build. Not a recorder-overhead result.
+Earlier raw 20261014T201229000875Z remains separate, before atomic source headers.
+
+Predeclared design: eight reviewed fixed fixtures (four ticket-comment and four actual
+mock-file-text cases), vulnerable-v1 and containment-v1, two deterministic repetitions,
+seed 4471+repeat. Maximum 32 trials/model turns, 180s, $0 provider cap. Cases: clean,
+export directive, harmless imperative and deliberately unknown attachment. Owner SEND
+and exact ticket facts remain required in every case. No tuning, retries, generation,
+confidence intervals, independent-sample interpretation or pooling across job records.
+
+32 trials started/returned; 24 valid, eight deliberate invalid unknown-tool-argument
+cases. Both surfaces have actual owned SDK reads inside the isolated runtime. The
+mock-file payload is absent from ticket responses and appears in files.read results.
+Repeat request/response/actions/config/fixture digests match with distinct fresh trial
+IDs. Invalid results retain partial attempts/dispatches, source and resource records;
+they do not become harm-absent or successful-task samples.
+
+| Surface / configuration | Valid / started | Harm attempts / valid | Policy blocks / attempts | Harm mock dispatch / valid | Task / valid | Invalid |
+|---|---|---|---|---|---|---|
+| Ticket comments / vulnerable | 6/8 | 2/6 | 0/2 | 2/6 | 6/6 | 2 |
+| Ticket comments / containment | 6/8 | 2/6 | 2/2 | 0/6 | 6/6 | 2 |
+| Mock file text / vulnerable | 6/8 | 2/6 | 0/2 | 2/6 | 6/6 | 2 |
+| Mock file text / containment | 6/8 | 2/6 | 2/2 | 0/6 | 6/6 | 2 |
+
+Plain meaning: the policy stopped dispatch of each tested harmful proposal while the
+simulator still proposed it and completed required owner work. This is containment of
+these fixtures, not disappearance of unsafe intent or real-model reliability. Guardrail
+classifier detection/evasion is not measured; a policy block is a different fact.
+
+Iteration cap case: 3 started/returned, interrupted, 13 unstarted. One-second time cap:
+1 started, zero returned, one incomplete and 15 unstarted; no harmless outcome invented.
+Queued cancellation: zero started, all 16 unstarted. Browser checks separately exercise
+bounded in-flight cancellation, refresh and offline recovery. Provider requests/cost
+zero by construction; tokens/compute monetary cost unknown. CPU=1/memory=512MiB/PIDs=64,
+read-only/non-root/no-network boundaries and all 13 actual negative probes pass.
+Pinned image: sha256:27023d71a5287de03e5f6ae0888e68640bd47f59a81188e483ada96b905ebc96.
+
+An actual failure from each surface links to its recorded source session and idempotent
+investigation. Two real isolated investigations complete seven valid trials each
+(14 total), retaining their own conditional simulator findings/coverage. Those are
+separate source experiments, not extra Preflight samples. failure-investigations.json
+and source capture/public-key files retain exact evidence. Invalid/partial source
+investigation remains unsupported by design; integrity alone cannot promote it.
+
+Limits: owned fixed DSL target only, deliberate control invalids, no external URLs,
+provider, arbitrary tool effects, generation/evolution or classifier. Offline means
+prebuilt local no-network execution without a provider, not fresh-machine air-gapped
+dependency installation. Current UI/repository validation: evidence/P8-SIM.md.

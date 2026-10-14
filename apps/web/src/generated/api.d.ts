@@ -175,6 +175,126 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/preflight-runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Runs */
+        get: operations["runs_api_preflight_runs_get"];
+        put?: never;
+        /** Start */
+        post: operations["start_api_preflight_runs_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/preflight-runs/{identity}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Detail */
+        get: operations["detail_api_preflight_runs__identity__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/preflight-runs/{identity}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Cancel */
+        post: operations["cancel_api_preflight_runs__identity__cancel_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/preflight-runs/{identity}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Events */
+        get: operations["events_api_preflight_runs__identity__events_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/preflight-runs/{identity}/trials": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Trials */
+        get: operations["trials_api_preflight_runs__identity__trials_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/preflight-runs/{identity}/trials/{ordinal}/investigate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Investigate */
+        post: operations["investigate_api_preflight_runs__identity__trials__ordinal__investigate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/preflight/catalog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Catalog */
+        get: operations["catalog_api_preflight_catalog_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/records": {
         parameters: {
             query?: never;
@@ -649,7 +769,7 @@ export interface components {
             modes: components["schemas"]["ModeCapability"][];
             /**
              * Phase
-             * @default P7
+             * @default P8
              */
             phase: string;
             /**
@@ -941,7 +1061,7 @@ export interface components {
             database: components["schemas"]["DatabaseReadiness"];
             /**
              * Phase
-             * @default P7
+             * @default P8
              */
             phase: string;
             /** Ready */
@@ -1178,6 +1298,141 @@ export interface components {
              */
             schema_version: "1.0";
         };
+        /** PreflightBudget */
+        PreflightBudget: {
+            /**
+             * Max Model Turns
+             * @default 32
+             */
+            max_model_turns: number;
+            /**
+             * Max Provider Cost Usd
+             * @default 0
+             * @constant
+             */
+            max_provider_cost_usd: 0;
+            /**
+             * Max Seconds
+             * @default 180
+             */
+            max_seconds: number;
+            /**
+             * Max Trials
+             * @default 32
+             */
+            max_trials: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+        };
+        /** PreflightRequest */
+        PreflightRequest: {
+            budget?: components["schemas"]["PreflightBudget"];
+            /**
+             * Configurations
+             * @default [
+             *       "vulnerable-v1",
+             *       "containment-v1"
+             *     ]
+             */
+            configurations: ("vulnerable-v1" | "containment-v1" | "behavioural-v1" | "deny-all-v1")[];
+            /**
+             * Repeats
+             * @default 1
+             */
+            repeats: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /**
+             * Seed
+             * @default 4471
+             */
+            seed: number;
+            /**
+             * Suite Version
+             * @default preflight-fixed-v1
+             * @constant
+             */
+            suite_version: "preflight-fixed-v1";
+            /**
+             * Target Id
+             * @default owned-support-agent-v1
+             * @constant
+             */
+            target_id: "owned-support-agent-v1";
+        };
+        /** PreflightSnapshot */
+        PreflightSnapshot: {
+            /**
+             * Cancel Requested
+             * @default false
+             */
+            cancel_requested: boolean;
+            /** Created At */
+            created_at: string;
+            /** Elapsed Seconds */
+            elapsed_seconds: number | null;
+            /** Evidence Status */
+            evidence_status: string;
+            /** Id */
+            id: string;
+            /** Last Event Seq */
+            last_event_seq: number;
+            /** Limitations */
+            limitations: string[];
+            /**
+             * Maturity
+             * @default verified
+             * @enum {string}
+             */
+            maturity: "implemented" | "verified";
+            /**
+             * Mode
+             * @default simulated
+             * @constant
+             */
+            mode: "simulated";
+            /** Model Turns Reserved */
+            model_turns_reserved: number;
+            /** Plan */
+            plan: {
+                [key: string]: unknown;
+            };
+            /** Plan Digest */
+            plan_digest: string;
+            /**
+             * Provider Cost Usd
+             * @default 0
+             * @constant
+             */
+            provider_cost_usd: 0;
+            /** Reason */
+            reason: string | null;
+            /** Returned Trials */
+            returned_trials: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Started Trials */
+            started_trials: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "running" | "completed" | "cancelled" | "interrupted" | "failed";
+            /** Surface Counts */
+            surface_counts: components["schemas"]["SurfaceCounts"][];
+        };
         /** RecordRequest */
         RecordRequest: {
             /** Investigation Id */
@@ -1404,6 +1659,50 @@ export interface components {
             schema_version: "1.0";
             /** Source Session Id */
             source_session_id: string;
+        };
+        /** SurfaceCounts */
+        SurfaceCounts: {
+            /** Configuration */
+            configuration: string;
+            /**
+             * Guardrail Detection
+             * @default not_measured
+             * @constant
+             */
+            guardrail_detection: "not_measured";
+            /** Harmful Attempts */
+            harmful_attempts: number;
+            /** Harmful Dispatches */
+            harmful_dispatches: number;
+            /** Harmful Policy Blocks */
+            harmful_policy_blocks: number;
+            /** Incomplete */
+            incomplete: number;
+            /** Invalid */
+            invalid: number;
+            /** Not Started */
+            not_started: number;
+            /** Planned */
+            planned: number;
+            /** Returned */
+            returned: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Started */
+            started: number;
+            /**
+             * Surface
+             * @enum {string}
+             */
+            surface: "ticket_comments" | "mock_file_text";
+            /** Task Successes */
+            task_successes: number;
+            /** Valid */
+            valid: number;
         };
         /** TraceEvent */
         TraceEvent: {
@@ -1809,6 +2108,247 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    runs_api_preflight_runs_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreflightSnapshot"][];
+                };
+            };
+        };
+    };
+    start_api_preflight_runs_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PreflightRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreflightSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    detail_api_preflight_runs__identity__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreflightSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_api_preflight_runs__identity__cancel_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreflightSnapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    events_api_preflight_runs__identity__events_get: {
+        parameters: {
+            query?: {
+                after?: number;
+            };
+            header?: {
+                "last-event-id"?: string | null;
+            };
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    trials_api_preflight_runs__identity__trials_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    }[];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    investigate_api_preflight_runs__identity__trials__ordinal__investigate_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+                ordinal: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    catalog_api_preflight_catalog_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
                 };
             };
         };

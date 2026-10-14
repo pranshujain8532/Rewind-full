@@ -37,7 +37,7 @@ def test_http_contract_and_empty_capabilities(migrated_directory, monkeypatch):
         assert response.status_code == 200
         health = HealthResponse.model_validate(response.json())
         assert health.ready
-        assert health.database.migration_revision == "0006_sentinel"
+        assert health.database.migration_revision == "0007_preflight"
         assert health.database.journal_mode == "wal"
         assert set(health.available_modes) == {RunMode.SIMULATED, RunMode.PLAYBACK}
         matrix = CapabilitiesResponse.model_validate(client.get("/api/capabilities").json())
@@ -51,7 +51,7 @@ def test_http_contract_and_empty_capabilities(migrated_directory, monkeypatch):
         assert all(
             not feature.available
             for feature in matrix.features
-            if feature.id not in {"recorder", "forensics", "ledger", "sentinel"}
+            if feature.id not in {"recorder", "forensics", "ledger", "sentinel", "preflight"}
         )
         assert next(
             feature for feature in matrix.features if feature.id == "forensics"

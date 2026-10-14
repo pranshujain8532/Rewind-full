@@ -1,6 +1,6 @@
 # Current project state
 
-Updated 2026-10-15 (Asia/Calcutta). P7 owned simulator VERIFIED; P6/P4-SIM/P5-SIM verified.
+Updated 2026-10-15 (Asia/Calcutta). P8 fixed suite VERIFIED; P7/P6/P4-SIM/P5-SIM verified.
 P3-REAL exploratory CLI only; full real gates unsupported/unverified. P1-P10 authorised.
 
 Working: owned synthetic MCP tools, encrypted ordered capture, trusted signed seals,
@@ -29,17 +29,22 @@ deadline/deny/cancel/investigation and stored-event UI verified. Hard denials ha
 no approval override. Terminal policy errors retain explicit continuation status.
 Scope/validity/actor/digests/current mandate/shared budget revalidate before dispatch.
 Signature trust remains local. No anomaly detector/FPR claim. See evidence/P7-SIM.md.
-Preflight remains unavailable. Sentinel is owned simulator only; no generic MCP.
+P8 fixed suite verified over one owned target and two actual isolated surfaces:
+ticket comments and mock-file text. Frozen fixtures/configs/image/budgets, durable
+reservations/partial source headers, leases/cancel/time limits and failure links work.
+Real denominators retain invalid/incomplete/unstarted coverage; classifier detection
+is not measured. Generation/evolution/LLM variations absent. Mechanism 25/25 and full
+root 150/150 pass; final browser 33/33 in 8.1m and all three viewports reviewed.
 
 Modes: simulator verified; playback recording-only; local model absent. Gemini CLI
 exploratory only; real API/Forensics/regressions unsupported. Ignored api.txt unchanged.
 Declared free-tier/$0 authorisation; prior three-call smoke cap exhausted. Billing
 unverified. P6 made zero provider calls. No GPU or paid service required for core.
 
-Storage: additive 0006_sentinel migrated; every old table's count/content unchanged:
-7 sessions, 1 investigation, 1 record, 5 runs. artifacts/p7/migration.json.
-Runtime image 763e9c95f02be674769c4ee285cb039b357a8bc5a5973e72d0e8976a553b1c62;
-prior 13 isolation probes verified. P6 does not change container runtime code.
+Storage: additive 0007_preflight migrated; every old table count/content unchanged:
+7 sessions, 1 investigation, 1 record, 5 runs. artifacts/p8/migration.json.
+P8 image 27023d71a5287de03e5f6ae0888e68640bd47f59a81188e483ada96b905ebc96;
+13 isolation probes and P8 runtime marker verified. Protocol/dependencies unchanged.
 Dependencies/locks unchanged; no new UI runtime package or registry installer.
 
 Commands (PowerShell):
@@ -52,6 +57,7 @@ npm.cmd run test:e2e
 .venv/Scripts/python.exe -m rewind_ledger.cli {record,verify,case,run,compare}
 .venv/Scripts/python.exe -m rewind_core.sentinel.verify <audit.json> --trusted-public-key <key>
 .venv/Scripts/python.exe scripts/p7_benchmark.py
+.venv/Scripts/python.exe scripts/p8_benchmark.py
 ```
 Dev starts migrated API, web and shared worker. API alone queues jobs.
 Browser tests build/serve the real production bundle. Local preview: npm run build;
@@ -84,8 +90,18 @@ published to origin/main and remote SHA verified. Local master tracks origin/mai
 Source/artifact revision mapping: evidence/P7-ARTIFACTS.json. Publication metadata
 is recorded in the ordinary documentation follow-up; implementation/evidence are stable.
 
-Next product task: prompts/08-PREFLIGHT.md. P7 is complete for the owned adapter;
-P8 not started. Generic external tools, mandate editing API and multi-user identity
+Next task: prompts/09-MCP-TOOLS.md. P8 gate complete; no P9 started.
+P8 proof: artifacts/p8/check-first.log, root 150/150 in 177.07s; final affected
+25/25 in 11.37s after cancellation/maturity. EXP-011 final 20261014T201810043273Z:
+32 returned, 24 valid/eight deliberate invalid controls, repeated fixture/config
+results, 14 separate source-investigation trials, 100.756558s. Caps retain unknowns:
+iteration three starts; one-second timeout one incomplete. Zero provider requests.
+Final browser: artifacts/browser/2026-10-14T20-23-25-771Z/; final cancellation/maturity
+fields covered by affected 25/25 plus full 33 browser. P8-SIM.md/P8-ARTIFACTS.json
+bind exact staged source/evidence. Recovered 709ff0d; 57 validated P8 files staged.
+User explicitly approved P8 commit/push to origin/main on 2026-10-15; publication
+is next. The earlier automatic-review rejection remains recorded in SESSION-LOG.md.
+Generic external tools, mandate editing API and multi-user identity
 cannot inherit the atomic database mock guarantee. P7 made zero provider calls.
 Real-mode budgets/admission, production multi-user hosting, external trust/governance,
 physical-device/screen-reader certification, native Linux/WSL and fresh-machine install

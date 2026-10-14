@@ -214,3 +214,22 @@ MCP delivery, real-model reliability, external identity or compliance.”
 Questions: Why cannot a normal approval override an out-of-scope verdict? Why does
 atomic local dispatch not establish at-most-once delivery to an arbitrary remote tool?
 Comprehension answers not yet recorded. Next product phase P8, not started in P7.
+## P8 - 60-second explanation, 2026-10-15
+
+“Preflight is our fourth product mode. It runs a reviewed fixed suite only against
+our owned synthetic target. One surface is ticket comments; the other is actual mock
+file text read inside the no-network container. Each trial binds fixture/configuration
+versions, records a fresh simulator decision and keeps attempts, policy blocks, mock
+dispatches and useful work separate. No classifier exists, so detection and evasion
+say not measured. The table shows raw numerators and valid denominators alongside
+invalid, incomplete and unstarted coverage. In the measured suite, 32 trials returned:
+24 valid and eight deliberate invalid argument controls. Containment blocked the
+tested harmful dispatches while proposals remained and owner tasks succeeded.
+Iteration/time caps and cancellation retain partial evidence. A failure opens its
+recorded session and an idempotent investigation; invalid sources remain unsupported.
+The fixed suite works with the prebuilt local runtime and no provider. Evolutionary
+generation and LLM variations are documented extensions, not completed features.”
+
+Questions: Why must an invalid timeout stay in coverage instead of counting as a
+harmless trial? Why does policy containment not establish guardrail-classifier detection?
+Comprehension answers not yet recorded. Next phase P9; not started during P8.

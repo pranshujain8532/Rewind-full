@@ -7,7 +7,7 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.engine import URL, Engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-MIGRATION_REVISION = "0006_sentinel"
+MIGRATION_REVISION = "0007_preflight"
 
 
 class Base(DeclarativeBase):

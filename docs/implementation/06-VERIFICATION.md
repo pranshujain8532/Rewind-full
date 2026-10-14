@@ -133,3 +133,14 @@ idempotent deny-and-investigate. Actual evidence and commands are recorded in
 project/evidence/P7-SIM.md. Approval and owned database tool effect are atomic;
 generic external dispatch uncertainty is not claimed resolved. Rule-only P7 makes
 no anomaly detection/FPR claim, so statistical false-hold calibration is not claimed.
+## P8 verification contract - 2026-10-15
+
+tests/test_preflight.py covers strict owned target/URL rejection, fixed version/digest
+binding, actual two-surface isolated repeatability, separate outcome/policy/classifier
+facts, useful-task controls, iteration/model-turn/time bounds, invalid/incomplete
+coverage, leases/idempotency, atomic partial-source headers, source investigation
+navigation/auth and durable event cursors. Browser journeys cover raw table counts,
+refresh/cancel/offline and actual file-surface failure navigation at all three sizes.
+EXP-011 uses actual containers and predeclared fixed/limit cases. No unit stub is
+added to behavioural samples. Generation/classifier gates remain absent. Exact
+commands/status/raw artifacts: project/evidence/P8-SIM.md.

@@ -197,3 +197,23 @@ reviewed in P2; no move to the documentation site's development version occurred
 First three-viewpoint renders inspected; review corrected stacked action placement
 after a long mobile run list, cramped description headers and inconsistent current
 enforcement display. Final exact screenshot paths/status: evidence/P7-SIM.md.
+## P8 original Preflight and owned SDK reads - 2026-10-15
+
+Core/preflight, Preflight.tsx, durable APIs/jobs, fixture insertion code and the benchmark
+are original repository code. Existing reviewed Card/badges/dialog/table/font assets
+are reused; no copied third-party component, remote asset, telemetry, new dependency,
+lock version or registry installer. The existing MCP SDK 2.3.0/server implementation
+and licence remain the already reviewed official MIT package.
+
+Inspected installed `mcp/server/mcpserver/server.py` list_tools/call_tool and actual
+result conversion before using public owned-server calls inside the container. Read
+the official SDK repository/README at https://github.com/modelcontextprotocol/python-sdk;
+its linked https://py.sdk.modelcontextprotocol.io/ is retained as a reference. No SDK source was
+copied; original rewind_sandbox/server.py supplies the same owned tool functions.
+Direct in-process SDK reads are disclosed; this does not claim a new MCP transport.
+
+Ticket comments and support-note text are reviewed synthetic repository payloads,
+not imported attacks or arbitrary remote content. Scope/lineage/version information:
+core/preflight/README.md, fixtures.py and frozen run plans. Existing Docker limits,
+Ed25519/AES-GCM recorder and source investigation contracts are reused. Exact build,
+probe/source hashes and rendered viewport evidence: evidence/P8-SIM.md/P8-ARTIFACTS.json.

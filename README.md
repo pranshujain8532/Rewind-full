@@ -10,7 +10,9 @@ Session Explorer, Investigation, Evidence Record and Regression through stored f
 and durable SSE. Reviewed licensed components, local fonts, keyboard/table alternatives
 and an offline asset shell preserve a calm investigation workspace. Sentinel adds
 signed mandates, exact single-use approvals, fail-closed scope checks and durable
-policy events for owned simulator tools. Preflight remains unavailable.
+policy events for owned simulator tools. Preflight runs reviewed fixed ticket/comment
+and mock-file suites inside the owned isolated simulator, with bounded jobs, real
+counts, explicit invalid coverage and failure-to-evidence links. Generation is deferred.
 Gemini has an experimental, explicitly budgeted CLI; real-model confirmation remains
 unsupported. Simulator and playback need no GPU or paid model service.
 
@@ -21,6 +23,10 @@ Current UI proof, real screenshots, source licences and limitations:
 Sentinel commands, atomic mock-sink boundary and current gate:
 [Sentinel guide](packages/rewind_core/sentinel/README.md),
 [P7 verification](docs/project/evidence/P7-SIM.md).
+
+Preflight fixed-suite scope, offline setup and actual evidence:
+[Preflight guide](packages/rewind_core/preflight/README.md),
+[P8 verification](docs/project/evidence/P8-SIM.md).
 
 ## Start locally (PowerShell)
 

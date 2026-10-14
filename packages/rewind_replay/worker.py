@@ -56,7 +56,12 @@ def probe() -> dict:
         checks["pids_limited"] = int(Path("/sys/fs/cgroup/pids.max").read_text()) <= 64
     except (OSError, ValueError):
         checks["resource_limits_observed"] = False
-    return {"schema_version": "1.0", "checks": checks, "passed": all(checks.values())}
+    return {
+        "schema_version": "1.0",
+        "checks": checks,
+        "passed": all(checks.values()),
+        "preflight_runtime_version": "preflight-fixed-v1",
+    }
 
 
 def main():
@@ -64,6 +69,26 @@ def main():
     if len(raw) > 8_000_000:
         raise SystemExit("Replay input bound exceeded")
     decoded = json.loads(raw)
+    if decoded.get("operation") == "preflight_trials":
+        from rewind_core.preflight.contracts import PreflightBatch
+        from rewind_core.preflight.runtime import run
+
+        raw += sys.stdin.buffer.read(8_000_001 - len(raw))
+        if len(raw) > 8_000_000:
+            raise SystemExit("Preflight input bound exceeded")
+        batch = PreflightBatch.model_validate_json(raw)
+        print(
+            json.dumps(
+                {
+                    "schema_version": "1.0",
+                    "environment": "isolated_sandbox",
+                    "preflight_runtime_version": "preflight-fixed-v1",
+                    "results": [run(item) for item in batch.trials],
+                },
+                allow_nan=False,
+            )
+        )
+        return
     if decoded.get("operation") == "gemini_trial":
         from rewind_replay.gemini_runtime import worker_trial
 

@@ -11,3 +11,4 @@ apps/web/public/licenses/*.txt -text -whitespace
 
 # Raw public demonstration key must survive publication byte-for-byte.
 docs/project/evidence/p7-example/*.ed25519 -text
+docs/project/evidence/p8-example/*.ed25519 -text

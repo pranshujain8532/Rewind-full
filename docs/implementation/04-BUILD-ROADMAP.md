@@ -120,3 +120,13 @@ P0–P10 gates are evaluated and the feature matrix names every unsupported piec
 
 Final documentation must list the exact git revision, commands, dependency versions, screenshots, result manifests, known limitations and next steps.
 
+## P8 feature maturity - 2026-10-15
+
+| Accepted feature | Current scope | Maturity |
+|---|---|---|
+| Preflight fixed suite | One owned synthetic target; ticket comments + actual mock file text; isolated deterministic configurations, budgets, recorded failures | VERIFIED; evidence/P8-SIM.md |
+| Preflight LLM variations | Constrained budget/lineage and separate exploratory label required | PLANNED; not implemented |
+| Evolutionary generation | Bounded mutation/selection loop, stopping budgets and lineage need actual implementation/tests | PLANNED; not complete |
+| Guardrail classifier/evasion | No classifier in the owned suite | ABSENT; detection/evasion not measured |
+
+Completing the fixed-suite P8 gate does not promote generation or real-model support.

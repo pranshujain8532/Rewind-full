@@ -92,6 +92,7 @@ def verify_isolation() -> dict:
     manifest = json.loads(MANIFEST.read_bytes())
     manifest["isolation_verified"] = result["passed"]
     manifest["probe"] = result
+    manifest["preflight_runtime_version"] = result.get("preflight_runtime_version")
     MANIFEST.write_bytes(canonical(manifest))
     if not result["passed"]:
         raise RuntimeError("Isolation negative probe failed")
