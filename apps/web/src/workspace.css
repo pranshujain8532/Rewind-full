@@ -292,3 +292,35 @@ dialog::backdrop { background: #10182366; }
   .main-footer { flex-direction: column; gap: 4px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: 0s !important; scroll-behavior: auto !important; } }
+/* P7 extends the existing evidence panels and local design tokens. */
+.sentinel-start { display: flex; align-items: end; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
+.sentinel-start label:first-child { flex: 1; min-width: 220px; }
+.sentinel-start select { width: 100%; }
+.sentinel-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 20px; align-items: start; }
+.sentinel-workspace { min-width: 0; display: grid; gap: 20px; }
+.sentinel-runs { display: grid; gap: 8px; max-height: 420px; overflow: auto; padding: 3px; }
+.sentinel-layout .panel-head, .sentinel-setup .panel-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+.sentinel-workspace > .panel { margin-bottom: 0; }
+.sentinel-workspace .action-row, .sentinel-setup .action-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.sentinel-action .action-row { margin-top: 14px; }
+.badge.danger { color: var(--harm); border-color: #f4c7c2; background: #fff2f0; }
+.sentinel-runs a { display: grid; gap: 6px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; }
+.sentinel-runs a[aria-current] { background: var(--raised); border-color: var(--accent); }
+.sentinel-runs small { color: var(--muted); }
+.sentinel-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+.sentinel-metrics div { display: grid; gap: 4px; }
+.sentinel-metrics strong { font-size: 26px; }
+.sentinel-metrics span { color: var(--muted); font-size: 14px; }
+.sentinel-facts { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 8px 16px; }
+.sentinel-facts dd { margin: 0; overflow-wrap: anywhere; }
+.sentinel-facts dt { color: var(--muted); }
+.sentinel-action.state-held { border-left: 3px solid var(--caution); }
+.sentinel-action.state-denied, .sentinel-action.state-expired { border-left: 3px solid var(--harm); }
+.sentinel-dialog textarea { font: inherit; color: var(--ink); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+.sentinel-reason { overflow-wrap: anywhere; }
+.sentinel-dialog { width: min(620px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; }
+.sentinel-dialog form { display: grid; gap: 16px; }
+.sentinel-dialog textarea { width: 100%; min-height: 85px; }
+.sentinel-dialog .mono { overflow-wrap: anywhere; }
+@media (max-width: 1000px) { .sentinel-layout { grid-template-columns: 1fr; } .sentinel-runs { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } .sentinel-layout > .panel { order: 2; } .sentinel-workspace { order: 1; } }
+@media (max-width: 600px) { .sentinel-start { display: grid; } .sentinel-start label:first-child { min-width: 0; } .sentinel-facts { grid-template-columns: 1fr; gap: 4px; } .sentinel-facts dd { margin-bottom: 10px; } .sentinel-metrics { gap: 10px; } .sentinel-metrics strong { font-size: 23px; } .sentinel-metrics span { font-size: 13px; } }

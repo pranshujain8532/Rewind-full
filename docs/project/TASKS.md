@@ -13,7 +13,7 @@ IMPLEMENTED means code exists; VERIFIED means the named gate passed.
 | P4 | Investigation | Valid discovery/confirmation/statistics/jobs | VERIFIED | Valid P3 mode | Simulator only; evidence/P4-SIM.md; full check 64/64, browser 12/12, actual EXP-003 |
 | P5 | Ledger | Trusted verification and original-attack regression | VERIFIED | P4-SIM | evidence/P5-SIM.md; actual EXP-004, independent CLI, 87 tests plus post-upload focused 15, three rendered P5 journeys |
 | P6 | Frontend | Real-data investigation journey and visual/accessibility QA | VERIFIED | P4, P5 | Supported API/simulator journey; evidence/P6-UI.md; 92 tests, browser 25 + final targeted checks; 15 reviewed layouts |
-| P7 | Sentinel | Mandate checks and safe approval lifecycle | TODO | P2, P6 | Not run |
+| P7 | Sentinel | Mandate checks and safe approval lifecycle | VERIFIED | P2, P6 | Owned simulator/database tools; evidence/P7-SIM.md; root 125, final mechanism 33, full browser 29 plus affected 8; EXP-010 |
 | P8 | Preflight | Owned sandbox suite with actual counts and budgets | TODO | P3, P4, P6 | Not run |
 | P9 | MCP | Authorised tools via tested pinned protocol | TODO | P5, P8 | Not run |
 | P10 | Release | Held-out evaluation, demo, fallback, handoff | TODO | Chosen delivery scope | Not run |
@@ -21,13 +21,24 @@ IMPLEMENTED means code exists; VERIFIED means the named gate passed.
 
 ## Current slice
 
+P7 VERIFIED for owned simulator/database tools (2026-10-15). Recovered clean 373a0e8.
+Signed scope evaluator, exact local authenticated single-use approvals, atomic effects,
+hard-denial protection, expiry/cancel/denial errors, shared budgets, races/rollback/
+restart, source investigation links and real-event UI pass the supported gate.
+Root 125/125; full browser 29/29; final affected mechanism 33/33 and P7/P0 browser
+8/8 after terminal-result/maturity refinement. Three states at three viewports reviewed.
+Additive migration preserves all prior rows; actual EXP-010 and independent verifier
+pass. Exact logs/source/artifact references: evidence/P7-SIM.md/P7-ARTIFACTS.json.
+$0/zero provider calls, no anomaly/FPR or general MCP/real-agent claim. Next P8,
+prompts/08-PREFLIGHT.md; not started in this phase.
+
 P6 VERIFIED for the supported API/simulator journey. Exact gate, raw references,
 licences, fifteen layouts, screenshot-led fixes and limits: evidence/P6-UI.md.
 Root 92/92; browser 25/25 plus targeted exact-text/restore/pending checks. Bounded
 read-only trace, persisted SSE, lossless seed display, refresh/reconnect/duplicates,
 keyboard and offline assets pass. Additive migration preserves existing records.
 No provider calls or fabricated Sentinel/Preflight integrations.
-Next exact product task: prompts/07-SENTINEL.md. P3/P4 real gates remain unsupported.
+Historical P6 next task was P7, now verified above. P3/P4 real gates remain unsupported.
 
 P5-SIM VERIFIED on 2026-10-14. User explicitly requested this phase, superseding
 the earlier P4-REAL next task below. Signed stored-fact downloads, independent

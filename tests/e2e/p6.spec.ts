@@ -75,7 +75,9 @@ test('keyboard, focus, reduced motion, contrast and unavailable routes', async (
     return { primaryContrast: (Math.max(...values) + .05) / (Math.min(...values) + .05), transition: style.transitionDuration, font: getComputedStyle(document.body).fontFamily };
   });
   expect(measured.primaryContrast).toBeGreaterThanOrEqual(4.5); expect(measured.transition).toBe('0s'); expect(measured.font).toContain('Source Sans 3');
-  for (const name of ['Sentinel', 'Preflight']) {
+  await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Sentinel', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Protected execution' })).toBeVisible();
+  for (const name of ['Preflight']) {
     await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: new RegExp(name) }).click();
     await expect(page.getByRole('heading', { name: `${name} is unavailable` })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Unavailable', exact: true })).toBeDisabled();

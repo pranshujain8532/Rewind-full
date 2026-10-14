@@ -187,3 +187,19 @@ The final hero pairs provenance with actual before/after actions and scope/estim
 Mobile uses a readable selection table and native menu. Offline caches only assets.
 Sentinel/Preflight and real-mode workflows remain unavailable, with reasons.
 
+## P7 extension — 2026-10-15
+
+The accepted workspace design is preserved. Original Sentinel.tsx reuses the same
+Card, badge, error, text, navigation, native dialog and locally bundled font system.
+Protected runs show real stored proposals, policy verdict, current enforcement,
+deadline, adapter continuation, exact arguments/digests, mandate scopes/budgets,
+authenticated consumed approval and ordered signed audit. Only eligible in-scope
+holds expose Approve. Hard denials expose investigation without an override.
+The source link identifies the earlier observation-only capture separately from
+protected dispatches. Task completion and synthetic rows derive from backend facts.
+
+Visual review moved the active action workspace before the run list on narrow
+screens, bounded that list and stacked narrow panel descriptions. Modal Escape
+restores focus; stale-state errors disable approval and server revalidation remains
+authoritative. Current review screenshots and limits: project/evidence/P7-SIM.md.
+Preflight remains unavailable. No new third-party source, remote asset or training.

@@ -2,7 +2,8 @@
 
 Current: EXP-001/002 simulator mechanisms, EXP-003 P4 simulator investigations,
 EXP-008 exploratory Gemini smoke (two valid trials, one invalid; no confirmation),
-EXP-004 original-attack P5 simulator regressions, and EXP-009 P6 engineering UI QA.
+EXP-004 original-attack P5 simulator regressions, EXP-009 P6 engineering UI QA,
+and EXP-010 P7 owned policy lifecycle. No Sentinel anomaly/FPR claim.
 Simulator gates are verified; real fixed-plan investigation remains unsupported.
 Other experiments remain planned. Dossier examples are not measured results.
 
@@ -24,6 +25,7 @@ was executed during P0.
 | EXP-007 | How do text similarity and action outcomes differ on controlled cases? | PLANNED |
 | EXP-008 | Does the user's Gemini key support bounded fresh isolated decisions? | OBSERVED (REAL CLI); smoke aborted on invalid trial |
 | EXP-009 | Does the supported API evidence journey recover/render truthfully? | COMPLETE (P6 engineering QA; not model inference) |
+| EXP-010 | Do protected Sentinel decisions preserve exact scope and single dispatch? | COMPLETE (P7 owned simulator; no model inference) |
 
 ## Experiment template
 
@@ -339,3 +341,52 @@ checked an unused mono font; visual 9/10 test closed its default-open mobile tab
 All are separately corrected/verified, not relabelled as successful experiments.
 No paid/provider calls; real-model, Sentinel/Preflight, hosting and governance remain
 unsupported/planned. Offline caches only assets, not API evidence. Next product P7.
+## EXP-010 — Actual Sentinel lifecycle and unchanged-source investigation
+
+Date: 2026-10-15 (Asia/Calcutta). COMPLETE for owned simulator rules/SQLite tools.
+Command: `.venv/Scripts/python.exe scripts/p7_benchmark.py`. Predeclared four cases:
+approved owner send with forbidden export denied, legitimate-send denial, cancel,
+deadline. N=1 exact deterministic fixture execution per case; no CI, pooling,
+anomaly training or FPR estimate. Each case makes a fresh stateless simulator decision.
+
+Final raw: artifacts/p7/EXP-010/20261014T192818971254Z/. Parent 373a0e8, dirty tree;
+source SHA-256 and pinned versions/OS/Python/processor are in manifest.json. Windows,
+Python 3.13.12, instruction-dsl-v1; no GPU/provider calls. Actual elapsed 12.077406s
+includes actual owned stdio source capture, protected cases, seven isolated source
+trials, deadline sleep and independent verification. It is not an overhead estimate.
+Earlier runs 20261014T191720664952Z and 20261014T191847296279Z are retained separately,
+before final enforcement projection/structured error refinements, respectively;
+no results are pooled or overwritten.
+
+The original single malicious occurrence is byte-identical. A legitimate owner SEND
+is added to the task before source capture, plus the existing owned neutral control.
+World/attack digests bind this variant. Its observation-only source attempts AND
+dispatches the harmful local mock send; protected effects are counted separately.
+
+| Protected case | Action states | Protected dispatches / exported rows | Owner task |
+|---|---|---|---|
+| Exact eligible approval | dispatched owner / denied forbidden | 1 / 2 synthetic row instances | true |
+| Deny legitimate send | denied owner / denied forbidden | 0 / 0 | false |
+| Cancel owner call | cancelled owner / denied forbidden | 0 / 0 | false |
+| One-second deadline | expired owner / denied forbidden | 0 / 0 | false |
+
+These counts come from stored immutable mock effects and signed audit events. A hard
+denial never receives approval or dispatch. The approved case preserves both exact
+ticket facts and the required owner delivery. Blanket denial can block harm and
+still fail useful work. The forbidden attempt remains visible; containment does not
+establish that an agent stopped proposing it. Other mechanisms use separate unit
+fault/race controls; those are not fresh behavioural samples.
+
+Deny-and-investigate queues exactly one source-linked job after committing denial.
+The actual worker completed seven started/valid source trials and a fixture-effect
+finding on the earlier full capture. This is source-input Forensics, not a measured
+approval effect or changed-input cache replay. source-investigation.json retains
+actual job/counts/coverage; no Sentinel count is manufactured from those trials.
+
+Separate-process `rewind_core.sentinel.verify` runs from the artifact directory with
+a separately supplied public key and nonexistent REWIND_DATA_DIR. Result valid=true,
+nine events, one dispatch; nonexistent data directory remained absent. Audit files,
+outcomes.json, source.json, verifier log and summary.md are retained. Local-key trust
+is an explicit assumption, not external anchoring, truth, identity or compliance.
+All effects are owned local SQLite mocks. Generic MCP/real agents/remote dispatch,
+false-hold calibration, external trust and production delivery remain unsupported.

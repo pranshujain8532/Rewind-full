@@ -8,3 +8,6 @@
 # Preserve reviewed font/notice bytes, including upstream notice whitespace.
 apps/web/public/fonts/*.ttf -text
 apps/web/public/licenses/*.txt -text -whitespace
+
+# Raw public demonstration key must survive publication byte-for-byte.
+docs/project/evidence/p7-example/*.ed25519 -text

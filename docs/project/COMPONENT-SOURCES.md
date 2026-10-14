@@ -176,3 +176,24 @@ Actual final screenshots, behaviours and limitations: evidence/P6-UI.md. Complet
 browser suite 25/25 plus targeted final exact-preview/restore checks; all three
 viewport journey renders inspected. No registry install or unsupported import claim.
 
+## P7 original Sentinel and reused primitives — 2026-10-15
+
+Sentinel.tsx, policy/lifecycle/audit code, database mock tools and p7_benchmark.py
+are original repository code. Existing reviewed Card/Empty, original badges/icons/
+dialogs and bundled OFL fonts are reused without copying additional third-party
+source. No dependency/version/lock, registry install, remote asset, telemetry,
+model training or provider request is added. Existing cryptography 50.0.2 signing/
+AES-GCM interfaces and SQLAlchemy/Alembic SQLite APIs remain pinned.
+
+Official primary sources read for the atomic boundary and trust primitive:
+https://www.sqlite.org/lang_transaction.html and
+https://cryptography.io/en/latest/hazmat/primitives/asymmetric/ed25519/.
+SQLite permits a single writer; BEGIN IMMEDIATE serialises the critical decisions.
+The owned effect lives in that same transaction. No claim extends this property
+to an external tool server. Ed25519 verification uses the separate pinned key,
+not a key supplied with an untrusted mandate. Installed primitive usage is already
+reviewed in P2; no move to the documentation site's development version occurred.
+
+First three-viewpoint renders inspected; review corrected stacked action placement
+after a long mobile run list, cramped description headers and inconsistent current
+enforcement display. Final exact screenshot paths/status: evidence/P7-SIM.md.

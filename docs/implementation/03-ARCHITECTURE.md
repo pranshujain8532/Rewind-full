@@ -393,3 +393,43 @@ The core needs no GPU. Start with small scenarios, one worker and at most two co
 
 Remote calls are disabled until credentials and a non-zero authorised budget are configured. Local model use depends on the actual machine, available model and licence; do not assume an RTX 2050 can run every model. A missing real-model path is a visible outstanding capability, not a reason to fabricate results.
 
+## P7 implemented contract — 2026-10-15
+
+`rewind_core/sentinel` and additive `0006_sentinel` implement section 11 for the
+owned stateless simulator. Signed mandates bind issuer/agent/session/world, UTC
+validity, allow/deny tool and data scopes, exact recipient allowlist, $0 provider
+spend and dispatch/export-row limits. HTTP starts accept only a trusted captured
+source and a bounded deadline; caller-supplied agent/approver claims are rejected.
+Existing local cookie/Origin/CSRF protection authenticates the single local operator.
+
+Canonical exact action/arguments/session/mandate/approver/expiry binding is checked
+before an approval is consumed once. SQLite BEGIN IMMEDIATE revalidates and commits
+approval, budget use, owned mock effect, signed audit and retry receipt together.
+This atomic contract applies to the owned database mock sink only. Generic MCP/
+external transport, multi-user credentials and mandate editing APIs remain unsupported.
+No ordinary approval can override explicit/invalid/undefined scope denial.
+Current enforcement changes to allow after dispatch or deny after denial/cancel/
+expiry; initial holds remain in the signed event trail. Long waits have explicit
+server deadlines and non-resumable timeout/cancel states. Deadline materialisation
+is lazy on the next snapshot/decision, with no background open tool call.
+
+Deny-and-investigate commits denial and intent before an idempotent bounded source
+investigation start. Failure retains denial and exposes retry. Source investigation
+is linked to the earlier observation-only full capture; it does not establish an
+approval's intervention effect. Signed policy audits remain separate from historical
+Ledger artifacts, which are not rewritten to add newly available approvals.
+
+| Method / route | Implemented purpose |
+|---|---|
+| POST /api/sentinel/sessions | Idempotent fresh protected owned simulator run from trusted source |
+| GET /api/sentinel/sessions | Latest 30 stored protected runs |
+| GET /api/sentinel/sessions/{id} | Authoritative state, budgets, mandate and exact action views |
+| GET /api/sentinel/sessions/{id}/events?after=N | Ordered persisted signed events, maximum 1024 |
+| GET /api/sentinel/sessions/{id}/download | Signed current audit head/count and actual mock-effect counts |
+| POST /api/approvals/{action_id}/decision | Exact authenticated approve/deny/deny-and-investigate/cancel |
+
+UI polls stored facts every 1.5s while visible and recovers on reconnect/refresh.
+It never increments counters locally. Exact request/response schemas are generated
+in OpenAPI/TypeScript. Export verification is bounded and independent of API/DB,
+requiring a separately trusted public key. No anomaly/ML claim is made.
+Trade-offs and gate: ADR-018, EXP-010, project/evidence/P7-SIM.md.

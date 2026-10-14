@@ -124,3 +124,12 @@ The release is ready when:
 
 A screenshot, successful compilation or cached animation alone cannot satisfy these gates.
 
+## P7 verification boundary — 2026-10-15
+
+V16–18 are implemented in tests/test_sentinel.py: signed scope/validity/trust,
+binding/identity/expiry/hard-denial checks, competing holds under shared budget,
+duplicate/approve-cancel races, interrupted commit rollback, durable restart and
+idempotent deny-and-investigate. Actual evidence and commands are recorded in
+project/evidence/P7-SIM.md. Approval and owned database tool effect are atomic;
+generic external dispatch uncertainty is not claimed resolved. Rule-only P7 makes
+no anomaly detection/FPR claim, so statistical false-hold calibration is not claimed.

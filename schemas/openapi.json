@@ -1,6 +1,170 @@
 {
   "components": {
     "schemas": {
+      "ActionView": {
+        "additionalProperties": false,
+        "properties": {
+          "action_digest": {
+            "title": "Action Digest",
+            "type": "string"
+          },
+          "agent_can_resume": {
+            "title": "Agent Can Resume",
+            "type": "boolean"
+          },
+          "agent_id": {
+            "title": "Agent Id",
+            "type": "string"
+          },
+          "approval": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval"
+          },
+          "args_digest": {
+            "title": "Args Digest",
+            "type": "string"
+          },
+          "arguments": {
+            "additionalProperties": true,
+            "title": "Arguments",
+            "type": "object"
+          },
+          "deadline": {
+            "format": "date-time",
+            "title": "Deadline",
+            "type": "string"
+          },
+          "enforcement_decision": {
+            "enum": [
+              "allow",
+              "hold",
+              "deny"
+            ],
+            "title": "Enforcement Decision",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "investigation_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Investigation Error"
+          },
+          "investigation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Investigation Id"
+          },
+          "investigation_requested": {
+            "title": "Investigation Requested",
+            "type": "boolean"
+          },
+          "mandate_version": {
+            "title": "Mandate Version",
+            "type": "string"
+          },
+          "policy_verdict": {
+            "enum": [
+              "in_scope",
+              "out_of_scope",
+              "undefined"
+            ],
+            "title": "Policy Verdict",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "session_id": {
+            "title": "Session Id",
+            "type": "string"
+          },
+          "source_session_id": {
+            "title": "Source Session Id",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "held",
+              "dispatched",
+              "denied",
+              "expired",
+              "cancelled"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "tool": {
+            "title": "Tool",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "session_id",
+          "source_session_id",
+          "agent_id",
+          "mandate_version",
+          "action_digest",
+          "args_digest",
+          "tool",
+          "arguments",
+          "policy_verdict",
+          "enforcement_decision",
+          "state",
+          "reason",
+          "deadline",
+          "approval",
+          "result",
+          "agent_can_resume",
+          "investigation_id",
+          "investigation_error",
+          "investigation_requested"
+        ],
+        "title": "ActionView",
+        "type": "object"
+      },
       "Budget": {
         "additionalProperties": false,
         "properties": {
@@ -153,7 +317,7 @@
             "type": "array"
           },
           "phase": {
-            "default": "P6",
+            "default": "P7",
             "title": "Phase",
             "type": "string"
           },
@@ -306,6 +470,65 @@
           "journal_mode"
         ],
         "title": "DatabaseReadiness",
+        "type": "object"
+      },
+      "DecisionRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "action_digest": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Action Digest",
+            "type": "string"
+          },
+          "args_digest": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Args Digest",
+            "type": "string"
+          },
+          "decision": {
+            "enum": [
+              "approve",
+              "deny",
+              "deny_and_investigate",
+              "cancel"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "mandate_version": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Mandate Version",
+            "type": "string"
+          },
+          "reason": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "session_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Session Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "decision",
+          "action_digest",
+          "args_digest",
+          "session_id",
+          "mandate_version",
+          "reason"
+        ],
+        "title": "DecisionRequest",
         "type": "object"
       },
       "DemoRequest": {
@@ -791,7 +1014,7 @@
             "$ref": "#/components/schemas/DatabaseReadiness"
           },
           "phase": {
-            "default": "P6",
+            "default": "P7",
             "title": "Phase",
             "type": "string"
           },
@@ -1146,6 +1369,171 @@
         "title": "JobSnapshot",
         "type": "object"
       },
+      "Mandate": {
+        "additionalProperties": false,
+        "properties": {
+          "agent_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Agent Id",
+            "type": "string"
+          },
+          "allowed_tools": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "title": "Allowed Tools",
+            "type": "array"
+          },
+          "approval_seconds": {
+            "default": 60,
+            "maximum": 300.0,
+            "minimum": 1.0,
+            "title": "Approval Seconds",
+            "type": "integer"
+          },
+          "approvers": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "title": "Approvers",
+            "type": "array"
+          },
+          "authorised_cost_usd": {
+            "const": 0,
+            "default": 0,
+            "title": "Authorised Cost Usd",
+            "type": "integer"
+          },
+          "data_classes": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "title": "Data Classes",
+            "type": "array"
+          },
+          "data_ids": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 32,
+            "title": "Data Ids",
+            "type": "array"
+          },
+          "denied_data_ids": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 32,
+            "title": "Denied Data Ids",
+            "type": "array"
+          },
+          "denied_recipients": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 32,
+            "title": "Denied Recipients",
+            "type": "array"
+          },
+          "denied_tools": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "title": "Denied Tools",
+            "type": "array"
+          },
+          "high_impact_tools": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "title": "High Impact Tools",
+            "type": "array"
+          },
+          "issuer": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Issuer",
+            "type": "string"
+          },
+          "max_dispatches": {
+            "maximum": 128.0,
+            "minimum": 0.0,
+            "title": "Max Dispatches",
+            "type": "integer"
+          },
+          "max_export_rows": {
+            "maximum": 10000.0,
+            "minimum": 0.0,
+            "title": "Max Export Rows",
+            "type": "integer"
+          },
+          "not_after": {
+            "format": "date-time",
+            "title": "Not After",
+            "type": "string"
+          },
+          "not_before": {
+            "format": "date-time",
+            "title": "Not Before",
+            "type": "string"
+          },
+          "recipients": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 32,
+            "title": "Recipients",
+            "type": "array"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "session_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Session Id",
+            "type": "string"
+          },
+          "version": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Version",
+            "type": "string"
+          },
+          "world_digest": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "World Digest",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "issuer",
+          "agent_id",
+          "session_id",
+          "world_digest",
+          "not_before",
+          "not_after",
+          "allowed_tools",
+          "data_ids",
+          "data_classes",
+          "recipients",
+          "approvers",
+          "max_dispatches",
+          "max_export_rows"
+        ],
+        "title": "Mandate",
+        "type": "object"
+      },
       "ModeCapability": {
         "additionalProperties": false,
         "properties": {
@@ -1432,6 +1820,125 @@
         "title": "RunMode",
         "type": "string"
       },
+      "SentinelSession": {
+        "additionalProperties": false,
+        "properties": {
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/ActionView"
+            },
+            "title": "Actions",
+            "type": "array"
+          },
+          "agent_id": {
+            "title": "Agent Id",
+            "type": "string"
+          },
+          "coverage": {
+            "default": "Owned stateless simulator + policy + transactional local mock tools",
+            "title": "Coverage",
+            "type": "string"
+          },
+          "dispatched": {
+            "title": "Dispatched",
+            "type": "integer"
+          },
+          "evidence_status": {
+            "const": "fixture_effect_observed",
+            "default": "fixture_effect_observed",
+            "title": "Evidence Status",
+            "type": "string"
+          },
+          "exported_rows": {
+            "title": "Exported Rows",
+            "type": "integer"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "integrity": {
+            "title": "Integrity",
+            "type": "string"
+          },
+          "last_event_seq": {
+            "title": "Last Event Seq",
+            "type": "integer"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "mandate": {
+            "$ref": "#/components/schemas/SignedMandate"
+          },
+          "maturity": {
+            "default": "verified",
+            "enum": [
+              "implemented",
+              "verified"
+            ],
+            "title": "Maturity",
+            "type": "string"
+          },
+          "mode": {
+            "const": "simulated",
+            "default": "simulated",
+            "title": "Mode",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "source_session_id": {
+            "title": "Source Session Id",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "awaiting_approval",
+              "completed",
+              "tool_timeout",
+              "cancelled"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "task_success": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Success"
+          }
+        },
+        "required": [
+          "id",
+          "source_session_id",
+          "agent_id",
+          "integrity",
+          "mandate",
+          "actions",
+          "dispatched",
+          "exported_rows",
+          "last_event_seq",
+          "status",
+          "task_success",
+          "limitations"
+        ],
+        "title": "SentinelSession",
+        "type": "object"
+      },
       "SessionDetail": {
         "additionalProperties": false,
         "properties": {
@@ -1518,6 +2025,66 @@
           "limitations"
         ],
         "title": "SessionDetail",
+        "type": "object"
+      },
+      "SignedMandate": {
+        "additionalProperties": false,
+        "properties": {
+          "mandate": {
+            "$ref": "#/components/schemas/Mandate"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "signature": {
+            "pattern": "^[a-f0-9]{128}$",
+            "title": "Signature",
+            "type": "string"
+          },
+          "signing_key_id": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Signing Key Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mandate",
+          "signing_key_id",
+          "signature"
+        ],
+        "title": "SignedMandate",
+        "type": "object"
+      },
+      "StartRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "hold_seconds": {
+            "default": 60,
+            "maximum": 300.0,
+            "minimum": 1.0,
+            "title": "Hold Seconds",
+            "type": "integer"
+          },
+          "schema_version": {
+            "const": "1.0",
+            "default": "1.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "source_session_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Source Session Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_session_id"
+        ],
+        "title": "StartRequest",
         "type": "object"
       },
       "TraceEvent": {
@@ -1673,6 +2240,68 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/approvals/{identity}/decision": {
+      "post": {
+        "operationId": "decision_api_approvals__identity__decision_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecisionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentinelSession"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Decision"
+      }
+    },
     "/api/auth/local": {
       "post": {
         "operationId": "local_session_api_auth_local_post",
@@ -2706,6 +3335,215 @@
           }
         },
         "summary": "Scenarios"
+      }
+    },
+    "/api/sentinel/sessions": {
+      "get": {
+        "operationId": "sessions_api_sentinel_sessions_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SentinelSession"
+                  },
+                  "title": "Response Sessions Api Sentinel Sessions Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Sessions"
+      },
+      "post": {
+        "operationId": "start_api_sentinel_sessions_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentinelSession"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Start"
+      }
+    },
+    "/api/sentinel/sessions/{identity}": {
+      "get": {
+        "operationId": "detail_api_sentinel_sessions__identity__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentinelSession"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detail"
+      }
+    },
+    "/api/sentinel/sessions/{identity}/download": {
+      "get": {
+        "operationId": "download_api_sentinel_sessions__identity__download_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Download"
+      }
+    },
+    "/api/sentinel/sessions/{identity}/events": {
+      "get": {
+        "operationId": "events_api_sentinel_sessions__identity__events_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identity",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Identity",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "maximum": 1024,
+              "minimum": 0,
+              "title": "After",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "title": "Response Events Api Sentinel Sessions  Identity  Events Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Events"
       }
     },
     "/api/sessions": {

@@ -10,11 +10,11 @@ and environment limitations follow the retained templates.
 | R-002 | Critical | Replay can dispatch real side effects | Runtime isolation and local mock tools | MITIGATED (OWNED SIM/GEMINI MOCKS); OTHER TOOLS UNSUPPORTED |
 | R-003 | High | Partial capture produces overconfident findings | Replay-readiness and explicit unsupported states | MITIGATED (SUPPORTED CAPTURE); OTHER INTEGRATIONS UNSUPPORTED |
 | R-004 | High | Invalid statistical inference | Frozen confirmation design and tested interval method | MITIGATED (P4 SIM); REAL ASSUMPTIONS UNVERIFIED |
-| R-005 | High | Policy approval reused or bypassed | Action binding, expiry, one-time consumption | OPEN |
+| R-005 | High | Policy approval reused or bypassed | Action binding, expiry, one-time consumption | MITIGATED (P7 OWNED SIMULATOR/SQLITE SINK); GENERIC EXTERNAL DISPATCH UNSUPPORTED |
 | R-006 | High | Evidence store leaks content or implies false trust | Synthetic data, encryption, redaction and trusted-key verification | OPEN |
 | R-007 | Medium | Real model unavailable on budget/hardware | Explicit capability state and offline fallback | GEMINI CLI AVAILABLE ($0 USER-DECLARED FREE TIER); REAL FORENSICS UNSUPPORTED |
 | R-008 | Medium | Protocol/library mismatch | Pin versions and test integration | MITIGATED (OWNED STDIO); OTHER TRANSPORTS UNSUPPORTED |
-| R-009 | Medium | UI presents invented progress or certainty | Durable events and shared evidence components | MITIGATED (P4 JOBS); FULL P6 UX UNVERIFIED |
+| R-009 | Medium | UI presents invented progress or certainty | Durable events and shared evidence components | MITIGATED (P6/P7 SUPPORTED UI); REAL-MODE SUPPORT UNVERIFIED |
 | R-010 | Medium | Accepted scope expands too far | Phase gates and explicit research backlog | OPEN |
 
 ## Bug template
@@ -173,3 +173,31 @@ investigations and their durable budget/independence gate remain unsupported.
   device/Linux verification remains unrun. Offline is an asset shell, not live evidence.
 - User subsequently authorised the old commit identity correction; historical hashes
   resolve through GIT-IDENTITY-20261014.md. P6 makes ordinary new commits, no backdating.
+## P7 observations — 2026-10-15
+
+- BUG-014 VERIFIED FIXED: initial operator denial/expiry/approved snapshots retained
+  hold enforcement despite a terminal disposition. Current enforcement now changes
+  to deny/allow; policy verdict remains separate and initial signed hold persists.
+  Full 125-test check, EXP-010 and all three-viewpoint browser states verify the fix.
+- BUG-015 VERIFIED FIXED: narrow-screen run list pushed active actions far down.
+  Active workspace now precedes the bounded run list; descriptions stack and action
+  controls remain readable. Final nine action screenshots reviewed, zero page overflow.
+- Terminal denied/cancelled/expired actions now expose structured policy errors,
+  including non-resumable timeout/cancel. Post-refinement 33 mechanism and 8 affected
+  browser checks pass; earlier full root/browser results remain separate evidence.
+- First migration preservation query used the wrong Ledger table name; it failed
+  before migration. Corrected inspected names preserve every old row digest/count.
+  Lint/format failures and earlier experiment/render artifacts remain retained.
+- ENV-007 ACCEPTED LIMITATION: sandbox helper failed before any command could start;
+  scoped escalated commands worked. Per-command Git ownership exception retained.
+  No global safe.directory, history rewrite, paid service or deployment occurred.
+- R-005 is mitigated only for the owned transactional database tools. Generic remote
+  delivery/cancellation/unknown tool outcome, production identity/key custody and
+  universal framework pause/resume remain unsupported. Deadlines materialise lazily
+  on read/decision; no background open MCP call is claimed. No anomaly/FPR guarantee.
+- Deny-and-investigate cannot release an action if admission/queue/link fails; its
+  durable intent and stable job key allow retry. Source Forensics is conditional
+  evidence on the earlier observation-only capture. Historical Ledger approvals
+  remain absent; no bundle is rewritten to imply newly captured policy evidence.
+- Gate/source/commands/limits: evidence/P7-SIM.md. No unresolved critical supported
+  P7 gate failure remains. Native Linux/WSL/fresh-machine/physical-device checks unrun.

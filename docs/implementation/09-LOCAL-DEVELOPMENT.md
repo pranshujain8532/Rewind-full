@@ -175,3 +175,18 @@ No API evidence is cached. npm.cmd run test:e2e builds and tests that production
 node scripts/p6_render.cjs <existing artifacts/browser/...> captures reviewed stored
 results using API only and starts no new trials. Provenance/QA: evidence/P6-UI.md and
 COMPONENT-SOURCES.md. Next product task: prompts/07-SENTINEL.md.
+## Current P7 Sentinel — 2026-10-15
+
+`python scripts/rewind.py dev` migrates additively to 0006_sentinel and serves
+`/sentinel`. Choose a trusted capture or Demo A/B. All effects remain in the local
+database mock sink; source captures are earlier observation-only runs. Approval
+needs a reason and binds the exact displayed arguments/session/mandate. Hard denial
+has only denial/investigation paths. Deadlines are short and server enforced;
+timeout/cancel cannot resume that tool call. Forensics still needs the shared worker
+and verified replay runtime. Provider budget remains $0; no P7 request uses Gemini.
+
+Independent audit verification:
+`.venv/Scripts/python.exe -m rewind_core.sentinel.verify sentinel-audit.json --trusted-public-key data/keys/trusted-public.ed25519`.
+Actual experiment: `.venv/Scripts/python.exe scripts/p7_benchmark.py` creates its own
+timestamped artifacts/data, runs no provider calls and leaves the root database alone.
+Guide: packages/rewind_core/sentinel/README.md. Next product phase P8; not started here.

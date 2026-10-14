@@ -345,3 +345,41 @@ Revisit: real API admission, full Sentinel/Preflight APIs, larger graph/query sc
 multi-user deployment, offline evidence retention or a separately authorised model budget.
 Affected: workspace routes/components/styles, API projection, Ledger events/SSE,
 0005 migration, generated contracts, asset build, tests and source/context docs.
+## ADR-018 — Atomic owned tool effects and exact mandate-bound operator decisions
+
+Date: 2026-10-15 (Asia/Calcutta). Status: ACCEPTED for P7 owned simulator mechanism.
+Question: how can Sentinel fail closed and approve an eligible action exactly once
+without implying a generic agent pause/resume or production delivery guarantee?
+Context: recorder/P6 UI and P5 presets exist; full signed mandates/approvals do not.
+Provider authorisation remains $0; Gemini's exploratory request cap is exhausted.
+Options: ordinary click overriding any denial; external RPC with a crash gap;
+signed immutable mandates plus transactional owned database tools and durable state.
+Chosen: existing pinned Ed25519 key/domain-separated mandates and policy audits;
+service-owned agent/session binding; authenticated local-user operator; exact action/
+args/session/mandate/actor/expiry grant. BEGIN IMMEDIATE rechecks scope/validity/
+budget and atomically consumes approval, writes the local mock effect, appends audit
+and records retry receipt. Unique IDs and immutable effect/approval rows prevent reuse.
+Explicit denials are terminal; operator denial leaves the in-scope verdict separate
+from current deny enforcement. Pending deadlines persist lazily on read/decision;
+timeout/cancel records that the tool call cannot resume. Owned stateless continuation
+uses the recorded result, with exact summary/owner-send task checks.
+Why: a complete, reviewable P7 mechanism can be proved without paid inference or
+unreviewed external dispatch. Rules inspect semantics, not planted scenario labels.
+Trade-offs: the atomic boundary is the owned SQLite sink, not stdio/remote MCP.
+No multi-user/external identity/key anchor, generic framework pause/resume, editing
+mandate API, anomaly detector or FPR claim. Policy evidence is a signed sidecar to
+the captured source; historical Ledger bundles are unchanged. A new authorised
+mandate version would invalidate held old-version approval, not override hard denial.
+Deny-and-investigate commits intent/denial first, then queues one action-keyed bounded
+Forensics job on the earlier observation-only full source. Queue failure never
+releases the tool; intent/link/failure remain reviewable and retryable.
+Evidence: root 125/125; risk suite includes scopes, trust, races, stale args/mandates,
+shared budget, interrupted atomic commit and restart. EXP-010 actual four protected
+executions, seven source investigation trials and separate-process trusted-key check.
+UI gate/status/screenshots: evidence/P7-SIM.md. Initial 4/4 browser checks passed;
+final full browser 29/29 in 5.4m and final three-viewport renders reviewed.
+Revisit trigger: P9/production transport requiring idempotent receiver, unknown
+delivery state, agent framework integration, authenticated multi-user mandate issuer,
+separately authorised model budget or measured held-out anomaly baseline benefit.
+Affected: rewind_core/sentinel, 0006_sentinel, local API/auth integration, Sentinel.tsx,
+workspace.css, capability/contracts/schema, tests, benchmark and context/source docs.

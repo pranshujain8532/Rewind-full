@@ -8,14 +8,19 @@ replay, durable investigations, transparent ranking and fixed-plan statistics,
 plus signed evidence and original-attack defence regressions. The browser connects
 Session Explorer, Investigation, Evidence Record and Regression through stored facts
 and durable SSE. Reviewed licensed components, local fonts, keyboard/table alternatives
-and an offline asset shell preserve a calm investigation workspace. Sentinel and
-Preflight show accurate unavailable API states.
+and an offline asset shell preserve a calm investigation workspace. Sentinel adds
+signed mandates, exact single-use approvals, fail-closed scope checks and durable
+policy events for owned simulator tools. Preflight remains unavailable.
 Gemini has an experimental, explicitly budgeted CLI; real-model confirmation remains
 unsupported. Simulator and playback need no GPU or paid model service.
 
 Current UI proof, real screenshots, source licences and limitations:
 [P6 verification](docs/project/evidence/P6-UI.md),
 [component provenance](docs/project/COMPONENT-SOURCES.md).
+
+Sentinel commands, atomic mock-sink boundary and current gate:
+[Sentinel guide](packages/rewind_core/sentinel/README.md),
+[P7 verification](docs/project/evidence/P7-SIM.md).
 
 ## Start locally (PowerShell)
 

@@ -4,6 +4,7 @@ import { useResource, useRoute } from './state';
 import { Investigation } from './Investigation';
 import { EvidenceRecord } from './EvidenceRecord';
 import { Regressions } from './Regressions';
+import { Sentinel } from './Sentinel';
 import { Overview, SessionList, SessionPage, InvestigationList, RecordList, Settings, UnavailableScreen } from './pages';
 import { Badge, EmptyState, ErrorState, Icon, Loading, PermissionState } from './ui/evidence';
 import { Card } from './ui/primitives';
@@ -48,7 +49,8 @@ export function App() {
     : path.startsWith('/ledger/') ? <EvidenceRecord key={path} id={path.split('/')[2]} />
     : path === '/regressions' ? <Regressions key={route} go={go} />
     : path === '/settings' ? <Settings system={system.data} />
-    : ['/sentinel', '/preflight'].includes(path) ? <UnavailableScreen id={path.slice(1)} capabilities={capabilities!} />
+    : path === '/sentinel' ? <Sentinel key={route} id={new URLSearchParams(route.split('?')[1]).get('id')} go={go} />
+    : path === '/preflight' ? <UnavailableScreen id="preflight" capabilities={capabilities!} />
     : <EmptyState title="This route is unavailable" action={<a className="button" href="/overview">Return to overview</a>}>No evidence was loaded for this address.</EmptyState>;
   return <div className="app-frame">
     <a href="#main" className="skip-link">Skip to evidence workspace</a>
@@ -56,7 +58,7 @@ export function App() {
       <a className="brand" href="/overview" aria-label="REWIND overview"><span className="brand-mark"><Icon name="rewind" size={25} /></span><span>REWIND<small>Evidence before conclusions</small></span></a>
       <button className="jump-button" onClick={() => jump.current?.showModal()}><Icon name="sessions" size={16} />Jump to a workspace<span className="keycap">⌘ K</span></button>
       <button className="mobile-menu-toggle" aria-label="Open navigation" onClick={() => { setSearch(''); jump.current?.showModal(); }}><Icon name="overview" size={18} />Menu</button><p className="sidebar-caption">INVESTIGATION WORKSPACE</p>
-      <nav aria-label="Main navigation">{navigation.map(item => <a key={item.path} href={item.path} className={current?.path === item.path ? 'nav-active' : ''} aria-current={current?.path === item.path ? 'page' : undefined}><Icon name={item.icon} size={19} /><span>{item.label}</span>{['/sentinel', '/preflight'].includes(item.path) && <small>Planned</small>}</a>)}</nav>
+      <nav aria-label="Main navigation">{navigation.map(item => <a key={item.path} href={item.path} className={current?.path === item.path ? 'nav-active' : ''} aria-current={current?.path === item.path ? 'page' : undefined}><Icon name={item.icon} size={19} /><span>{item.label}</span>{item.path === '/preflight' && <small>Planned</small>}</a>)}</nav>
       <div className="sidebar-note"><Icon name="shield" size={18} /><p>A signed record preserves bytes.<br />A test supports a scoped finding.</p></div>
       <div className="sidebar-footer"><a href="/settings" aria-current={path === '/settings' ? 'page' : undefined}><span className="avatar">PJ</span><span>Pranshu Jain<small>Local workspace · settings</small></span><Icon name="settings" size={17} /></a></div>
     </aside>

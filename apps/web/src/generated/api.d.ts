@@ -4,6 +4,23 @@
  */
 
 export interface paths {
+    "/api/approvals/{identity}/decision": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Decision */
+        post: operations["decision_api_approvals__identity__decision_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/auth/local": {
         parameters: {
             query?: never;
@@ -364,6 +381,75 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/sentinel/sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Sessions */
+        get: operations["sessions_api_sentinel_sessions_get"];
+        put?: never;
+        /** Start */
+        post: operations["start_api_sentinel_sessions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/sentinel/sessions/{identity}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Detail */
+        get: operations["detail_api_sentinel_sessions__identity__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/sentinel/sessions/{identity}/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download */
+        get: operations["download_api_sentinel_sessions__identity__download_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/sentinel/sessions/{identity}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Events */
+        get: operations["events_api_sentinel_sessions__identity__events_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/sessions": {
         parameters: {
             query?: never;
@@ -419,6 +505,73 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** ActionView */
+        ActionView: {
+            /** Action Digest */
+            action_digest: string;
+            /** Agent Can Resume */
+            agent_can_resume: boolean;
+            /** Agent Id */
+            agent_id: string;
+            /** Approval */
+            approval: {
+                [key: string]: unknown;
+            } | null;
+            /** Args Digest */
+            args_digest: string;
+            /** Arguments */
+            arguments: {
+                [key: string]: unknown;
+            };
+            /**
+             * Deadline
+             * Format: date-time
+             */
+            deadline: string;
+            /**
+             * Enforcement Decision
+             * @enum {string}
+             */
+            enforcement_decision: "allow" | "hold" | "deny";
+            /** Id */
+            id: string;
+            /** Investigation Error */
+            investigation_error: string | null;
+            /** Investigation Id */
+            investigation_id: string | null;
+            /** Investigation Requested */
+            investigation_requested: boolean;
+            /** Mandate Version */
+            mandate_version: string;
+            /**
+             * Policy Verdict
+             * @enum {string}
+             */
+            policy_verdict: "in_scope" | "out_of_scope" | "undefined";
+            /** Reason */
+            reason: string;
+            /** Result */
+            result: {
+                [key: string]: unknown;
+            } | null;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Session Id */
+            session_id: string;
+            /** Source Session Id */
+            source_session_id: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "held" | "dispatched" | "denied" | "expired" | "cancelled";
+            /** Tool */
+            tool: string;
+        };
         /** Budget */
         Budget: {
             /**
@@ -496,7 +649,7 @@ export interface components {
             modes: components["schemas"]["ModeCapability"][];
             /**
              * Phase
-             * @default P6
+             * @default P7
              */
             phase: string;
             /**
@@ -569,6 +722,30 @@ export interface components {
              * @constant
              */
             schema_version: "1.0";
+        };
+        /** DecisionRequest */
+        DecisionRequest: {
+            /** Action Digest */
+            action_digest: string;
+            /** Args Digest */
+            args_digest: string;
+            /**
+             * Decision
+             * @enum {string}
+             */
+            decision: "approve" | "deny" | "deny_and_investigate" | "cancel";
+            /** Mandate Version */
+            mandate_version: string;
+            /** Reason */
+            reason: string;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Session Id */
+            session_id: string;
         };
         /** DemoRequest */
         DemoRequest: {
@@ -764,7 +941,7 @@ export interface components {
             database: components["schemas"]["DatabaseReadiness"];
             /**
              * Phase
-             * @default P6
+             * @default P7
              */
             phase: string;
             /** Ready */
@@ -921,6 +1098,68 @@ export interface components {
              */
             status: "queued" | "running" | "completed" | "cancelled" | "failed" | "interrupted";
         };
+        /** Mandate */
+        Mandate: {
+            /** Agent Id */
+            agent_id: string;
+            /** Allowed Tools */
+            allowed_tools: string[];
+            /**
+             * Approval Seconds
+             * @default 60
+             */
+            approval_seconds: number;
+            /** Approvers */
+            approvers: string[];
+            /**
+             * Authorised Cost Usd
+             * @default 0
+             * @constant
+             */
+            authorised_cost_usd: 0;
+            /** Data Classes */
+            data_classes: string[];
+            /** Data Ids */
+            data_ids: string[];
+            /** Denied Data Ids */
+            denied_data_ids?: string[];
+            /** Denied Recipients */
+            denied_recipients?: string[];
+            /** Denied Tools */
+            denied_tools?: string[];
+            /** High Impact Tools */
+            high_impact_tools?: string[];
+            /** Issuer */
+            issuer: string;
+            /** Max Dispatches */
+            max_dispatches: number;
+            /** Max Export Rows */
+            max_export_rows: number;
+            /**
+             * Not After
+             * Format: date-time
+             */
+            not_after: string;
+            /**
+             * Not Before
+             * Format: date-time
+             */
+            not_before: string;
+            /** Recipients */
+            recipients: string[];
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Session Id */
+            session_id: string;
+            /** Version */
+            version: string;
+            /** World Digest */
+            world_digest: string;
+        };
         /** ModeCapability */
         ModeCapability: {
             /** Available */
@@ -1039,6 +1278,64 @@ export interface components {
          * @enum {string}
          */
         RunMode: "playback" | "simulated" | "local_model" | "remote_model";
+        /** SentinelSession */
+        SentinelSession: {
+            /** Actions */
+            actions: components["schemas"]["ActionView"][];
+            /** Agent Id */
+            agent_id: string;
+            /**
+             * Coverage
+             * @default Owned stateless simulator + policy + transactional local mock tools
+             */
+            coverage: string;
+            /** Dispatched */
+            dispatched: number;
+            /**
+             * Evidence Status
+             * @default fixture_effect_observed
+             * @constant
+             */
+            evidence_status: "fixture_effect_observed";
+            /** Exported Rows */
+            exported_rows: number;
+            /** Id */
+            id: string;
+            /** Integrity */
+            integrity: string;
+            /** Last Event Seq */
+            last_event_seq: number;
+            /** Limitations */
+            limitations: string[];
+            mandate: components["schemas"]["SignedMandate"];
+            /**
+             * Maturity
+             * @default verified
+             * @enum {string}
+             */
+            maturity: "implemented" | "verified";
+            /**
+             * Mode
+             * @default simulated
+             * @constant
+             */
+            mode: "simulated";
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Source Session Id */
+            source_session_id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "awaiting_approval" | "completed" | "tool_timeout" | "cancelled";
+            /** Task Success */
+            task_success: boolean | null;
+        };
         /** SessionDetail */
         SessionDetail: {
             /** Capture Coverage */
@@ -1077,6 +1374,36 @@ export interface components {
             schema_version: "1.0";
             /** Sealed */
             sealed: boolean;
+        };
+        /** SignedMandate */
+        SignedMandate: {
+            mandate: components["schemas"]["Mandate"];
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Signature */
+            signature: string;
+            /** Signing Key Id */
+            signing_key_id: string;
+        };
+        /** StartRequest */
+        StartRequest: {
+            /**
+             * Hold Seconds
+             * @default 60
+             */
+            hold_seconds: number;
+            /**
+             * Schema Version
+             * @default 1.0
+             * @constant
+             */
+            schema_version: "1.0";
+            /** Source Session Id */
+            source_session_id: string;
         };
         /** TraceEvent */
         TraceEvent: {
@@ -1146,6 +1473,43 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    decision_api_approvals__identity__decision_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DecisionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SentinelSession"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     local_session_api_auth_local_post: {
         parameters: {
             query?: never;
@@ -1887,6 +2251,158 @@ export interface operations {
                 };
                 content: {
                     "application/json": string[];
+                };
+            };
+        };
+    };
+    sessions_api_sentinel_sessions_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SentinelSession"][];
+                };
+            };
+        };
+    };
+    start_api_sentinel_sessions_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StartRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SentinelSession"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    detail_api_sentinel_sessions__identity__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SentinelSession"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    download_api_sentinel_sessions__identity__download_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    events_api_sentinel_sessions__identity__events_get: {
+        parameters: {
+            query?: {
+                after?: number;
+            };
+            header?: never;
+            path: {
+                identity: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    }[];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

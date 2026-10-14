@@ -7,7 +7,7 @@ from pydantic import BaseModel, ConfigDict
 
 SCHEMA_VERSION = "1.0"
 MCP_PROTOCOL_REVISION = "2026-07-28"
-CURRENT_PHASE = "P6"
+CURRENT_PHASE = "P7"
 
 
 class RunMode(StrEnum):

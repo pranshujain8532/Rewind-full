@@ -597,3 +597,58 @@ hashes, 202 raw artifact hashes and four public screenshots verify. All five fon
 notice files match reviewed upstream bytes. Original Git normalization rules retained.
 Final render set render-2026-10-14T15-55-34-022Z inspected at required viewports;
 context/evidence publication follows. Source/provider limitations and next P7 unchanged.
+# SESSION — 2026-10-15 — P7 first complete mechanism slice
+
+Goal: implement Sentinel without restarting or overwriting the P6 checkout.
+Recovered clean master/373a0e8 tracking origin/main. Read AGENTS, current context,
+P7 prompt, architecture/verification/design, ADR-014–017, EXP-003/004/008/009,
+P6 evidence and component register. Required prior logs exist and agree.
+Sandbox helper failed before commands; scoped escalated execution works. Used
+per-command safe.directory; no global trust/configuration change.
+Added signed mandates, semantic scope checks, transactional state/budget/approval/
+local mock sink, immutable signed audit, API and original Sentinel UI. No provider
+call/dependency change. Decision identity is authenticated local-user, not supplied.
+Actual command: pytest tests/test_sentinel.py --junitxml=artifacts/p7/mechanism-first.xml;
+30/30 in 13.96s. Schema generation and npm typecheck pass. Initial lint/format issues
+retained in lint-first/second.log; gate not yet verified. Next: browser/visual QA,
+additional boundary review, full check, accurate final docs and authorised publication.
+
+## SESSION — 2026-10-15 — P7 final verification and handoff
+
+Goal: complete the supported Sentinel gate and publish the user's authorised P7 work.
+Implemented signed scope/binding/validity/budget rules; durable holds and exact
+authenticated single-use approval; hard-denial protection; atomic owned SQLite tool
+effects, budget rechecks, retry/race safety, cancellation/timeout with structured
+policy errors and continuation status; denial-first idempotent source investigation;
+signed independent audit export and real persisted-state UI. No P8 work started.
+
+Actual commands/outcomes: python scripts/rewind.py check, 125/125 in 161.93s plus
+lint/format/schema/types/build/manifest. Expanded affected P7/P0/workspace 43/43 in
+20.58s. Full npm.cmd run test:e2e 29/29 in 5.4m. After final structured policy errors,
+pytest tests/test_sentinel.py 33/33 in 15.63s and P7/P0 browser 8/8 in 1.5m.
+Final static/schema/type/build/manifest checks pass; no version/lock drift. Screenshots
+reviewed for denied/held/dispatched at 1440x900,1280x720,390x844; final browser raw
+2026-10-14T19-29-02-472Z. Initial 4/4 browser and 30/30 mechanism results remain separate.
+Visual fixes: active mobile actions before bounded run list, stacked descriptions;
+enforcement field now shows current allow/deny while retaining initial signed hold.
+
+Actual scripts/p7_benchmark.py final EXP-010 raw 20261014T192818971254Z: four protected
+fresh simulator cases, unchanged original malicious occurrence, seven valid isolated
+source trials, 12.077406s. Exactly one approved owner send/2 synthetic row instances
+preserves useful work; forbidden export always denied. Deny/cancel/expiry send zero
+and fail required owner delivery. Independent verifier in separate cwd/nonexistent
+data dir returns valid=true/nine events/one dispatch, without opening DB/API.
+Byte-identical synthetic public audits/key and reviewed images retained under p7-example.
+
+Local additive 0005→0006 migration preserves every old table count/content hash.
+First pre-migration query used nonexistent ledger_records and failed before migration;
+corrected inspected table names succeed. Earlier lint/format failures retained. Sandbox
+helper startup failures required scoped escalation; no global trust change. Provider
+requests zero; spend $0; Gemini cap remains exhausted. No public deploy/training.
+
+Updated STATE/TASKS/HANDOFF, ADR-018, EXP-010, BUGS-AND-RISKS, interview/source register,
+architecture/API/design/verification/development contracts, README, Sentinel guide,
+P7-SIM and artifact index. Git remote read still 373a0e8; local master tracks main,
+approved Pranshu Jain identity configured. Next: ordinary validated P7 commit/push,
+then prompts/08-PREFLIGHT.md. Generic MCP/real agents, editing mandate API, external
+trust/production hosting/anomaly FPR/native environment certification remain unsupported.

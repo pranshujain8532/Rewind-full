@@ -93,11 +93,14 @@ def capabilities() -> CapabilitiesResponse:
                 id=id_,
                 label=label,
                 description=description,
-                available=id_ in {"recorder", "ledger"} or (id_ == "forensics" and isolated),
+                available=id_ in {"recorder", "ledger", "sentinel"}
+                or (id_ == "forensics" and isolated),
                 maturity=FeatureMaturity.VERIFIED
-                if id_ in {"recorder", "ledger"}
+                if id_ in {"recorder", "ledger", "sentinel"}
                 else (
-                    FeatureMaturity.IMPLEMENTED if id_ == "forensics" else FeatureMaturity.PLANNED
+                    FeatureMaturity.IMPLEMENTED
+                    if id_ in {"forensics", "sentinel"}
+                    else FeatureMaturity.PLANNED
                 ),
                 evidence_status=EvidenceStatus.UNAVAILABLE,
                 reason=(
@@ -110,6 +113,9 @@ def capabilities() -> CapabilitiesResponse:
                     else "Signed stored-fact evidence, independent trusted-key verification and "
                     "original-attack simulator regressions. Governance mapping pending."
                     if id_ == "ledger"
+                    else "Signed mandates, exact single-use approvals and atomic local mock tools. "
+                    "Owned stateless simulator only; generic MCP and real agents unsupported."
+                    if id_ == "sentinel"
                     else f"Requires {dependency}; not implemented yet."
                 ),
             )

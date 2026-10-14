@@ -195,3 +195,22 @@ readiness. Sentinel and Preflight clearly explain their unavailable APIs."
 
 Questions: Why does a provenance edge not establish a cause? Why must an old passing
 regression disappear while a new run is pending? Answers not yet recorded. Next P7.
+## P7 — 60-second explanation, 2026-10-15
+
+“Sentinel checks a proposed action before any protected tool effect. A signed mandate
+binds our owned agent, session, world, validity, tool/data/recipient scope and budget.
+Code computes the verdict. A forbidden export is denied and has no approval override.
+An otherwise authorised high-impact send is held. The local operator's approval binds
+the exact action and arguments digests, session, mandate version and expiry. Before
+dispatch, a SQLite transaction rechecks all of those facts, consumes the approval
+once and writes the owned mock effect and signed audit together. Retries and races
+cannot send twice. Timeout or cancellation makes that call non-resumable; denial can
+lead to one bounded investigation of the earlier captured source. The UI reads actual
+stored decisions and counters. Our unchanged-attack experiment denies the forbidden
+send but permits one approved owner send and preserves the task. Denying every send
+fails the owner task. This proves the owned simulator/database adapter, not general
+MCP delivery, real-model reliability, external identity or compliance.”
+
+Questions: Why cannot a normal approval override an out-of-scope verdict? Why does
+atomic local dispatch not establish at-most-once delivery to an arbitrary remote tool?
+Comprehension answers not yet recorded. Next product phase P8, not started in P7.
