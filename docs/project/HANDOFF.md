@@ -1,80 +1,67 @@
 # Handoff
 
-Updated 2026-10-14 (Asia/Calcutta). P5-SIM VERIFIED; real investigations unsupported.
-User explicitly requested P5 and authorised GitHub pushes, superseding the P4-REAL
-next-task note. Subsequently requested correcting older Codex Git identities to
-the approved Pranshu Jain identity; this rewrite is published and verified below.
-Do not restart, reset user work or fabricate dates. Preserve historical evidence.
+Updated 2026-10-14 (Asia/Calcutta). P6 supported UI VERIFIED; real investigations unsupported.
+Read AGENTS, STATE, TASKS, ADR-014/015/016/017, EXP-003/008/004/009 and P6-UI.md.
+User requested P6 after P5 and explicitly authorised GitHub publication under their
+noreply identity. Preserve user work, original evidence and actual dates; do not restart.
 
-Read AGENTS, STATE, TASKS, ADR-014/015/016, EXP-003/008/004 and recent bugs.
-Current code: rewind_ledger contracts/evidence/bundle/store/regression/worker/CLI;
-0004_ledger migration; authenticated API; original Ledger.tsx browser controls.
-Shared persistent worker handles investigation and regression queues exclusively.
-Original attack world/input is bound to the signed source; no ablation in regression.
+Current product path: /overview -> /sessions/{id} -> /investigations/{id} ->
+/ledger/{id} -> /regressions?record=...&run=.... Lists, settings and accurate unavailable
+Sentinel/Preflight screens also exist. App/pages/SessionWorkspace/Investigation/
+EvidenceRecord/Regressions, shared UI and a 64-entry REST cache replace the overview-only
+shell. Original old Forensics/Ledger/style files remain preserved, not active routes.
 
-Evidence record fields derive from trace/trial artifacts, not a model. Counts,
-findings/intervals, coverage, original seal/config/fixture/tool digests, actual mock
-impact, uncaptured approvals and pending governance stay explicit. Stored bundles
-are encrypted and immutable. Trusted-key verification is independent of API/DB;
-8 MB JSON limit, depth/node bounds, schema/signer/digest checks and fact projection.
-Unknown/incomplete/invalid evidence cannot become a successful regression.
+Selected input, graph, captured model event, details and intervention comparison are
+synchronised. Hostile content is safe text; tables and native dialogs support keyboard
+and Escape focus restoration. Stable edges are observed relationships, not causes.
+Mode, evidence, capture/replay coverage and local/independent integrity are distinct.
+Source/contract/configuration restore from stored regression metadata. Pending starts
+clear old passes. Counts, rates, intervals and useful work come from backend results.
 
-Regression versions: vulnerable-v1 interprets original directives, no enforcement;
-behavioural-v1 retains input but ignores external executable directives;
-containment-v1 retains attempts and checks owned recipient allowlist;
-deny-all-v1 is a negative task-failure control. Exact summary and required owner
-SEND dispatches must both succeed. N=1 per arm, no CI, two fresh trials/turns,
-60s default, no paid inference. No full Sentinel signature/approval lifecycle claim.
-15s lease/1s heartbeat; interrupted/cancelled trials stay incomplete/inconclusive.
-Plans/trials/results/cases/records are immutable; comparisons use the same case.
+/api/sessions/{id} is authenticated, bounded and redacted, with read-only key access.
+Exact payload_text / plan_json avoids uint64 rounding. New 0005_workspace persists
+immutable regression events before SSE, including starts/trials/cancel/lease expiry.
+Both streams deduplicate/resume; snapshots recover true status. Durations use stored
+start/terminal events and server clock; worker milliseconds exclude container startup.
 
-IMPORTANT: browser verification sends downloaded bytes directly and a separately
-selected key hex in X-REWIND-Trusted-Public-Key. JavaScript JSON round-trips round
-64-bit seeds and correctly fail signatures. Legacy object wrapper is supported only
-for lossless clients. CLI output refuses existing filenames. Local trust is not
-external anchoring, observed truth, blame or a compliance certificate.
+P5 signed artifacts and original attacks are unchanged. Behavioural requires zero
+harmful attempts; containment zero harmful dispatches with residual attempts visible.
+Both require exact ticket summary and every owner SEND dispatch. Presets remain a small
+owned rule, not full Sentinel. N=1/arm, no CI, two-trial/60s/$0 budgets; invalid source/
+trials cannot pass. Browser verification sends original bytes plus a separately supplied
+public key; never parse/stringify a signed bundle. Independent CLI needs no API/DB.
 
-Actual EXP-004: artifacts/p5/EXP-004/20261014T101549809036Z/. Seven source
-Docker trials, ten regression trials. Expected version verdicts fail/pass/fail/pass/
-fail; containment residual attempt=1, dispatch=0, task true. Deny-all fails owner
-send. Owner send was added before capture; malicious occurrence unchanged. Raw
-requests/results and original seals preserved. Independent CLI in separate cwd/no
-DB verifies; report/trace/trial modifications fail. Public synthetic example files:
-docs/project/evidence/p5-example/. Public key is a demonstration trust assumption.
+Source register: COMPONENT-SOURCES.md. Exact reviewed MIT Card/Empty upstream at
+30a58d4498f270af1c1e981a7d78a15cf5740841; OFL fonts at google/fonts
+e9678a5385322c63730122ba464765baad83cfd8. No registry command, new runtime dependency,
+remote font/image or telemetry. Build generates an asset-only service worker; dev
+does not install it. Offline errors/stale state are visible; API evidence is not cached.
 
-Checks: root 87/87 in 373.88s, check-first.log and checks/20261014T101550529821Z/pytest.xml;
-post-upload-fix focused P5 15/15 in 18.26s; final lint/format/schema/build/manifest pass.
-Second full browser run passes 15 existing checks; corrected P5 journeys pass at all
-three viewports. Final desktop renders: browser/2026-10-14T10-43-47-906Z/;
-mobile: browser/2026-10-14T10-47-39-965Z/. Inspected detail/full renders. Original
-failures retained: unit fixture used untyped mode; browser rounded seeds, old-run
-assertion race, short confirmation wait and mobile min-content overflow. No single
-18/18 browser result is claimed. No optional P5 checks remain.
+Checks: root 92/92 in 138.97s plus all static/build/manifest checks. After final run
+metadata, affected API/ledger 20/20 in 11.92s. Browser full 25/25 in 8.4m; exact-preview
+and layout 8/8, restoration 3/3, pending-old-pass 1/1 separately. Do not merge results.
+Final screenshot set: artifacts/p6/render-2026-10-14T15-55-34-022Z/, five routes at
+1440x900,1280x720,390x844, detail/full renders reviewed. Zero page overflow/fatal JS/
+external requests. No new trials during final render. P6-UI.md records three fixes,
+retained selector/unused-font/default-open-table failures and measurement limitations.
 
-Image 763e9c95f02be674769c4ee285cb039b357a8bc5a5973e72d0e8976a553b1c62,
-13 actual isolation probes pass. Runtime image contains the new mock enforcement.
-P4 source/statistics protocol unchanged, statsmodels 0.14.6. Core remains CPU-only.
-Gemini key in ignored api.txt; never show its contents. User authorisation declared
-free-tier project/$0, previous three-call cap exhausted. P5 performs no provider call.
-Gemini CLI exploratory only, two valid/one invalid prior smoke; no real confirmation.
+Existing root data migrated additively: seven sessions/one investigation/one record/
+five runs preserved, artifacts/p6/migration.json. Runtime image unchanged from P5;
+13 prior isolation probes verified. Gemini key remains ignored api.txt; never show it.
+Declared free tier/$0, prior three-request cap exhausted; P6 made no provider requests.
+CLI-only Gemini remains experimental/ineligible for real app experiments/regressions.
 
-Commands: python scripts/rewind.py dev; check; npm run test:e2e;
-.venv/Scripts/python.exe -m rewind_ledger.cli {record,verify,case,run,compare};
-.venv/Scripts/python.exe scripts/p5_benchmark.py. API alone leaves jobs queued.
-Existing data migrated additively to 0004; no reset/deletion. Git host needs command-
-scoped safe.directory for this exact repo; do not change ownership/global trust.
+Commands: python scripts/rewind.py dev; check; npm.cmd run test:e2e;
+.venv/Scripts/python.exe -m rewind_ledger.cli {record,verify,case,run,compare}.
+Review harness: node scripts/p6_render.cjs <existing artifacts/browser/... directory>;
+uses stored actual results, API only, no worker/trials. Test harness owns its own data.
 
-GitHub: https://github.com/pranshujain8532/Rewind-full.git, public main verified.
-User selected noreply identity 241415102+pranshujain8532@users.noreply.github.com;
-name Pranshu Jain. Explicit subsequent request corrected author AND committer on
-four older Codex commits. Seven original trees/messages/dates unchanged; descendant
-IDs changed. Published with force-with-lease against b8aec154; remote 63d9595 verified.
-Code d10873c / context 80cb213 replace e756deb / 70d7a01. Full mapping and backup:
-evidence/GIT-IDENTITY-20261014.md. Existing artifact indexes retain original revision
-IDs; resolve through this map rather than editing/re-signing measured evidence.
-Local master tracks origin/main. Secrets/private keys/local DB/artifacts excluded;
-actual public synthetic sample retained for review. Follow-up commit records context.
+GitHub: https://github.com/pranshujain8532/Rewind-full.git. Local master tracks main.
+Approved identity Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com.
+Command-scoped safe.directory required on this host; do not change global trust.
+Old identity rewrite is already published; map in evidence/GIT-IDENTITY-20261014.md.
+P6 implementation 8ee6736 published; verbatim-notice follow-up e6f1ea4 indexed. Secrets/local DB/artifacts excluded.
 
-Next exact task: prompts/06-FRONTEND.md. Full session/evidence explorer and accessible
-comparison journeys. Real P3/P4 gates, native Linux/WSL host/fresh machine, remote
-hosting, Sentinel and Preflight remain unsupported/not_run/planned respectively.
+Next: prompts/07-SENTINEL.md. Signed mandate and safe approval binding/lifecycle.
+Real P3/P4/regression admission, external trust/governance, production hosting,
+physical-device/screen-reader and native Linux/WSL/fresh-machine gates remain unverified.

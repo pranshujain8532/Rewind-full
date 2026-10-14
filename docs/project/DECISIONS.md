@@ -312,3 +312,36 @@ Revisit: real capture eligibility, separately budgeted stochastic regression pla
 approved governance source controls, signed Sentinel mandates and external key custody.
 Affected: rewind_ledger, 0004 migration, replay mock enforcement, shared worker/API,
 Ledger controls, schema generation, tests, benchmark and documentation.
+
+## ADR-017 — A routed evidence workspace with bounded projections and durable progress
+
+Date: 2026-10-14 (Asia/Calcutta). Status: ACCEPTED for verified P6 supported UI.
+Question: how can the frontend connect captured provenance, experimental outcomes,
+signed records and regressions without manufacturing live state or requiring a new stack?
+Context: P4/P5 have durable facts, but the overview-only UI has no session explorer
+and regression progress is polling-only. Real models, Sentinel and Preflight remain unsupported.
+Options: presentation-only dashboard; new graph/query/router dependencies; native
+React routes, a bounded query cache, stable domain graph and additive stored progress.
+Chosen: REST snapshots with persisted SSE for both job types, ID deduplication and
+snapshot recovery; 64-entry server-state cache with selection/drawers separate. A
+read-only authenticated session projection verifies the local capture key and
+redacts/bounds display without creating keys. Complete capture, replay admission,
+mode and integrity are separate. 0005_workspace appends immutable regression events
+in the same transaction as each transition. Existing signed artifacts are unchanged.
+One controlled occurrence selection synchronises graph, event, details and intervention
+comparison. Original fixed-layout SVG/HTML and tables avoid inferred causal edges.
+Native dialogs provide focus containment; brief CSS transitions respect reduced motion.
+Why: real counters/results survive refresh, duplicate events cannot inflate trials,
+and a source can remain inspectable while its replay mode is unsupported.
+Trade-offs: local single-user auth and owned simulator only; no generic real-model
+integration or production deployment. Narrow original routes/cache require explicit
+maintenance. Asset-only service worker caches no API evidence and shows offline errors.
+Sourcing: 21st-discovered Card/Empty adapted from exact reviewed MIT upstream source,
+with local unmodified OFL fonts; no registry installer or extra runtime dependencies.
+Evidence: full design/API/source review; root 92/92 tests; browser 25/25 plus final
+targeted exact-text/restore/pending checks; fifteen inspected journey layouts.
+Exact paths, source provenance, observed fixes and limits: evidence/P6-UI.md.
+Revisit: real API admission, full Sentinel/Preflight APIs, larger graph/query scale,
+multi-user deployment, offline evidence retention or a separately authorised model budget.
+Affected: workspace routes/components/styles, API projection, Ledger events/SSE,
+0005 migration, generated contracts, asset build, tests and source/context docs.

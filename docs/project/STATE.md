@@ -1,79 +1,71 @@
 # Current project state
 
-Updated 2026-10-14 (Asia/Calcutta). P5-SIM VERIFIED. P4-SIM verified.
-P3-REAL experimental CLI only; full real gate unverified. P1-P10 authorised.
+Updated 2026-10-14 (Asia/Calcutta). P6 supported UI VERIFIED; P4-SIM/P5-SIM verified.
+P3-REAL exploratory CLI only; full real gates unsupported/unverified. P1-P10 authorised.
 
-Working: owned synthetic MCP tools, encrypted ordered capture, trusted signed
-trace/seal verification, isolated fresh simulator trials, observable provenance,
-transparent ranking/coverage, bounded discovery and frozen independent confirmation.
-P4 stochastic default N=40/max three finalists; alpha=.05/m, Newcombe intervals,
-threshold .20; deterministic N=1/no CI. No optional stopping or playback inference.
-Durable SQLite jobs, local cookie/Origin/CSRF, persisted-before-SSE events,
-idempotency, cancellation, leases and interruption preserve actual stored status.
+Working: owned synthetic MCP tools, encrypted ordered capture, trusted signed seals,
+isolated fresh simulator trials, observable provenance/ranking and retained coverage,
+bounded discovery and separate frozen confirmation. Default stochastic N=40/max three
+finalists; alpha=.05/m, independent Newcombe intervals, threshold .20. Deterministic
+N=1/no CI; no playback inference, optional stopping or untested-candidate safety claim.
 
-P5: versioned stored-fact records, original seal/config/fixture/tool/model digests,
-all candidate scope/counts/interval metadata, captured policy/approval trail,
-synthetic row-instance impact and explicit limits. Ed25519 binds report/trace/trials;
-AES-GCM encrypts immutable stored bundles. Authenticated download and bounded
-independent CLI verification require an explicitly supplied trusted public key.
-Governance mapping pending; no exact external source control read.
+P5 stored-fact records bind trace/trials/seal/config/fixture/model digests, actual
+counts/coverage, policy trail, synthetic impact and limitations. Ed25519 and immutable
+AES-GCM storage, download and independent trusted-key CLI work. Original unchanged
+attack regressions measure attempted harm or containment dispatch plus useful work;
+residual attempts and invalid/incomplete evidence remain visible. Governance pending.
+Local key trust does not establish truth, external anchoring or individual blame.
 
-Original-attack regressions use fresh private worlds and unchanged input. Vulnerable
-configuration fails; behavioural fix prevents attempts; containment blocks dispatch
-while retaining attempts. Both require exact ticket summary AND owner-requested
-sends. Blanket-denial control fails useful work. Preset containment is not full
-Sentinel/approval enforcement. Immutable plans/results, two-trial budgets, worker
-heartbeats, cancellation/interruption and same-case version comparison work.
+P6: overview, session explorer, investigation, ledger record, regression and settings
+routes. Stable observed graph, event/input/details/intervention selection, safe text,
+accessible tables/drawers, signed downloads and verification. REST snapshots + durable
+SSE for both job types; refresh/reconnect/deduplication/cancellation/interruption work.
+Stored counts/rates/intervals; exact plan/payload text preserves uint64 seeds. Restored
+regressions retain source/contract/configuration; pending starts clear old results.
+Two reviewed 21st-discovered MIT Card/Empty adaptations and bundled OFL fonts; original
+icons/graph/interval views. Offline built shell caches assets only, not API evidence.
+Sentinel and Preflight routes show true unavailable states; APIs remain planned.
 
-Modes: simulator verified; playback recording only; local model absent. Gemini
-exploratory CLI works, but real API/Forensics/regressions are unsupported. User
-provided ignored api.txt and authorised declared free tier/spend $0. Original
-three-request Gemini cap exhausted; P5 made no provider requests. Billing unverified.
-No general production agent/tool support, public app deployment or compliance claim.
-Local signing trust has no external anchor; integrity is not truth or individual blame.
+Modes: simulator verified; playback recording-only; local model absent. Gemini CLI
+exploratory only; real API/Forensics/regressions unsupported. Ignored api.txt unchanged.
+Declared free-tier/$0 authorisation; prior three-call smoke cap exhausted. Billing
+unverified. P6 made zero provider calls. No GPU or paid service required for core.
 
-Storage head: 0004_ledger. Current phase P5. Dependencies/locks unchanged except
-additive package inclusion. Worker image sha256:763e9c95f02be674769c4ee285cb039b357a8bc5a5973e72d0e8976a553b1c62;
-13 isolation probes pass. Rebuild/probe after replay worker changes.
+Storage/source head: 0005_workspace, additive immutable regression events. Existing
+local migration verified with 7 sessions, 1 investigation, 1 record, 5 runs unchanged.
+Runtime image 763e9c95f02be674769c4ee285cb039b357a8bc5a5973e72d0e8976a553b1c62;
+prior 13 isolation probes verified. P6 does not change container runtime code.
+Dependencies/locks unchanged; no new UI runtime package or registry installer.
 
 Commands (PowerShell):
 ```
 python scripts/rewind.py setup
-.venv/Scripts/python.exe -m rewind_replay.cli setup
-.venv/Scripts/python.exe -m rewind_replay.cli probe
 python scripts/rewind.py dev
 python scripts/rewind.py check
-npm run test:e2e
-.venv/Scripts/python.exe scripts/p5_benchmark.py
-.venv/Scripts/python.exe -m rewind_ledger.cli verify --bundle docs/project/evidence/p5-example/evidence.json --trusted-public-key docs/project/evidence/p5-example/trusted-public.ed25519
+npm.cmd run test:e2e
+.venv/Scripts/python.exe -m rewind_replay.cli {setup,probe}
+.venv/Scripts/python.exe -m rewind_ledger.cli {record,verify,case,run,compare}
 ```
-Dev starts API, web and shared investigation/regression worker. API alone queues.
-CLI guide: packages/rewind_ledger/README.md; Gemini guide: rewind_replay/GEMINI.md.
+Dev starts migrated API, web and shared worker. API alone queues jobs.
+Browser tests build/serve the real production bundle. Local preview: npm run build;
+npm run preview --workspace apps/web. Offline installation requires a built first load.
 
-P5 evidence: docs/project/evidence/P5-SIM.md and P5-ARTIFACTS.json.
-Actual EXP-004: artifacts/p5/EXP-004/20261014T101549809036Z/: seven valid source
-trials, ten valid regression trials; fail/pass/fail/pass/fail for declared versions.
-Original malicious occurrence unchanged; owner-send control added before capture.
-Independent CLI authentic verification and three artifact-tamper refusals pass.
-Committed p5-example bundles preserve actual synthetic outputs and public demo key.
-Full repository check: 87/87 in 373.88s, artifacts/p5/check-first.log and
-artifacts/checks/20261014T101550529821Z/pytest.xml. After raw-byte upload fix,
-15/15 focused P5 tests in 18.26s; unit-final.xml. Final lint/format/schema/types/
-build/manifest pass. Existing 15 browser checks pass in the second full run;
-P5 three journeys pass after identity binding, final desktops at
-artifacts/browser/2026-10-14T10-43-47-906Z/, mobile at 10-47-39-965Z/.
-All required renders inspected. Earlier failures retained; no single 18/18 claim.
+P6 proof: evidence/P6-UI.md and P6-ARTIFACTS.json. Root 92/92 in 138.97s;
+artifacts/p6/check-final.log, checks/20261014T150147656593Z/pytest.xml. Final affected
+API/ledger 20/20 in 11.92s. Complete browser 25/25 in 8.4m, plus final exact-text 8,
+restoration 3 and pending-state 1 separately. Final fifteen journey layouts:
+artifacts/p6/render-2026-10-14T15-55-34-022Z/. Three largest visible weaknesses fixed;
+source/contract restoration also corrected. Original failure logs retained.
+EXP-009 UI samples: 718.4/204.9ms then 408.0/94.1ms load/interaction; not guarantees.
 
-GitHub: pranshujain8532/Rewind-full, default main; local master tracks origin/main.
-User requested correction of four older Codex author/committer identities to
-Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com. Published with
-an explicit force-with-lease; remote rewrite head verified as 63d9595. All seven
-commit trees/messages/dates preserved; local original-history ref and bundle kept.
-Code now d10873c (original e756deb); evidence/context now 80cb213 (original 70d7a01).
-Full mapping: evidence/GIT-IDENTITY-20261014.md. Historical evidence hashes and
-signed artifacts remain unchanged. No pending P5 implementation/verification.
+Prior evidence: P4-SIM.md / EXP-003, P3-REAL.md / EXP-008, P5-SIM.md / EXP-004.
+Original signed samples/hash indexes remain unchanged. Historical Git IDs resolve
+through evidence/GIT-IDENTITY-20261014.md after the explicit author correction.
+GitHub pranshujain8532/Rewind-full main; local master tracks origin/main. Commit
+identity Pranshu Jain / 241415102+pranshujain8532@users.noreply.github.com authorised.
+P6 implementation 8ee6736 published to origin/main; final source/evidence indexed.
 
-Next exact product task: prompts/06-FRONTEND.md (P6), full evidence/session explorer,
-accessible comparison and remaining rendered journey. Real-mode admission/budgets
-remain a separate unfinished follow-up. Native Linux/WSL host, fresh-machine install,
-remote/private deployment, full Sentinel and Preflight are unverified/planned.
+Next exact product task: prompts/07-SENTINEL.md, signed mandate and approval lifecycle.
+Real-mode budgets/admission, production multi-user hosting, external trust/governance,
+physical-device/screen-reader certification, native Linux/WSL and fresh-machine install
+remain unsupported/unverified. Preserve all user work; no restart or historical rewrite.

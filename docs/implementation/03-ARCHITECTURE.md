@@ -365,6 +365,18 @@ SSE events have schema_version, id, job_id, monotonic job_seq, type, time and da
 
 Persist progress before emitting it. Reconnect using Last-Event-ID for this **application SSE endpoint**, then fetch a snapshot if history expired. Deduplicate client events. Keep heartbeats, terminal states, bounded queues and disconnect cleanup. Do not equate animation playback time with compute time.
 
+P6 implemented boundary (2026-10-14, ADR-017): authenticated GET /api/sessions/{id}
+projects bounded redacted trace facts and local integrity/replay admission separately,
+without creating keys. payload_text and plan_json carry exact canonical text for
+uint64 previews; they are display fields, not changed signed artifacts. Snapshot
+elapsed_seconds uses stored starts/terminal events and the server clock; unavailable
+timing stays null. Regression snapshots identify the stored source record/contract.
+0005_workspace appends immutable regression_events transactionally with state/trials.
+GET /api/regression-runs/{id}/events uses the same scoped Last-Event-ID protocol as
+investigations. Old terminal runs without event timing remain unknown. The routed
+browser uses REST snapshots, SSE invalidation/deduplication and a bounded query cache;
+UI selection is separate. The asset-only service worker excludes every /api request.
+
 Jobs have queued/running/completed/failed/cancelled states, lease/heartbeat metadata and bounded retries. A crash must produce resumable or explicitly interrupted work. CPU/model evaluation runs in the worker, not in FastAPI's request event loop.
 
 ## 14. Local security and deployment boundary

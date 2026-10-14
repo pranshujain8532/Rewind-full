@@ -2,7 +2,7 @@
 
 Current: EXP-001/002 simulator mechanisms, EXP-003 P4 simulator investigations,
 EXP-008 exploratory Gemini smoke (two valid trials, one invalid; no confirmation),
-and EXP-004 original-attack P5 simulator regressions.
+EXP-004 original-attack P5 simulator regressions, and EXP-009 P6 engineering UI QA.
 Simulator gates are verified; real fixed-plan investigation remains unsupported.
 Other experiments remain planned. Dossier examples are not measured results.
 
@@ -23,6 +23,7 @@ was executed during P0.
 | EXP-006 | Does a ranking/model extension outperform the simple baseline? | PLANNED |
 | EXP-007 | How do text similarity and action outcomes differ on controlled cases? | PLANNED |
 | EXP-008 | Does the user's Gemini key support bounded fresh isolated decisions? | OBSERVED (REAL CLI); smoke aborted on invalid trial |
+| EXP-009 | Does the supported API evidence journey recover/render truthfully? | COMPLETE (P6 engineering QA; not model inference) |
 
 ## Experiment template
 
@@ -297,3 +298,44 @@ pending-state clarity, bounded waits and min-width containment fixed each issue.
 No lost sample was counted harmless and no failing run was relabelled successful.
 Limits: no stochastic/real regression, generic production tools, full Sentinel
 approval lifecycle, external key anchor or reviewed governance clause. P6 follows.
+
+## EXP-009 - P6 engineering journey, recovery and render QA
+
+Date: 2026-10-14. COMPLETE for the supported API/simulator UI. Engineering experiment,
+not a new model reliability estimate. Raw outcomes: evidence/P6-UI.md and hash index
+P6-ARTIFACTS.json. No dossier numbers or generative evidence fields were used.
+
+Full root check 92/92 in 138.97s, browser full 25/25 in 8.4m. Final exact-text/layout
+8/8; affected API/ledger 20/20 in 11.92s; restoration 3/3; held-pending-start 1/1.
+Their separate logs are under artifacts/p6. Full-browser raw facts at
+artifacts/browser/2026-10-14T14-43-39-167Z/. Final fifteen route/viewports and detail
+renders at artifacts/p6/render-2026-10-14T15-55-34-022Z/. Review reports zero page
+overflow, fatal JavaScript or external requests. Final rendering starts zero new trials.
+
+Estimate explanation: harmful-attempt reduction is the original rate minus the
+intervention rate, expressed in percentage points. The selected stored deterministic
+fixture shows 1/1 versus 0/1, a 100 pp observed reduction, with useful work 1/1 in each.
+It has no inferential interval. Fresh stochastic confirmation shows backend Newcombe
+independent-sample intervals with the actual alpha=.05/m level. A wide interval or
+failed useful task can leave a finding inconclusive. Reading a saved result is not
+fresh inference, and simulator uncertainty does not establish real-model reliability.
+
+Recovery checks replayed three exact persisted SSE events; counts still matched the
+stored snapshot. Offline/online and refresh recovered real cancelled status; no partial
+trial became a positive finding. Fixed N=40 survived refresh. Worker death retained
+incomplete trials and interrupted status. Original-attack behavioural and containment
+API journeys pass their declared gates; residual containment attempts remain visible.
+
+100-event labelled display fixture (not agent trials): first sample load 718.4ms /
+interaction 204.9ms, later 408.0ms / 94.1ms, raw p6-performance.json in browser
+14-21-18-035Z and 14-54-24-097Z directories. Windows, Intel i5-13420H, 16.87 GB RAM;
+automation/local-network overhead included. These single samples do not establish
+p95, a general <100ms guarantee or EXP-005 recorder overhead. Measured primary-button
+contrast 5.986 and reduced-motion transition 0s. Physical devices/screen readers unrun.
+
+Failures retained: initial approval-review usage limit meant no execution; missing
+saved test file retry ran no tests; first browser 2/3 selector ambiguity; next 7/8
+checked an unused mono font; visual 9/10 test closed its default-open mobile table.
+All are separately corrected/verified, not relabelled as successful experiments.
+No paid/provider calls; real-model, Sentinel/Preflight, hosting and governance remain
+unsupported/planned. Offline caches only assets, not API evidence. Next product P7.

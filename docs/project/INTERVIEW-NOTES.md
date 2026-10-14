@@ -176,3 +176,22 @@ estimates or compliance certificates; external governance mapping remains pendin
 Questions: Why does a trusted signature fail to establish that an observation was
 true? Why can a containment patch pass while the behavioural contract fails?
 Comprehension answers not yet recorded. Next product phase P6, full evidence UX.
+
+## P6 - 60-second explanation, 2026-10-14
+
+"REWIND now connects the evidence journey. I select a captured input and the graph,
+event, details and intervention comparison stay together. The edges show observed
+relationships, not proven causes. A separate worker stores trials and progress before
+SSE sends them; the browser reads authoritative snapshots and ignores duplicate event
+IDs. Refresh, lost connections, cancellation and worker death preserve actual status.
+Rates, useful work and independent-sample intervals come from the backend. Mode,
+coverage, evidence and integrity are separate. Exact text avoids rounding large seeds.
+The signed record can be downloaded and verified with an independently trusted key;
+integrity still is not truth or blame. Regressions retain the original attack and
+show both safety and useful work, including residual attempts. I reviewed licensed
+components, bundled offline assets and fixed the largest screenshot problems at three
+sizes. This proves the supported simulator workspace, not real-model or compliance
+readiness. Sentinel and Preflight clearly explain their unavailable APIs."
+
+Questions: Why does a provenance edge not establish a cause? Why must an old passing
+regression disappear while a new run is pending? Answers not yet recorded. Next P7.

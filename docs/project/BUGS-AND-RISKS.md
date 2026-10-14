@@ -149,3 +149,27 @@ investigations and their durable budget/independence gate remain unsupported.
 - Public GitHub push is explicitly authorised; user selected a real noreply identity.
   Private keys, api.txt, data and ordinary artifacts remain excluded. Previous commit
   authors/timestamps are retained. No fabricated contribution history.
+
+## P6 observed issues - 2026-10-14
+
+- BUG-012 VERIFIED FIXED: JavaScript JSON numbers can round uint64 seeds in plan/
+  payload previews. Backend supplies exact plan_json/payload_text; browser asserts
+  the frozen N=40 text and 18446744073709551615. Signed downloads remain raw bytes.
+- BUG-013 VERIFIED FIXED: refresh restored a containment result while form defaults
+  implied behavioural-v1. Snapshot now carries stored source record/contract, and
+  controls restore its configuration. Three viewports pass explicit assertions.
+  Held actual API transport also verifies that a pending new start clears the old pass.
+- UI review corrected stacked provenance, small source labels, clipped mobile menu/
+  hidden selection, wrapping times and capture/replay/integrity conflation. Scope and
+  exact before/after screenshot paths: evidence/P6-UI.md. No source trial relabelled.
+- First browser selectors were ambiguous (multiple accessible statuses); one test
+  closed its new default-open mobile table. Offline mono face was bundled but unused
+  on an error screen; explicit load verifies availability. Original failures retained.
+- ENV-006 resolved: automatic approval review hit usage limit, not an unsafe-action
+  rejection. The first call did not save its test file/run validation. On continuation,
+  zero-test retry was recorded, file saved, real tests run. No bypass was used.
+- Performance proposed <100ms interaction was not met in the first 204.9ms sample;
+  later 94.1ms sample is not a distribution guarantee. Native screen-reader/physical-
+  device/Linux verification remains unrun. Offline is an asset shell, not live evidence.
+- User subsequently authorised the old commit identity correction; historical hashes
+  resolve through GIT-IDENTITY-20261014.md. P6 makes ordinary new commits, no backdating.

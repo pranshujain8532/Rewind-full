@@ -12,7 +12,7 @@ IMPLEMENTED means code exists; VERIFIED means the named gate passed.
 | P3-REAL | Replay | Fresh real-model decisions under controlled intervention | IMPLEMENTED | P2, model availability | Gemini exploratory CLI; EXP-008 two valid/one invalid; full real gate unverified |
 | P4 | Investigation | Valid discovery/confirmation/statistics/jobs | VERIFIED | Valid P3 mode | Simulator only; evidence/P4-SIM.md; full check 64/64, browser 12/12, actual EXP-003 |
 | P5 | Ledger | Trusted verification and original-attack regression | VERIFIED | P4-SIM | evidence/P5-SIM.md; actual EXP-004, independent CLI, 87 tests plus post-upload focused 15, three rendered P5 journeys |
-| P6 | Frontend | Real-data investigation journey and visual/accessibility QA | TODO | P4, P5 | Not run |
+| P6 | Frontend | Real-data investigation journey and visual/accessibility QA | VERIFIED | P4, P5 | Supported API/simulator journey; evidence/P6-UI.md; 92 tests, browser 25 + final targeted checks; 15 reviewed layouts |
 | P7 | Sentinel | Mandate checks and safe approval lifecycle | TODO | P2, P6 | Not run |
 | P8 | Preflight | Owned sandbox suite with actual counts and budgets | TODO | P3, P4, P6 | Not run |
 | P9 | MCP | Authorised tools via tested pinned protocol | TODO | P5, P8 | Not run |
@@ -20,6 +20,14 @@ IMPLEMENTED means code exists; VERIFIED means the named gate passed.
 | P11 | Research | Optional methods beat baseline on declared criterion | TODO | P10 or explicit rescope | Not run |
 
 ## Current slice
+
+P6 VERIFIED for the supported API/simulator journey. Exact gate, raw references,
+licences, fifteen layouts, screenshot-led fixes and limits: evidence/P6-UI.md.
+Root 92/92; browser 25/25 plus targeted exact-text/restore/pending checks. Bounded
+read-only trace, persisted SSE, lossless seed display, refresh/reconnect/duplicates,
+keyboard and offline assets pass. Additive migration preserves existing records.
+No provider calls or fabricated Sentinel/Preflight integrations.
+Next exact product task: prompts/07-SENTINEL.md. P3/P4 real gates remain unsupported.
 
 P5-SIM VERIFIED on 2026-10-14. User explicitly requested this phase, superseding
 the earlier P4-REAL next task below. Signed stored-fact downloads, independent
@@ -35,7 +43,7 @@ Attribution maintenance VERIFIED: four Codex author/committer identities correct
 seven commit trees/messages/dates preserved, local backup verified, lease-protected
 push and remote-head read passed. Evidence: evidence/GIT-IDENTITY-20261014.md.
 Historical artifact revisions/signatures remain intact and resolve through that map.
-Next product task: prompts/06-FRONTEND.md. Preserve all user work.
+Historical P5 next task was P6; it is now verified. Current next task is P7 above. Preserve user work.
 
 P4-SIM VERIFIED. User's Gemini key authenticates and supports fresh remote CLI
 trials on the explicitly declared free-tier project with spend $0. EXP-008 is an

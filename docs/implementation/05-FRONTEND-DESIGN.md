@@ -174,3 +174,16 @@ Mode and evidential status are separate dimensions. A measured simulator result 
 
 Do not declare frontend finished merely because the dev server compiles. Follow the complete user journey and fix the largest visual or functional problem first.
 
+## P6 implemented design - 2026-10-14
+
+The supported API/simulator journey is verified; exact evidence and reviewed images
+are in docs/project/evidence/P6-UI.md. Required routes and shared evidence primitives
+work, with original stable SVG/HTML provenance and native focus-contained drawers.
+Reviewed MIT Card/Empty adaptations were discovered at exact 21st listings; no registry
+command was used. Local unmodified OFL fonts/icons replace external assets.
+REST plus persisted application SSE owns both job types. Exact backend plan/payload
+text preserves large seeds; capture/replay and record/trace integrity stay distinct.
+The final hero pairs provenance with actual before/after actions and scope/estimates.
+Mobile uses a readable selection table and native menu. Offline caches only assets.
+Sentinel/Preflight and real-mode workflows remain unavailable, with reasons.
+

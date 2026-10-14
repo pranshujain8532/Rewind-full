@@ -157,5 +157,21 @@ CLI exports refuse existing filenames; stored bundles/manifests are encrypted an
 immutable. Only bounded simulator regressions are supported; no P5 provider call.
 For API verification send original bytes and X-REWIND-Trusted-Public-Key. Lossy
 JS parse/stringify alters large seeds and must fail verification.
-P5 acceptance evidence: docs/project/evidence/P5-SIM.md. P6 is the next product
-phase; native Linux/WSL host/fresh-machine/public serving remain not_run/unsupported.
+P5 acceptance evidence: docs/project/evidence/P5-SIM.md. Its historical next phase
+P6 is now verified below; native Linux/WSL/fresh-machine/public serving remain unrun.
+
+## Current P6 workspace - 2026-10-14
+
+Storage head 0005_workspace adds immutable regression progress. Existing local
+sessions/investigations/records/runs remain unchanged after migration. Required routes
+connect real API snapshots and persisted SSE; source/contract/configuration survive
+refresh. Exact plan_json/payload_text preserves large seeds. Simulator-only inference;
+real captures remain inspectable with accurate unsupported replay reasons.
+
+Run python scripts/rewind.py dev for API/web/shared worker. For the built offline shell,
+run npm run build, start the local API, then npm run preview --workspace apps/web.
+First online load installs local assets; offline API errors/stale state stay visible.
+No API evidence is cached. npm.cmd run test:e2e builds and tests that production bundle.
+node scripts/p6_render.cjs <existing artifacts/browser/...> captures reviewed stored
+results using API only and starts no new trials. Provenance/QA: evidence/P6-UI.md and
+COMPONENT-SOURCES.md. Next product task: prompts/07-SENTINEL.md.

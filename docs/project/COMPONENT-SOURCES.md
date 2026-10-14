@@ -1,7 +1,7 @@
 # Component source and licence register
 
 No third-party UI component has been copied/imported in P0. The shell is original
-React/CSS implementation; exact 21st/shadcn sourcing remains a P6 task.
+React/CSS implementation; current P6 reviewed imports are recorded below.
 
 ## Discovery sources
 
@@ -19,7 +19,8 @@ These discovery links do not establish a licence for every component.
 
 | ID | Component / purpose | Exact source URL | Author / version | Licence and evidence | Local path | Changes | Verification |
 |---|---|---|---|---|---|---|---|
-| — | None imported yet | — | — | — | — | — | — |
+| P6-UI-01 | Card / composable evidence panels | [21st exact listing](https://21st.dev/@shadcn/components/card); [reviewed upstream source](https://github.com/shadcn-ui/ui/blob/30a58d4498f270af1c1e981a7d78a15cf5740841/apps/v4/registry/new-york-v4/ui/card.tsx) | shadcn; revision 30a58d4498f270af1c1e981a7d78a15cf5740841; retrieved 2026-10-14 | MIT; listing and pinned upstream LICENSE.md read; notice in apps/web/public/licenses/shadcn-MIT.txt | apps/web/src/ui/primitives.tsx | Native React props/slots retained; REWIND CSS replaces Tailwind/cn; semantic h2/p title/description | Verified; evidence/P6-UI.md and final three-viewport renders |
+| P6-UI-02 | Empty / honest empty and unavailable states | [21st exact listing](https://21st.dev/@shadcn/components/empty/outline); [reviewed upstream source](https://github.com/shadcn-ui/ui/blob/30a58d4498f270af1c1e981a7d78a15cf5740841/apps/v4/registry/new-york-v4/ui/empty.tsx) | shadcn; same pinned revision; retrieved 2026-10-14 | Listing omits licence; linked author's repository MIT licence read at pinned revision, notice retained | apps/web/src/ui/primitives.tsx | Composite structure/slots adapted; removed unused media/CVA variants and cn; semantic headings/paragraphs and original SVG | Verified; actual empty/error/offline screens and three-viewport renders |
 
 For each import record retrieval date, dependencies, local changes, attribution obligations, security review and tested viewports. Preserve required notices.
 
@@ -131,4 +132,47 @@ Current API contracts generated from Python. Three Ledger renders inspected; bro
 and raw experiment artifacts are referenced in evidence/P5-SIM.md. Public examples
 are actual synthetic experiment outputs with explicit trust limitations, not inserted
 runtime measurements. No exact external governance control was imported or mapped.
+
+## P6 source review — 2026-10-14
+
+Reopened the verified 21st navigation/card/Magic UI discovery pages. Inspected exact
+Card, Empty/Outline and Sidebar pages. Card and Empty fit evidence panels and clear
+capability states; upstream source was retrieved and read before adapting it. Their
+21st previews contain demo imports, not the complete primitive implementation; the
+register links the exact author source used. No registry/install command was run.
+Source review does not imply that the unrelated demo code or dependencies were imported.
+
+Raw bounded source retrieval manifest: artifacts/p6/sources/review.json. Pinned
+shadcn source SHA-256: Card ef8305b12c3112dab42a4708b41b1ebcc042fa5ab4c20f039da8d45b09ed5059;
+Empty 54f529ccf72c18c4b5abd5586a7cf1f2a4c8d207aac366029d66ed095cb2965d;
+MIT licence 1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f.
+Card upstream depends on React/cn and Tailwind classes. Empty additionally uses
+class-variance-authority for media variants. Adaptation uses the already locked
+React 19.3.0 only; no cn, CVA, Tailwind, icon package, package script or runtime
+dependency was added. Full required MIT notice is served and committed locally.
+
+Sidebar was reviewed but not copied: it adds Slot/CVA/lucide and its own provider/
+sheet dependencies. Original semantic navigation and native dialogs fit the bounded
+workspace. Magic UI collection/Number Ticker was considered but not imported:
+interpolated counters would display values that are not stored trial facts. Original
+stable SVG/HTML provenance, tables, evidence comparisons and 160ms state transitions
+avoid force simulation and additional graph/motion dependencies. These are original
+REWIND components; no claim that they were copied from 21st, React Flow or Motion.
+There was no login/paywall/licence bypass; no unperformed import is claimed.
+
+Locally bundled fonts, retrieved unchanged with full SIL OFL 1.1 notices from
+google/fonts revision e9678a5385322c63730122ba464765baad83cfd8:
+
+| Asset | Exact source | SHA-256 | Local path / notice |
+|---|---|---|---|
+| Source Sans 3 variable, Adobe | https://raw.githubusercontent.com/google/fonts/e9678a5385322c63730122ba464765baad83cfd8/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf | 042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9 | public/fonts/SourceSans3.ttf; public/licenses/SourceSans3-OFL.txt |
+| IBM Plex Mono Regular, IBM | https://raw.githubusercontent.com/google/fonts/e9678a5385322c63730122ba464765baad83cfd8/ofl/ibmplexmono/IBMPlexMono-Regular.ttf | 6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46 | public/fonts/IBMPlexMono-Regular.ttf; public/licenses/IBMPlexMono-OFL.txt |
+
+Both full OFL licences read; font bytes/names unmodified and notices preserved.
+Local original icons/favicon have no external asset dependency. The offline shell
+caches local assets only, never API/trace/trial responses. No remote fonts, images,
+tracking, executable hostile HTML, provider/browser secrets or paid inference added.
+Actual final screenshots, behaviours and limitations: evidence/P6-UI.md. Complete
+browser suite 25/25 plus targeted final exact-preview/restore checks; all three
+viewport journey renders inspected. No registry install or unsupported import claim.
 

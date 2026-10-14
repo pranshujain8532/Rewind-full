@@ -530,3 +530,70 @@ Updated STATE, HANDOFF, TASKS and this append-only log; historical experiment lo
 artifact hash indexes, signed bundles and code unchanged. Application tests not_run:
 metadata/context change only; verification targeted commit bytes and remote status.
 Next: publish the context follow-up under the same identity; product task remains P6.
+
+### P6 implementation checkpoint — 2026-10-14 — IN_PROGRESS
+
+User requested P6 under the accepted frontend identity. Read full 05-FRONTEND-DESIGN,
+P6 prompt, current context, API/domain schemas and component register. Starting tree
+clean at 2f7762a; prior signed evidence and Git identity mapping preserved.
+Implemented required route shell, session/event/input graph selection, original
+comparison/interval/count components, record verification and original-attack routes.
+Added bounded redacted session endpoint, read-only key access, 0005_workspace and
+immutable regression events emitted transactionally before SSE. No paid/provider calls.
+Inspected 21st navigation/card/Magic UI discovery and exact shadcn Card/Empty pages.
+Reviewed pinned upstream source/dependencies/MIT and full OFL font terms. Local font
+bytes copied unchanged with notices; original SVG icons and asset-only offline cache.
+Actual npm build/typecheck passed once; no browser render claim yet.
+Automatic approval review hit a usage limit before the new test-file/validation call
+executed. On user continuation, first retry found the missing test file and ran zero
+tests; raw unit-first.log retained. Saved the file and started a distinct unit-second
+run. Next: complete relevant tests, update old browser paths without weakening gates,
+inspect three viewport screenshots, fix the three largest weaknesses, finish context.
+
+### P6 verification and source checkpoint - 2026-10-14
+
+Completed the authorised P6 supported API/simulator workspace. Required routes/shared
+components, synchronised input/event/graph/details/intervention, safe text/table
+alternatives, native focus/reduced motion and accurate unavailable screens work.
+Reviewed two exact 21st-discovered MIT primitives and unchanged OFL fonts; no registry
+installer/new runtime dependency. Mode/evidence/capture/replay/integrity stay separate.
+Bounded read-only trace and exact uint64 previews, immutable regression events/SSE,
+metadata restoration, durations and truthful pending/cancelled/interrupted states added.
+Original signed evidence, attack/configuration contracts and all user data preserved.
+
+Actual commands: root check 92/92 in 138.97s plus static/schema/types/build/manifest;
+final affected API/ledger 20/20 in 11.92s. Full browser 25/25 in 8.4m; final exact-text/
+layout 8/8, restoration 3/3, pending probe 1/1, final URL/pending 1/1 in 29.8s separately.
+Raw logs retained under artifacts/p6; root XML checks/20261014T150147656593Z/pytest.xml.
+Final renders read existing actual API facts with zero new trials: five routes at
+1440x900,1280x720,390x844; fifteen layouts and details inspected, no page overflow/fatal
+JS/external requests. Final set render-2026-10-14T15-55-34-022Z; four public unchanged
+screenshots under docs/project/evidence/p6-example. Three visible weaknesses fixed;
+contract restoration, pending old-pass and exact-preview issues also corrected.
+
+Local migrate preserved 7 sessions/1 investigation/1 record/5 runs; head 0005_workspace.
+Credential scan: 197 tracked/staged files, zero API/private-key matches; api.txt ignored.
+Source implementation committed 8ee6736fcaaa7ff9881510661b5ec0fd3e289c40 under the approved
+Pranshu Jain/noreply identity. Git diff whitespace check initially flagged upstream
+licence trailing spaces. Exact notices retained with narrow Git attributes. The first
+attributes edit replaced existing normalization rules; restored all original rules
+and amended only the unpublished source commit. No prior user commit was rewritten.
+
+Evidence/P6-ARTIFACTS.json binds 47 committed Git-blob source hashes and 202 raw artifact
+hashes; source/notice/font revision proofs included. STATE/HANDOFF/TASKS, ADR-017,
+EXP-009, BUG-012/013/ENV-006, interview/source notes, frontend/architecture/local-dev
+and README updated. Earlier approval-limit/no-tests/selector/font/table failures remain
+recorded separately; no fake combined pass. P6 made zero provider calls, no paid service,
+external tool dispatch or public app deployment. Publication follows this checkpoint.
+Next product task P7 Sentinel; real-mode/governance/production/device gates stay explicit.
+
+### P6 final publication audit - 2026-10-14
+
+Implementation 8ee6736 pushed and remote SHA verified. Final hash audit caught that
+initial staging normalized two upstream licence notices despite their later -text
+attributes. Corrected exact bytes in ordinary follow-up e6f1ea4; no public history,
+application, font binary or evidence changed. Updated P6 index: 47 source Git-blob
+hashes, 202 raw artifact hashes and four public screenshots verify. All five font/
+notice files match reviewed upstream bytes. Original Git normalization rules retained.
+Final render set render-2026-10-14T15-55-34-022Z inspected at required viewports;
+context/evidence publication follows. Source/provider limitations and next P7 unchanged.
